@@ -55,9 +55,9 @@ class BaselineRouter:
         )
         
         # Classifiers
+        # Note: 'multi_class' parameter removed in sklearn 1.5+
         self.category_classifier = LogisticRegression(
             max_iter=1000,
-            multi_class='multinomial',
             solver='lbfgs',
             C=1.0,
             class_weight='balanced'
@@ -65,7 +65,6 @@ class BaselineRouter:
         
         self.priority_classifier = LogisticRegression(
             max_iter=1000,
-            multi_class='multinomial',
             solver='lbfgs',
             C=1.0,
             class_weight='balanced'

@@ -1,0 +1,1074 @@
+{
+  "info": {
+    "_postman_id": "localtriage-e2e-tests",
+    "name": "LOCALTRIAGE API E2E Tests",
+    "description": "End-to-end test collection for the LOCALTRIAGE Customer Support Triage API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "ticket_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "draft_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health & Status",
+      "item": [
+        {
+          "name": "Health Check",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has health status fields', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('api');",
+                  "});",
+                  "",
+                  "pm.test('API is healthy', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.api).to.eql('healthy');",
+                  "});",
+                  "",
+                  "pm.test('Response time is acceptable', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ticket Triage",
+      "item": [
+        {
+          "name": "Triage - Technical Issue",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has required fields', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('ticket_id');",
+                  "    pm.expect(jsonData).to.have.property('category');",
+                  "    pm.expect(jsonData).to.have.property('category_confidence');",
+                  "    pm.expect(jsonData).to.have.property('priority');",
+                  "    pm.expect(jsonData).to.have.property('priority_confidence');",
+                  "});",
+                  "",
+                  "pm.test('Category confidence is valid', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.category_confidence).to.be.at.least(0);",
+                  "    pm.expect(jsonData.category_confidence).to.be.at.most(1);",
+                  "});",
+                  "",
+                  "pm.test('Priority is valid', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(['P1', 'P2', 'P3', 'P4']).to.include(jsonData.priority);",
+                  "});",
+                  "",
+                  "// Store ticket_id for later tests",
+                  "var jsonData = pm.response.json();",
+                  "pm.collectionVariables.set('ticket_id', jsonData.ticket_id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"subject\": \"Application crashes on startup\",\n    \"body\": \"When I try to open the application, it immediately crashes with an error message. I've tried reinstalling but the problem persists. This is blocking my work.\",\n    \"customer_email\": \"user@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/triage",
+              "host": ["{{base_url}}"],
+              "path": ["triage"]
+            }
+          }
+        },
+        {
+          "name": "Triage - Billing Issue",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has category probabilities', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('category_probabilities');",
+                  "    pm.expect(jsonData.category_probabilities).to.be.an('object');",
+                  "});",
+                  "",
+                  "pm.test('Has processing time metric', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('processing_time_ms');",
+                  "    pm.expect(jsonData.processing_time_ms).to.be.a('number');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"subject\": \"Charged twice for subscription\",\n    \"body\": \"I noticed that my credit card was charged twice for the monthly subscription. The charges are dated December 1st and December 2nd. Please refund the duplicate charge.\",\n    \"customer_email\": \"billing@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/triage",
+              "host": ["{{base_url}}"],
+              "path": ["triage"]
+            }
+          }
+        },
+        {
+          "name": "Triage - Account Issue",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('SLA risk field present', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('sla_risk');",
+                  "    pm.expect(jsonData.sla_risk).to.be.a('boolean');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"subject\": \"Cannot reset password\",\n    \"body\": \"I've been trying to reset my password but the reset email never arrives. I've checked spam folder and tried multiple times. Need urgent access to my account.\",\n    \"customer_email\": \"account@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/triage",
+              "host": ["{{base_url}}"],
+              "path": ["triage"]
+            }
+          }
+        },
+        {
+          "name": "Triage - Missing Subject (400)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 422 (Validation Error)', function () {",
+                  "    pm.response.to.have.status(422);",
+                  "});",
+                  "",
+                  "pm.test('Error response has detail', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('detail');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"body\": \"This request is missing the subject field\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/triage",
+              "host": ["{{base_url}}"],
+              "path": ["triage"]
+            }
+          }
+        },
+        {
+          "name": "Triage - Empty Body (400)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 422 (Validation Error)', function () {",
+                  "    pm.response.to.have.status(422);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"subject\": \"Test\",\n    \"body\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/triage",
+              "host": ["{{base_url}}"],
+              "path": ["triage"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Draft Generation",
+      "item": [
+        {
+          "name": "Generate Draft - With LLM",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has draft fields', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('draft_id');",
+                  "    pm.expect(jsonData).to.have.property('draft_text');",
+                  "    pm.expect(jsonData).to.have.property('confidence');",
+                  "    pm.expect(jsonData).to.have.property('citations');",
+                  "});",
+                  "",
+                  "pm.test('Draft text is not empty', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.draft_text).to.be.a('string');",
+                  "    pm.expect(jsonData.draft_text.length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.test('Confidence is valid', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(['high', 'medium', 'low']).to.include(jsonData.confidence);",
+                  "});",
+                  "",
+                  "pm.test('Has timing metrics', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('generation_time_ms');",
+                  "    pm.expect(jsonData).to.have.property('retrieval_time_ms');",
+                  "});",
+                  "",
+                  "// Store draft_id for feedback test",
+                  "var jsonData = pm.response.json();",
+                  "pm.collectionVariables.set('draft_id', jsonData.draft_id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"subject\": \"How do I export my data?\",\n    \"body\": \"I need to export all my project data to CSV format. Can you tell me how to do this? I've looked in the settings but couldn't find the option.\",\n    \"use_llm\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/draft",
+              "host": ["{{base_url}}"],
+              "path": ["draft"]
+            }
+          }
+        },
+        {
+          "name": "Generate Draft - Template Only",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has draft_text', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('draft_text');",
+                  "    pm.expect(jsonData.draft_text.length).to.be.above(0);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"subject\": \"Billing question\",\n    \"body\": \"What payment methods do you accept?\",\n    \"category\": \"Billing\",\n    \"use_llm\": false\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/draft",
+              "host": ["{{base_url}}"],
+              "path": ["draft"]
+            }
+          }
+        },
+        {
+          "name": "Generate Draft - With Category Hint",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Citations is an array', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.citations).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('Follow-up questions present', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('follow_up_questions');",
+                  "    pm.expect(jsonData.follow_up_questions).to.be.an('array');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"subject\": \"Integration not working\",\n    \"body\": \"The API integration with Salesforce stopped working after the latest update. Getting 401 errors.\",\n    \"category\": \"Technical\",\n    \"priority\": \"P1\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/draft",
+              "host": ["{{base_url}}"],
+              "path": ["draft"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Similar Tickets",
+      "item": [
+        {
+          "name": "Find Similar Tickets",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response is an array', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('Each result has required fields', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    if (jsonData.length > 0) {",
+                  "        jsonData.forEach(function(item) {",
+                  "            pm.expect(item).to.have.property('ticket_id');",
+                  "            pm.expect(item).to.have.property('similarity_score');",
+                  "        });",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"query\": \"password reset not working\",\n    \"limit\": 5\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/similar",
+              "host": ["{{base_url}}"],
+              "path": ["similar"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Feedback",
+      "item": [
+        {
+          "name": "Submit Positive Feedback",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Feedback accepted', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('status');",
+                  "    pm.expect(jsonData.status).to.eql('success');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"draft_id\": \"{{draft_id}}\",\n    \"rating\": 5,\n    \"is_helpful\": true,\n    \"feedback_text\": \"The response was accurate and helpful.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/feedback",
+              "host": ["{{base_url}}"],
+              "path": ["feedback"]
+            }
+          }
+        },
+        {
+          "name": "Submit Negative Feedback with Correction",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Feedback has ID', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('feedback_id');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"draft_id\": \"{{draft_id}}\",\n    \"rating\": 2,\n    \"is_helpful\": false,\n    \"feedback_text\": \"The response missed the main issue.\",\n    \"correction_text\": \"The customer was asking about X, not Y.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/feedback",
+              "host": ["{{base_url}}"],
+              "path": ["feedback"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Metrics & Analytics",
+      "item": [
+        {
+          "name": "Get Metrics - Default (Day)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has metrics fields', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('period');",
+                  "    pm.expect(jsonData).to.have.property('total_tickets');",
+                  "});",
+                  "",
+                  "pm.test('Metrics values are numbers', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.total_tickets).to.be.a('number');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/metrics",
+              "host": ["{{base_url}}"],
+              "path": ["metrics"]
+            }
+          }
+        },
+        {
+          "name": "Get Metrics - Weekly",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Period is week', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.period).to.eql('week');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/metrics?period=week",
+              "host": ["{{base_url}}"],
+              "path": ["metrics"],
+              "query": [
+                {
+                  "key": "period",
+                  "value": "week"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Metrics - Monthly",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Period is month', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.period).to.eql('month');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/metrics?period=month",
+              "host": ["{{base_url}}"],
+              "path": ["metrics"],
+              "query": [
+                {
+                  "key": "period",
+                  "value": "month"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tickets",
+      "item": [
+        {
+          "name": "List Tickets - Default",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has tickets array', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('tickets');",
+                  "    pm.expect(jsonData.tickets).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('Response has pagination info', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('total');",
+                  "    pm.expect(jsonData).to.have.property('page');",
+                  "    pm.expect(jsonData).to.have.property('page_size');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tickets",
+              "host": ["{{base_url}}"],
+              "path": ["tickets"]
+            }
+          }
+        },
+        {
+          "name": "List Tickets - With Category Filter",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('All tickets have Technical category', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    jsonData.tickets.forEach(function(ticket) {",
+                  "        pm.expect(ticket.category).to.eql('Technical');",
+                  "    });",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tickets?category=Technical",
+              "host": ["{{base_url}}"],
+              "path": ["tickets"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "Technical"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "List Tickets - With Priority Filter",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tickets?priority=P1",
+              "host": ["{{base_url}}"],
+              "path": ["tickets"],
+              "query": [
+                {
+                  "key": "priority",
+                  "value": "P1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "List Tickets - Pagination",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Page size is respected', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.tickets.length).to.be.at.most(5);",
+                  "});",
+                  "",
+                  "pm.test('Page number is correct', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.page).to.eql(2);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tickets?page=2&page_size=5",
+              "host": ["{{base_url}}"],
+              "path": ["tickets"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "2"
+                },
+                {
+                  "key": "page_size",
+                  "value": "5"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Ticket",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 or 404', function () {",
+                  "    pm.expect([200, 404]).to.include(pm.response.code);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    pm.test('Ticket has required fields', function () {",
+                  "        var jsonData = pm.response.json();",
+                  "        pm.expect(jsonData).to.have.property('ticket_id');",
+                  "        pm.expect(jsonData).to.have.property('subject');",
+                  "        pm.expect(jsonData).to.have.property('body');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tickets/{{ticket_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["tickets", "{{ticket_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Error Handling",
+      "item": [
+        {
+          "name": "Invalid JSON",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 422', function () {",
+                  "    pm.response.to.have.status(422);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ invalid json }"
+            },
+            "url": {
+              "raw": "{{base_url}}/triage",
+              "host": ["{{base_url}}"],
+              "path": ["triage"]
+            }
+          }
+        },
+        {
+          "name": "Invalid Metrics Period",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 422', function () {",
+                  "    pm.response.to.have.status(422);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/metrics?period=invalid",
+              "host": ["{{base_url}}"],
+              "path": ["metrics"],
+              "query": [
+                {
+                  "key": "period",
+                  "value": "invalid"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Non-existent Endpoint",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 404', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/nonexistent",
+              "host": ["{{base_url}}"],
+              "path": ["nonexistent"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Performance",
+      "item": [
+        {
+          "name": "Triage Response Time",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response time under 5 seconds', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "",
+                  "pm.test('Processing time is reasonable', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.processing_time_ms).to.be.below(3000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"subject\": \"Performance test ticket\",\n    \"body\": \"This is a test to measure the response time of the triage endpoint.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/triage",
+              "host": ["{{base_url}}"],
+              "path": ["triage"]
+            }
+          }
+        },
+        {
+          "name": "Draft Generation Time",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response time under 30 seconds (LLM)', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(30000);",
+                  "});",
+                  "",
+                  "pm.test('Total time is tracked', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('total_time_ms');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"subject\": \"Performance test draft\",\n    \"body\": \"This is a test to measure the response time of draft generation.\",\n    \"use_llm\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/draft",
+              "host": ["{{base_url}}"],
+              "path": ["draft"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

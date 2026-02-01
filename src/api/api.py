@@ -509,7 +509,7 @@ async def submit_feedback(feedback: FeedbackInput, background_tasks: BackgroundT
 
 @app.get("/metrics", response_model=MetricsResponse)
 async def get_metrics(
-    period: str = Query(default="day", regex="^(day|week|month)$")
+    period: str = Query(default="day", pattern="^(day|week|month)$")
 ):
     """
     Get system metrics and analytics

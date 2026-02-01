@@ -1,0 +1,248 @@
+{
+  "description": "Evaluation dataset for testing classifier and retrieval models",
+  "version": "1.0.0",
+  "created_date": "2025-01-15",
+  "metrics_to_compute": ["accuracy", "precision", "recall", "f1_score", "confusion_matrix"],
+  "test_samples": [
+    {
+      "id": "eval-001",
+      "text": "The app keeps freezing when I try to upload files larger than 10MB",
+      "expected_category": "Technical",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-003"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-002",
+      "text": "I paid for premium but it says I'm still on free plan",
+      "expected_category": "Billing",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-002", "KB-007"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-003",
+      "text": "Can't remember my login credentials and email won't reset",
+      "expected_category": "Account",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-001", "KB-004"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-004",
+      "text": "It would be nice if you supported markdown formatting",
+      "expected_category": "Feature Request",
+      "expected_priority": "P4-Low",
+      "relevant_kb_articles": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-005",
+      "text": "What time zone are your servers in?",
+      "expected_category": "General Inquiry",
+      "expected_priority": "P4-Low",
+      "relevant_kb_articles": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-006",
+      "text": "URGENT: Production is completely down, customers cannot access the service at all",
+      "expected_category": "Technical",
+      "expected_priority": "P1-Critical",
+      "relevant_kb_articles": ["KB-003", "KB-008"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-007",
+      "text": "The sync icon shows spinning forever but nothing changes",
+      "expected_category": "Technical",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-008"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-008",
+      "text": "Why was I charged $49.99 when my plan is supposed to be $29.99?",
+      "expected_category": "Billing",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-002"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-009",
+      "text": "My colleague left the company and I need to take over their workspace",
+      "expected_category": "Account",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-006"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-010",
+      "text": "Have you considered adding Jira integration?",
+      "expected_category": "Feature Request",
+      "expected_priority": "P4-Low",
+      "relevant_kb_articles": ["KB-009"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-011",
+      "text": "Getting Error 429 too many requests when calling your API",
+      "expected_category": "Technical",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-005"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-012",
+      "text": "I need my account deleted for GDPR compliance",
+      "expected_category": "Account",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-010"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-013",
+      "text": "The Salesforce connector keeps disconnecting every few hours",
+      "expected_category": "Technical",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-009"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-014",
+      "text": "Need to add 50 more seats to our enterprise contract",
+      "expected_category": "Billing",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-002", "KB-006"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-015",
+      "text": "How do I set up MFA for all team members?",
+      "expected_category": "Account",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-004", "KB-006"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-016",
+      "text": "I can't believe there's no dark mode in 2025",
+      "expected_category": "Feature Request",
+      "expected_priority": "P4-Low",
+      "relevant_kb_articles": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-017",
+      "text": "Where can I find your SOC 2 certification?",
+      "expected_category": "General Inquiry",
+      "expected_priority": "P4-Low",
+      "relevant_kb_articles": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-018",
+      "text": "Payment failed and now I'm locked out of my account",
+      "expected_category": "Billing",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-002", "KB-007"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-019",
+      "text": "The authenticator codes from my app don't work anymore",
+      "expected_category": "Account",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-004"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-020",
+      "text": "Export to PDF creates a blank document with no content",
+      "expected_category": "Technical",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-003"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-021",
+      "text": "I want to downgrade my plan but keep my data",
+      "expected_category": "Billing",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-002", "KB-007"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-022",
+      "text": "Someone unauthorized is accessing my account, please help immediately",
+      "expected_category": "Account",
+      "expected_priority": "P1-Critical",
+      "relevant_kb_articles": ["KB-004", "KB-010"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-023",
+      "text": "The mobile app on Android 14 crashes when opening notifications",
+      "expected_category": "Technical",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-003"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-024",
+      "text": "Could you add a bulk action feature for managing items?",
+      "expected_category": "Feature Request",
+      "expected_priority": "P4-Low",
+      "relevant_kb_articles": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-025",
+      "text": "Do you offer any discounts for educational institutions?",
+      "expected_category": "General Inquiry",
+      "expected_priority": "P4-Low",
+      "relevant_kb_articles": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-026",
+      "text": "Password reset email never arrives, tried multiple times",
+      "expected_category": "Account",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-001"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-027",
+      "text": "Annual billing shows monthly rate, very confusing",
+      "expected_category": "Billing",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-002"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-028",
+      "text": "Webhook payload doesn't include the fields documented in API docs",
+      "expected_category": "Technical",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-005", "KB-009"],
+      "difficulty": "hard"
+    },
+    {
+      "id": "eval-029",
+      "text": "Please add support for Teams in addition to Slack",
+      "expected_category": "Feature Request",
+      "expected_priority": "P4-Low",
+      "relevant_kb_articles": ["KB-009"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-030",
+      "text": "Everything was working yesterday but today nothing loads - just white screen",
+      "expected_category": "Technical",
+      "expected_priority": "P1-Critical",
+      "relevant_kb_articles": ["KB-003", "KB-008"],
+      "difficulty": "easy"
+    }
+  ]
+}

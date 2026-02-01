@@ -1,0 +1,489 @@
+{
+  "description": "Training data for ticket classification model",
+  "version": "1.0.0",
+  "created_date": "2025-01-15",
+  "categories": ["Technical", "Billing", "Account", "Feature Request", "General Inquiry"],
+  "priorities": ["P1-Critical", "P2-High", "P3-Medium", "P4-Low"],
+  "training_samples": [
+    {
+      "text": "App crashes every time I try to export PDF",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "I was charged twice this month for my subscription",
+      "category": "Billing",
+      "priority": "P2-High"
+    },
+    {
+      "text": "How do I reset my password",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Please add dark mode to the application",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "What are your business hours",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Application not responding and showing white screen",
+      "category": "Technical",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "Cannot login to my account getting 401 error",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Need refund for last month's charge",
+      "category": "Billing",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Update my email address on the account",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Integration with Salesforce would be great",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Server is down cannot access anything",
+      "category": "Technical",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "Data not syncing between devices",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Change my subscription plan",
+      "category": "Billing",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Delete my account and all data",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "API documentation is confusing",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Getting rate limit errors constantly",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Invoice not showing correct amount",
+      "category": "Billing",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Enable two factor authentication",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Add export to Excel feature",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "What is included in the enterprise plan",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Mobile app keeps crashing on iOS",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Payment method expired need to update",
+      "category": "Billing",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "How to add team members to my account",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Would love to see Slack integration",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Getting 500 internal server error",
+      "category": "Technical",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "File upload not working shows error",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Cancel my subscription immediately",
+      "category": "Billing",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Transfer ownership of my workspace",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Bulk import feature would save time",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Do you offer student discounts",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "SSL certificate error when connecting",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Database connection timeout issues",
+      "category": "Technical",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "Applied promo code but no discount showing",
+      "category": "Billing",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Reset 2FA I lost my phone",
+      "category": "Account",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Add keyboard shortcuts for power users",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Memory leak making browser slow",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Webhook not firing on events",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "VAT not being calculated correctly",
+      "category": "Billing",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Locked out of account after too many attempts",
+      "category": "Account",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Need offline mode for mobile app",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "How do I contact sales team",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Search functionality returning wrong results",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Performance is extremely slow today",
+      "category": "Technical",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "Need an itemized receipt for expense report",
+      "category": "Billing",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Change the email for notifications",
+      "category": "Account",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Custom branding options would be nice",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "API returning malformed JSON response",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Images not loading in the dashboard",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Upgrade from monthly to annual plan",
+      "category": "Billing",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Merge two accounts into one",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Support for markdown in comments",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Where can I find the API documentation",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "OAuth integration not working with Google",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Notifications not coming through",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Wrong currency showing on invoice",
+      "category": "Billing",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "SSO configuration for our organization",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Add support for more file formats",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Complete system outage nothing working",
+      "category": "Technical",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "Data export taking forever to complete",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Dispute unauthorized charge on my account",
+      "category": "Billing",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "How to revoke API access tokens",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Would be great to have mobile notifications",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "What regions do you have data centers in",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Sporadic connection drops during use",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Calendar sync not working properly",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Need invoice for previous year for taxes",
+      "category": "Billing",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Change my username to something else",
+      "category": "Account",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Add gantt chart view for projects",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Autocomplete suggestions are incorrect",
+      "category": "Technical",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Form validation not working correctly",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Auto-renewal charged but I cancelled",
+      "category": "Billing",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Need to download my GDPR data export",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Real-time collaboration would be amazing",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Is there a free trial available",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Print function cuts off content",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Browser extension not syncing data",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Add more users to our enterprise plan",
+      "category": "Billing",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Someone is trying to hack my account",
+      "category": "Account",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "Version history feature request",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "What compliance certifications do you have",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Email templates not rendering correctly",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Multiple security vulnerabilities detected",
+      "category": "Technical",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "Received incorrect billing address on invoice",
+      "category": "Billing",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "How do I set up audit logging",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Add support for custom fields",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Drag and drop not working in Firefox",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Copy paste stripping formatting",
+      "category": "Technical",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Tax ID not showing on invoices",
+      "category": "Billing",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Configure custom domain for workspace",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Would love to see better reporting features",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "How many API calls are included in my plan",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Timezone settings being ignored",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Charts not displaying any data",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Nonprofit discount eligibility question",
+      "category": "Billing",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Setup IP whitelisting for security",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Request for template library feature",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    }
+  ]
+}
