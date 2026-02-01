@@ -1,0 +1,263 @@
+# LOCALTRIAGE - Docker Compose Configuration
+# Full-stack deployment for the Customer Support Triage Platform
+
+version: '3.8'
+
+services:
+  # ==========================================================================
+  # Database Services
+  # ==========================================================================
+  
+  postgres:
+    image: postgres:16-alpine
+    container_name: localtriage-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_NAME:-localtriage}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./src/ingestion/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-localtriage}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - localtriage-network
+
+  # ==========================================================================
+  # Vector Store (Qdrant)
+  # ==========================================================================
+  
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: localtriage-qdrant
+    restart: unless-stopped
+    volumes:
+      - qdrant_data:/qdrant/storage
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    environment:
+      QDRANT__SERVICE__GRPC_PORT: 6334
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - localtriage-network
+
+  # ==========================================================================
+  # LLM Service (vLLM for GPU / llama.cpp for CPU)
+  # ==========================================================================
+  
+  # GPU-based LLM service (uncomment if you have a GPU)
+  # llm-gpu:
+  #   build:
+  #     context: ./infra/docker
+  #     dockerfile: Dockerfile.llm
+  #     target: vllm-gpu
+  #   container_name: localtriage-llm-gpu
+  #   restart: unless-stopped
+  #   environment:
+  #     MODEL_NAME: ${LLM_MODEL:-Qwen/Qwen2.5-14B-Instruct}
+  #     MAX_MODEL_LEN: ${MAX_MODEL_LEN:-8192}
+  #     GPU_MEMORY_UTILIZATION: ${GPU_MEM_UTIL:-0.9}
+  #     HUGGING_FACE_HUB_TOKEN: ${HF_TOKEN}
+  #   volumes:
+  #     - huggingface_cache:/root/.cache/huggingface
+  #   ports:
+  #     - "8000:8000"
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: 1
+  #             capabilities: [gpu]
+  #   networks:
+  #     - localtriage-network
+
+  # CPU-based LLM service (default for development)
+  llm-cpu:
+    build:
+      context: ./infra/docker
+      dockerfile: Dockerfile.llm
+      target: llamacpp-cpu
+    container_name: localtriage-llm-cpu
+    restart: unless-stopped
+    environment:
+      MODEL_PATH: /models/${LLM_MODEL_FILE:-qwen2.5-7b-instruct.Q4_K_M.gguf}
+      CONTEXT_SIZE: ${CONTEXT_SIZE:-4096}
+      THREADS: ${LLM_THREADS:-4}
+    volumes:
+      - ./models:/models:ro
+    ports:
+      - "8000:8000"
+    profiles:
+      - cpu
+    networks:
+      - localtriage-network
+
+  # ==========================================================================
+  # Embedding Service
+  # ==========================================================================
+  
+  embeddings:
+    build:
+      context: ./infra/docker
+      dockerfile: Dockerfile.llm
+      target: embedding-service
+    container_name: localtriage-embeddings
+    restart: unless-stopped
+    environment:
+      MODEL_NAME: ${EMBEDDING_MODEL:-BAAI/bge-base-en-v1.5}
+    volumes:
+      - huggingface_cache:/root/.cache/huggingface
+    ports:
+      - "8001:8001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - localtriage-network
+
+  # ==========================================================================
+  # API Service
+  # ==========================================================================
+  
+  api:
+    build:
+      context: .
+      dockerfile: ./infra/docker/Dockerfile
+      target: production
+    container_name: localtriage-api
+    restart: unless-stopped
+    environment:
+      # Database
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-localtriage}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-postgres}
+      # Vector Store
+      VECTOR_STORE_TYPE: ${VECTOR_STORE_TYPE:-qdrant}
+      QDRANT_HOST: qdrant
+      QDRANT_PORT: 6333
+      # LLM
+      LLM_BASE_URL: ${LLM_BASE_URL:-http://llm-cpu:8000/v1}
+      LLM_MODEL: ${LLM_MODEL:-qwen2.5}
+      USE_LLM: ${USE_LLM:-true}
+      # Embeddings
+      EMBEDDING_BASE_URL: ${EMBEDDING_BASE_URL:-http://embeddings:8001/v1}
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-BAAI/bge-base-en-v1.5}
+      # Logging
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - localtriage-network
+
+  # ==========================================================================
+  # Streamlit Dashboard
+  # ==========================================================================
+  
+  dashboard:
+    build:
+      context: .
+      dockerfile: ./infra/docker/Dockerfile.streamlit
+    container_name: localtriage-dashboard
+    restart: unless-stopped
+    environment:
+      API_BASE_URL: http://api:8080
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+    networks:
+      - localtriage-network
+
+  # ==========================================================================
+  # Monitoring (Optional)
+  # ==========================================================================
+  
+  # Prometheus metrics collection
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: localtriage-prometheus
+    restart: unless-stopped
+    volumes:
+      - ./infra/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.enable-lifecycle'
+    profiles:
+      - monitoring
+    networks:
+      - localtriage-network
+
+  # Grafana dashboards
+  grafana:
+    image: grafana/grafana:latest
+    container_name: localtriage-grafana
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin}
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./infra/monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    profiles:
+      - monitoring
+    networks:
+      - localtriage-network
+
+# ==========================================================================
+# Networks
+# ==========================================================================
+
+networks:
+  localtriage-network:
+    driver: bridge
+    name: localtriage-network
+
+# ==========================================================================
+# Volumes
+# ==========================================================================
+
+volumes:
+  postgres_data:
+    name: localtriage-postgres-data
+  qdrant_data:
+    name: localtriage-qdrant-data
+  huggingface_cache:
+    name: localtriage-hf-cache
+  prometheus_data:
+    name: localtriage-prometheus-data
+  grafana_data:
+    name: localtriage-grafana-data

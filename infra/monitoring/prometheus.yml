@@ -1,0 +1,39 @@
+# Prometheus Configuration for LOCALTRIAGE
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  # API Service metrics
+  - job_name: 'localtriage-api'
+    static_configs:
+      - targets: ['api:8080']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # LLM Service metrics
+  - job_name: 'localtriage-llm'
+    static_configs:
+      - targets: ['llm-cpu:8000']
+    metrics_path: '/metrics'
+    scrape_interval: 30s
+
+  # Embedding Service metrics  
+  - job_name: 'localtriage-embeddings'
+    static_configs:
+      - targets: ['embeddings:8001']
+    metrics_path: '/metrics'
+    scrape_interval: 30s
+
+  # Qdrant metrics
+  - job_name: 'localtriage-qdrant'
+    static_configs:
+      - targets: ['qdrant:6333']
+    metrics_path: '/metrics'
+    scrape_interval: 30s
+
+  # PostgreSQL metrics (if using postgres_exporter)
+  # - job_name: 'localtriage-postgres'
+  #   static_configs:
+  #     - targets: ['postgres-exporter:9187']

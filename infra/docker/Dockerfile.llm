@@ -1,0 +1,167 @@
+# LOCALTRIAGE LLM Service Dockerfile
+# Optimized for vLLM / llama.cpp serving
+
+# =============================================================================
+# vLLM GPU Image (Default)
+# =============================================================================
+FROM vllm/vllm-openai:latest as vllm-gpu
+
+# Environment variables
+ENV MODEL_NAME="Qwen/Qwen2.5-14B-Instruct" \
+    VLLM_HOST="0.0.0.0" \
+    VLLM_PORT="8000" \
+    MAX_MODEL_LEN="8192" \
+    GPU_MEMORY_UTILIZATION="0.9" \
+    DTYPE="auto"
+
+# Create model cache directory
+RUN mkdir -p /root/.cache/huggingface
+
+# Health check
+HEALTHCHECK --interval=60s --timeout=30s --start-period=300s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
+EXPOSE 8000
+
+# Start vLLM server
+CMD python -m vllm.entrypoints.openai.api_server \
+    --model $MODEL_NAME \
+    --host $VLLM_HOST \
+    --port $VLLM_PORT \
+    --max-model-len $MAX_MODEL_LEN \
+    --gpu-memory-utilization $GPU_MEMORY_UTILIZATION \
+    --dtype $DTYPE \
+    --trust-remote-code
+
+
+# =============================================================================
+# llama.cpp CPU Image (Alternative)
+# =============================================================================
+FROM ubuntu:22.04 as llamacpp-cpu
+
+# Install dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    cmake \
+    git \
+    curl \
+    wget \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Clone and build llama.cpp
+RUN git clone https://github.com/ggerganov/llama.cpp.git && \
+    cd llama.cpp && \
+    mkdir build && cd build && \
+    cmake .. -DLLAMA_CURL=ON && \
+    cmake --build . --config Release -j$(nproc)
+
+# Create model directory
+RUN mkdir -p /models
+
+# Environment variables
+ENV MODEL_PATH="/models/model.gguf" \
+    LLAMA_HOST="0.0.0.0" \
+    LLAMA_PORT="8000" \
+    CONTEXT_SIZE="8192" \
+    N_GPU_LAYERS="0" \
+    THREADS="4"
+
+EXPOSE 8000
+
+# Health check
+HEALTHCHECK --interval=60s --timeout=30s --start-period=120s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
+# Start llama.cpp server
+CMD /app/llama.cpp/build/bin/llama-server \
+    --model $MODEL_PATH \
+    --host $LLAMA_HOST \
+    --port $LLAMA_PORT \
+    --ctx-size $CONTEXT_SIZE \
+    --n-gpu-layers $N_GPU_LAYERS \
+    --threads $THREADS \
+    --parallel 4
+
+
+# =============================================================================
+# Embedding Service (for dedicated embedding serving)
+# =============================================================================
+FROM python:3.11-slim as embedding-service
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    MODEL_NAME="BAAI/bge-base-en-v1.5"
+
+WORKDIR /app
+
+# Install dependencies
+RUN pip install --no-cache-dir \
+    sentence-transformers \
+    fastapi \
+    uvicorn \
+    numpy
+
+# Create embedding server script
+RUN cat > /app/embedding_server.py << 'EOF'
+import os
+from typing import List
+from fastapi import FastAPI
+from pydantic import BaseModel
+from sentence_transformers import SentenceTransformer
+import numpy as np
+
+app = FastAPI(title="Embedding Service")
+
+model_name = os.getenv("MODEL_NAME", "BAAI/bge-base-en-v1.5")
+model = SentenceTransformer(model_name)
+
+class EmbeddingRequest(BaseModel):
+    input: List[str]
+    model: str = model_name
+
+class EmbeddingResponse(BaseModel):
+    object: str = "list"
+    data: List[dict]
+    model: str
+    usage: dict
+
+@app.get("/health")
+def health():
+    return {"status": "healthy", "model": model_name}
+
+@app.post("/v1/embeddings")
+def create_embeddings(request: EmbeddingRequest):
+    embeddings = model.encode(request.input, normalize_embeddings=True)
+    
+    data = [
+        {
+            "object": "embedding",
+            "index": i,
+            "embedding": emb.tolist()
+        }
+        for i, emb in enumerate(embeddings)
+    ]
+    
+    return EmbeddingResponse(
+        data=data,
+        model=model_name,
+        usage={
+            "prompt_tokens": sum(len(t.split()) for t in request.input),
+            "total_tokens": sum(len(t.split()) for t in request.input)
+        }
+    )
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8001)
+EOF
+
+EXPOSE 8001
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:8001/health || exit 1
+
+CMD ["uvicorn", "embedding_server:app", "--host", "0.0.0.0", "--port", "8001"]
