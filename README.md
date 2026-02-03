@@ -95,8 +95,17 @@ Open http://localhost:8501 in your browser.
 ┌───────▼──────┐ ┌─────▼─────┐ ┌─────▼─────┐ ┌──────▼──────┐
 │  PostgreSQL  │ │  Ollama   │ │   Qdrant  │ │ BGE-Large   │
 │   Database   │ │ qwen3:32b │ │  Vectors  │ │ Embeddings  │
+│  (port 5432) │ │(port 11434)│ │(port 6333)│ │ (1024 dim)  │
 └──────────────┘ └───────────┘ └───────────┘ └─────────────┘
 ```
+
+### Tech Stack
+- **LLM**: Qwen3:32B via Ollama (22GB VRAM)
+- **Embeddings**: BAAI/bge-large-en-v1.5 (1024 dimensions)
+- **Vector Store**: Qdrant
+- **Database**: PostgreSQL 16
+- **API Framework**: FastAPI
+- **GPU**: NVIDIA RTX 5090 (32GB VRAM, CUDA 13.0)
 
 ## API Endpoints
 
@@ -162,22 +171,41 @@ Run the evaluation harness:
 
 ```bash
 # Full evaluation
-python -m evaluation.eval_harness --mode full
+python scripts/run_evaluation.py
 
-# Quick baseline comparison
-python -m evaluation.eval_harness --mode compare
+# Run tests
+pytest tests/ -v
+
+# E2E tests (requires API running)
+E2E_BASE_URL=http://localhost:8080 pytest tests/e2e/ -v
 ```
 
-### Target Metrics
+### Current Metrics (2026-02-03)
 
-| Metric | Baseline | Target | Achieved |
-|--------|----------|--------|----------|
-| Routing Accuracy | 72% | 90% | 63.3% |
-| Retrieval Recall@5 | 58% | 80% | 65.0% |
-| Draft Quality (1-5) | 2.1 | 4.0 | **4.80** ✓ |
-| P95 Latency | 8.2s | 5.0s | 12.5s |
+| Metric | Baseline | Target | Achieved | Status |
+|--------|----------|--------|----------|--------|
+| Routing Accuracy | 72% | 90% | 63.3% | ⚠️ Below baseline |
+| Retrieval Recall@5 | 58% | 80% | 65.0% | ✅ Improved |
+| Draft Quality (1-5) | 2.1 | 4.0 | **4.80** | ✅ **Exceeds target** |
+| P95 Latency | 8.2s | 5.0s | 12.5s | ⚠️ Above target |
 
-> **Note:** Evaluation run on 2026-02-03. Draft quality exceeds target. Routing accuracy is below baseline due to limited training data (96 samples). Latency includes LLM inference time (~10-12s per draft with Qwen3:32B on RTX 5090).
+**Notes:**
+- Routing accuracy is below baseline due to limited training data (96 samples). More labeled data needed.
+- Draft quality significantly exceeds target using Qwen3:32B model.
+- Latency includes LLM inference (~10-12s per draft on RTX 5090).
+
+### Test Suite Status
+
+| Suite | Tests | Status |
+|-------|-------|--------|
+| Unit Tests | 28 | ✅ All pass |
+| API Tests | 17 | ✅ All pass |
+| Data Validation | 10 | ✅ All pass |
+| Integration Tests | 10 | ✅ All pass |
+| E2E Tests | 26 | ✅ All pass (2 skipped*) |
+| **Total** | **91** | **✅ Pass** |
+
+*Feedback tests skipped pending draft persistence implementation.
 
 ## Development
 
