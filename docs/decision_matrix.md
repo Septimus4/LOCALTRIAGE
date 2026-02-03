@@ -280,7 +280,7 @@ If information is not in the context, say "I don't have information about that."
 
 | Top-K | Recall@K | Added Latency | Context Size |
 |-------|----------|---------------|--------------|
-| 3 | 72% | Baseline | 1.5k tokens |
+| 3 | 65% | Baseline | 1.5k tokens |
 | 5 | 81% | +50ms | 2.5k tokens |
 | 10 | 88% | +150ms | 5k tokens |
 | 20 | 93% | +400ms | 10k tokens |

@@ -58,7 +58,7 @@ By deploying a local LLM-powered system, we can:
 ### 4.2 Quality Metrics
 | KPI | Baseline | Target | Measurement |
 |-----|----------|--------|-------------|
-| Correct routing rate | 72% | 92% | Routing prediction vs final assignment |
+| Correct routing rate | 30% (majority) | 90% | Routing prediction vs final assignment |
 | Draft acceptance rate | N/A | 70% | Drafts used with <20% modification |
 | Hallucination rate | N/A | <2% | Claims without KB grounding |
 | Policy violation rate | N/A | <0.5% | Automated + manual audit |

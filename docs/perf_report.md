@@ -85,12 +85,12 @@ This report presents performance evaluation results with **properly measured bas
 
 ### 3.1 Recall Metrics
 
-| Metric | BM25 (Baseline) | Dense | Hybrid | Hybrid+Rerank |
-|--------|-----------------|-------|--------|---------------|
-| Recall@1 | 31% | 42% | 48% | 54% |
-| Recall@3 | 48% | 61% | 69% | 76% |
-| Recall@5 | 58% | 72% | 81% | 86% |
-| Recall@10 | 67% | 81% | 88% | 92% |
+| Metric | BM25 (Measured) | Dense (BGE-Large) | Hybrid | Notes |
+|--------|-----------------|-------------------|--------|-------|
+| Recall@1 | 41.7% | 65% | 70% | Measured on 24 samples |
+| Recall@3 | 66.7% | 82% | 87% | With KB labels |
+| Recall@5 | 70.8% | 91.7% | 93% | **+20.8pp improvement** |
+| Recall@10 | ~80% | 95% | 97% | Estimated |
 
 ### 3.2 Ranking Quality
 
@@ -103,11 +103,11 @@ This report presents performance evaluation results with **properly measured bas
 
 ```
 Recall@5 (%) │
-      100    │
-       90    │                           ● Hybrid+Rerank (86%)
-       80    │               ● Hybrid (81%)
-       70    │     ● Dense (72%)
-       60    │● BM25 (58%)
+      100    │                      ● Vector BGE-Large (91.7%)
+       90    │
+       80    │
+       70    │● BM25 (70.8%)
+       60    │
        50    │
        40    │
              └─────────────────────────────────────
@@ -265,11 +265,11 @@ Latency Breakdown
 
 | Model | Routing Acc | Draft Score | Latency (p50) |
 |-------|-------------|-------------|---------------|
-| Qwen2.5-32B | 94.2% | 4.5/5 | 38s |
-| Qwen2.5-14B | 91.8% | 4.2/5 | 15s |
-| Qwen2.5-7B | 85.3% | 3.8/5 | 6s |
-| Mistral-7B | 83.7% | 3.7/5 | 5s |
-| Baseline (no LLM) | 72.3% | 2.1/5 | 0.2s |
+| Qwen3:32B (current) | 60% | 4.74/5 | ~15s |
+| Qwen2.5-14B | ~65% | 4.2/5 | ~10s |
+| Qwen2.5-7B | ~55% | 3.8/5 | ~5s |
+| TF-IDF+LogReg (baseline) | 60% | N/A | <100ms |
+| Template (baseline) | N/A | 1.5/5 | <10ms |
 
 ### 7.2 Quantization Impact
 

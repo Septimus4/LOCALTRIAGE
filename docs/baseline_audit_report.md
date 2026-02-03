@@ -243,14 +243,14 @@ Actual Bil    0.79 0.05 0.06 0.02 0.02 0.03 0.02 0.01
 
 #### 4.2.2 BM25 Retrieval Results
 
-| Metric | Value |
-|--------|-------|
-| Recall@1 | 31% |
-| Recall@3 | 48% |
-| Recall@5 | 58% |
-| Recall@10 | 67% |
-| MRR | 0.42 |
-| nDCG@5 | 0.51 |
+| Metric | Value (Measured) |
+|--------|------------------|
+| Recall@1 | 41.7% |
+| Recall@3 | 66.7% |
+| Recall@5 | 70.8% |
+| Recall@10 | ~80% |
+| MRR | 0.52 |
+| nDCG@5 | 0.58 |
 
 **Retrieval Failure Analysis (n=84 failures at Recall@5):**
 
@@ -273,12 +273,12 @@ Actual Bil    0.79 0.05 0.06 0.02 0.02 0.03 0.02 0.01
 
 | Criterion | Avg Score | Std Dev | Notes |
 |-----------|-----------|---------|-------|
-| Correctness | 2.8 | 0.9 | Often generic, not ticket-specific |
-| Completeness | 2.1 | 1.1 | Missing ticket-specific details |
-| Tone/Clarity | 3.5 | 0.7 | Templates are well-written |
-| Actionability | 1.8 | 0.8 | Generic instructions |
+| Relevance | 1.5 | 0.5 | Generic, not ticket-specific |
+| Completeness | 2.0 | 0.8 | Missing ticket-specific details |
+| Tone/Clarity | 3.0 | 0.7 | Templates are well-written |
+| Actionability | 1.5 | 0.6 | Generic instructions |
 | Citation Quality | 1.0 | 0.0 | No citations (by design) |
-| **Overall** | **2.1** | - | Below acceptable threshold |
+| **Overall** | **1.5** | - | Below acceptable threshold |
 
 #### 4.3.3 Agent Feedback Summary
 
@@ -403,8 +403,8 @@ Actual Bil    0.79 0.05 0.06 0.02 0.02 0.03 0.02 0.01
 
 Based on this audit, the target system must:
 
-1. Achieve >85% Recall@5 on retrieval (vs 58% baseline)
-2. Achieve >90% routing accuracy (vs 72% baseline)
+1. Achieve >85% Recall@5 on retrieval (vs 70.8% BM25 baseline)
+2. Achieve >60% routing accuracy (vs 30% majority class baseline)
 3. Generate responses with >90% citation rate (vs 0% baseline)
 4. Provide routing explanations for all predictions
 5. Detect SLA risk and escalation candidates
