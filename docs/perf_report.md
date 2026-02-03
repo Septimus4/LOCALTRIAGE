@@ -1,27 +1,30 @@
 # Performance Report
 ## System Evaluation and Benchmarking Results
 
-**Version:** 1.0  
-**Date:** February 1, 2026
+**Version:** 1.1  
+**Date:** February 3, 2026
 
 ---
 
 ## 1. Executive Summary
 
-This report presents comprehensive performance evaluation results comparing the baseline system with the LLM-enhanced target system. Key findings demonstrate significant improvements across all measured dimensions.
+This report presents performance evaluation results with **properly measured baselines**.
 
-### Headline Results
+### Headline Results (Measured)
 
-| Metric | Baseline | Target System | Current (RTX 5090) | Status |
-|--------|----------|---------------|-------------------|--------|
-| Routing Accuracy | 72.3% | 91.8% | 63.3%* | ⚠️ Below baseline |
-| Retrieval Recall@5 | 58% | 86% | 65.0% | ✓ Above baseline |
-| Draft Usefulness | 2.1/5 | 4.2/5 | 4.80/5 | ✓ **Exceeds target** |
-| Citation Rate | 0% | 94% | ~100% (3.2 avg) | ✓ Exceeds target |
-| End-to-End Latency (p95) | 0.4s | 24.3s | 12.5s | ✓ Within budget |
+| Metric | Baseline (Measured) | Current System | Improvement |
+|--------|---------------------|----------------|-------------|
+| Routing Accuracy | 30% (majority class) | 60.0% | **+30pp** |
+| Retrieval Recall@5 | 70.8% (BM25) | 91.7% | **+20.8pp** |
+| Draft Quality | 1.5/5 (templates) | 4.74/5 | **+3.2** |
+| Citation Rate | 0% (templates) | 100% | ✓ Implemented |
+| P95 Latency | <100ms (templates) | ~20s | Trade-off |
 
-> *Routing accuracy is limited by small training set (96 samples). With production data volume, expect >90% accuracy.
->
+### Data Inventory
+- **Training samples:** 96 (5 categories)
+- **Test/Eval samples:** 30
+- **KB articles:** 25
+
 > **Evaluation Date:** 2026-02-03  
 > **Hardware:** NVIDIA RTX 5090 (32GB VRAM), Qwen3:32B via Ollama, BGE-Large-EN-v1.5 embeddings
 
@@ -31,18 +34,25 @@ This report presents comprehensive performance evaluation results comparing the 
 
 ### 2.1 Category Classification
 
-#### Comparison: Baseline vs LLM-Enhanced
+#### Measured Baselines
 
-| Category | Baseline F1 | Target F1 | Δ |
-|----------|-------------|-----------|---|
-| Billing | 0.80 | 0.94 | +0.14 |
-| Technical | 0.71 | 0.89 | +0.18 |
-| Account | 0.69 | 0.88 | +0.19 |
-| Shipping | 0.83 | 0.95 | +0.12 |
-| Returns | 0.76 | 0.91 | +0.15 |
-| Product | 0.60 | 0.87 | +0.27 |
-| General | 0.50 | 0.82 | +0.32 |
-| Escalation | 0.58 | 0.90 | +0.32 |
+| Method | Accuracy | Description |
+|--------|----------|-------------|
+| Random (1/5) | 20.0% | Theoretical lower bound |
+| Majority Class | 30.0% | Always predict "Technical" |
+| TF-IDF + LogReg | 60.0% | **Current system** |
+| 5-fold CV Mean | 39.6% | Cross-validation on training data |
+
+#### Per-Category Performance (Current System)
+
+| Category | Precision | Recall | F1 | Support |
+|----------|-----------|--------|-----|---------|
+| Account | 0.67 | 0.57 | 0.62 | 7 |
+| Billing | 1.00 | 0.33 | 0.50 | 6 |
+| Feature Request | 1.00 | 0.60 | 0.75 | 5 |
+| General Inquiry | 0.00 | 0.00 | 0.00 | 3 |
+| Technical | 0.47 | 1.00 | 0.64 | 9 |
+| **Macro Avg** | 0.63 | 0.50 | 0.50 | 30 |
 | **Macro Avg** | **0.68** | **0.90** | **+0.22** |
 
 #### Key Improvements

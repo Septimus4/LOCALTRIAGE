@@ -1,0 +1,43 @@
+{
+  "measurement_date": "2026-02-03",
+  "data_inventory": {
+    "training_samples": 96,
+    "test_samples": 30,
+    "kb_articles": 25,
+    "raw_tickets": 20,
+    "categories": ["Technical", "Billing", "Account", "Feature Request", "General Inquiry"]
+  },
+  "routing_accuracy": {
+    "random_baseline": 0.20,
+    "majority_class_baseline": 0.30,
+    "tfidf_logreg_current": 0.60,
+    "cross_validation_mean": 0.396,
+    "notes": "Majority class is 'Technical'. 60% is 3x random, 2x majority."
+  },
+  "retrieval_recall_at_5": {
+    "bm25_baseline": 0.708,
+    "vector_bge_large": 0.917,
+    "improvement_pp": 20.8,
+    "test_samples_with_kb_labels": 24,
+    "notes": "Vector search significantly outperforms BM25 keyword matching."
+  },
+  "draft_quality": {
+    "template_baseline": 1.5,
+    "llm_rag_current": 4.74,
+    "improvement": 3.24,
+    "scale": "1-5",
+    "criteria": ["relevance", "completeness", "actionability", "personalization", "citations"]
+  },
+  "latency": {
+    "template_p95_ms": 100,
+    "llm_rag_p95_ms": 20000,
+    "notes": "LLM adds significant latency but quality improvement justifies trade-off for async workflows."
+  },
+  "hardware": {
+    "gpu": "NVIDIA RTX 5090",
+    "vram_gb": 32,
+    "cuda_version": "13.0",
+    "llm": "qwen3:32b via Ollama",
+    "embeddings": "BAAI/bge-large-en-v1.5"
+  }
+}
