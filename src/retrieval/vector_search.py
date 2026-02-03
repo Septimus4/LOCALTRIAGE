@@ -274,14 +274,21 @@ class QdrantVectorStore:
         ids = []
         
         for i, (embedding, doc) in enumerate(zip(embeddings, documents)):
-            point_id = doc.get('id', str(uuid.uuid4()))
-            ids.append(point_id)
+            original_id = doc.get('id', str(uuid.uuid4()))
+            # Convert string IDs to UUIDs (Qdrant requires UUID or int)
+            if isinstance(original_id, str) and not self._is_valid_uuid(original_id):
+                # Generate deterministic UUID from string ID
+                point_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, original_id))
+            else:
+                point_id = original_id
+            ids.append(original_id)  # Return original ID
             
             points.append(PointStruct(
                 id=point_id,
                 vector=embedding.tolist(),
                 payload={
                     'content': doc.get('content', ''),
+                    'original_id': original_id,  # Store original ID in payload
                     **doc.get('metadata', {})
                 }
             ))
@@ -292,6 +299,14 @@ class QdrantVectorStore:
         )
         
         return ids
+    
+    def _is_valid_uuid(self, val: str) -> bool:
+        """Check if string is a valid UUID"""
+        try:
+            uuid.UUID(str(val))
+            return True
+        except ValueError:
+            return False
     
     def search(
         self,
@@ -316,9 +331,10 @@ class QdrantVectorStore:
         if query_embedding.ndim > 1:
             query_embedding = query_embedding.flatten()
         
-        results = self.client.search(
+        # Use query_points for newer qdrant-client versions (1.7+)
+        results = self.client.query_points(
             collection_name=self.collection_name,
-            query_vector=query_embedding.tolist(),
+            query=query_embedding.tolist(),
             limit=top_k,
             query_filter=qdrant_filter
         )
@@ -331,7 +347,7 @@ class QdrantVectorStore:
                 rank=i + 1,
                 metadata={k: v for k, v in hit.payload.items() if k != 'content'}
             )
-            for i, hit in enumerate(results)
+            for i, hit in enumerate(results.points)
         ]
     
     def delete_collection(self):

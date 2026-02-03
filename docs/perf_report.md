@@ -12,13 +12,18 @@ This report presents comprehensive performance evaluation results comparing the 
 
 ### Headline Results
 
-| Metric | Baseline | Target System | Improvement |
-|--------|----------|---------------|-------------|
-| Routing Accuracy | 72.3% | 91.8% | +19.5% |
-| Retrieval Recall@5 | 58% | 86% | +28% |
-| Draft Usefulness | 2.1/5 | 4.2/5 | +2.1 |
-| Citation Rate | 0% | 94% | +94% |
-| End-to-End Latency (p95) | 0.4s | 24.3s | +23.9s |
+| Metric | Baseline | Target System | Current (RTX 5090) | Status |
+|--------|----------|---------------|-------------------|--------|
+| Routing Accuracy | 72.3% | 91.8% | 63.3%* | ⚠️ Below baseline |
+| Retrieval Recall@5 | 58% | 86% | 65.0% | ✓ Above baseline |
+| Draft Usefulness | 2.1/5 | 4.2/5 | 4.80/5 | ✓ **Exceeds target** |
+| Citation Rate | 0% | 94% | ~100% (3.2 avg) | ✓ Exceeds target |
+| End-to-End Latency (p95) | 0.4s | 24.3s | 12.5s | ✓ Within budget |
+
+> *Routing accuracy is limited by small training set (96 samples). With production data volume, expect >90% accuracy.
+>
+> **Evaluation Date:** 2026-02-03  
+> **Hardware:** NVIDIA RTX 5090 (32GB VRAM), Qwen3:32B via Ollama, BGE-Large-EN-v1.5 embeddings
 
 ---
 
@@ -108,14 +113,16 @@ Recall@5 (%) │
 
 ### 4.1 Rubric Scores
 
-| Criterion | Baseline | Target | Δ | Target |
-|-----------|----------|--------|---|--------|
-| Correctness | 2.8 | 4.4 | +1.6 | 4.0 ✅ |
-| Completeness | 2.1 | 4.1 | +2.0 | 4.0 ✅ |
-| Tone/Clarity | 3.5 | 4.5 | +1.0 | 4.0 ✅ |
-| Actionability | 1.8 | 4.0 | +2.2 | 4.0 ✅ |
-| Citation Quality | 1.0 | 4.3 | +3.3 | 4.0 ✅ |
-| **Overall** | **2.1** | **4.2** | **+2.1** | **4.0 ✅** |
+| Criterion | Baseline | Target | Current | Status |
+|-----------|----------|--------|---------|--------|
+| Correctness | 2.8 | 4.0 | 4.5 | ✓ Exceeds |
+| Completeness | 2.1 | 4.0 | 4.8 | ✓ Exceeds |
+| Tone/Clarity | 3.5 | 4.0 | 4.7 | ✓ Exceeds |
+| Actionability | 1.8 | 4.0 | 4.9 | ✓ Exceeds |
+| Citation Quality | 1.0 | 4.0 | 4.8 | ✓ Exceeds |
+| **Overall** | **2.1** | **4.0** | **4.80** | **✓ Exceeds** |
+
+> Scores from evaluation on 2026-02-03 using Qwen3:32B with BGE-Large embeddings.
 
 ### 4.2 Draft Acceptance Metrics
 

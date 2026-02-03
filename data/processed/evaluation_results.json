@@ -1,0 +1,27 @@
+{
+  "overall_accuracy": 0.6333333333333333,
+  "total_samples": 30,
+  "correct_predictions": 19,
+  "per_category": {
+    "Technical": {
+      "correct": 7,
+      "total": 9
+    },
+    "Billing": {
+      "correct": 3,
+      "total": 6
+    },
+    "Account": {
+      "correct": 5,
+      "total": 7
+    },
+    "Feature Request": {
+      "correct": 4,
+      "total": 5
+    },
+    "General Inquiry": {
+      "correct": 0,
+      "total": 3
+    }
+  }
+}

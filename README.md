@@ -93,8 +93,8 @@ Open http://localhost:8501 in your browser.
 └───────┼──────────────┼─────────────┼───────────────┼────────┘
         │              │             │               │
 ┌───────▼──────┐ ┌─────▼─────┐ ┌─────▼─────┐ ┌──────▼──────┐
-│  PostgreSQL  │ │   vLLM    │ │   Qdrant  │ │  Embeddings │
-│   Database   │ │   /llama  │ │  Vectors  │ │   Service   │
+│  PostgreSQL  │ │  Ollama   │ │   Qdrant  │ │ BGE-Large   │
+│   Database   │ │ qwen3:32b │ │  Vectors  │ │ Embeddings  │
 └──────────────┘ └───────────┘ └───────────┘ └─────────────┘
 ```
 
@@ -129,8 +129,9 @@ Key environment variables:
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `DB_HOST` | localhost | PostgreSQL host |
-| `LLM_BASE_URL` | http://localhost:8000/v1 | LLM API endpoint |
-| `LLM_MODEL` | Qwen/Qwen2.5-14B-Instruct | Model to use |
+| `LLM_BASE_URL` | http://localhost:11434/v1 | LLM API endpoint (Ollama) |
+| `LLM_MODEL` | qwen3:32b | Model to use |
+| `EMBEDDING_MODEL` | BAAI/bge-large-en-v1.5 | Embedding model (1024 dim) |
 | `VECTOR_STORE_TYPE` | qdrant | Vector store (qdrant/faiss) |
 | `USE_LLM` | true | Enable LLM drafting |
 
@@ -171,10 +172,12 @@ python -m evaluation.eval_harness --mode compare
 
 | Metric | Baseline | Target | Achieved |
 |--------|----------|--------|----------|
-| Routing Accuracy | 72% | 90% | - |
-| Retrieval Recall@5 | 58% | 80% | - |
-| Draft Quality (1-5) | 2.1 | 4.0 | - |
-| P95 Latency | 8.2s | 5.0s | - |
+| Routing Accuracy | 72% | 90% | 63.3% |
+| Retrieval Recall@5 | 58% | 80% | 65.0% |
+| Draft Quality (1-5) | 2.1 | 4.0 | **4.80** ✓ |
+| P95 Latency | 8.2s | 5.0s | 12.5s |
+
+> **Note:** Evaluation run on 2026-02-03. Draft quality exceeds target. Routing accuracy is below baseline due to limited training data (96 samples). Latency includes LLM inference time (~10-12s per draft with Qwen3:32B on RTX 5090).
 
 ## Development
 

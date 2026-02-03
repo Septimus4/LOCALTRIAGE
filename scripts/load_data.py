@@ -72,7 +72,7 @@ def train_classifier() -> bool:
     logger.info("Training classifier...")
     
     try:
-        from src.triage.baseline_classifier import BaselineTriageClassifier
+        from src.triage.baseline_classifier import BaselineRouter
     except ImportError as e:
         logger.error(f"Failed to import classifier: {e}")
         return False
@@ -96,11 +96,22 @@ def train_classifier() -> bool:
     logger.info(f"Training with {len(texts)} samples across {len(set(labels))} categories")
     
     try:
-        classifier = BaselineTriageClassifier()
-        classifier.train(texts, labels)
+        classifier = BaselineRouter()
+        # BaselineRouter.fit expects subjects, bodies, categories, priorities
+        subjects = texts
+        bodies = [""] * len(texts)  # Empty body since text is already combined
+        # Extract priorities from training data, normalize to P1-P4 format
+        priorities = []
+        for s in samples:
+            p = s.get("priority", "P3")
+            # Normalize priority format (e.g., "P2-High" -> "P2")
+            if isinstance(p, str) and p.startswith("P"):
+                p = p.split("-")[0]
+            priorities.append(p)
+        classifier.fit(subjects, bodies, labels, priorities)
         
         # Save model
-        model_path = DATA_DIR / "models" / "classifier_model.pkl"
+        model_path = DATA_DIR / "models" / "classifier_model"
         model_path.parent.mkdir(parents=True, exist_ok=True)
         classifier.save(str(model_path))
         
@@ -116,7 +127,7 @@ def build_vector_index() -> bool:
     logger.info("Building vector search index...")
     
     try:
-        from src.retrieval.vector_store import VectorStore
+        from src.retrieval.vector_search import QdrantVectorStore, EmbeddingModel
     except ImportError as e:
         logger.error(f"Failed to import VectorStore: {e}")
         return False
@@ -132,10 +143,25 @@ def build_vector_index() -> bool:
     logger.info(f"Indexing {len(articles)} knowledge base articles")
     
     try:
-        vector_store = VectorStore()
+        import os
+        # Initialize embedding model
+        embedding_model_name = os.environ.get('EMBEDDING_MODEL', 'BAAI/bge-large-en-v1.5')
+        embedding_model = EmbeddingModel(model_name=embedding_model_name, device='cuda')
+        dimension = embedding_model.dimension
+        
+        # Initialize Qdrant store
+        qdrant_host = os.environ.get('QDRANT_HOST', 'localhost')
+        qdrant_port = int(os.environ.get('QDRANT_PORT', '6333'))
+        vector_store = QdrantVectorStore(
+            collection_name="kb_articles",
+            dimension=dimension,
+            host=qdrant_host,
+            port=qdrant_port
+        )
         
         # Prepare documents for indexing
         documents = []
+        texts = []
         for article in articles:
             doc = {
                 "id": article["article_id"],
@@ -147,19 +173,21 @@ def build_vector_index() -> bool:
                 }
             }
             documents.append(doc)
+            texts.append(doc["content"])
         
-        # Add documents to index
-        vector_store.add_documents(documents)
+        # Generate embeddings
+        logger.info(f"Generating embeddings for {len(texts)} documents...")
+        embeddings = embedding_model.encode(texts)
         
-        # Save index
-        index_path = DATA_DIR / "indices" / "kb_index"
-        index_path.parent.mkdir(parents=True, exist_ok=True)
-        vector_store.save(str(index_path))
+        # Add documents to Qdrant
+        vector_store.add(embeddings, documents)
         
-        logger.info(f"✓ Vector index built and saved to {index_path}")
+        logger.info(f"✓ Vector index built in Qdrant collection 'kb_articles'")
         return True
     except Exception as e:
         logger.error(f"Failed to build vector index: {e}")
+        import traceback
+        traceback.print_exc()
         return False
 
 
@@ -168,7 +196,7 @@ def evaluate_models() -> bool:
     logger.info("Evaluating models...")
     
     try:
-        from src.triage.baseline_classifier import BaselineTriageClassifier
+        from src.triage.baseline_classifier import BaselineRouter
     except ImportError as e:
         logger.error(f"Failed to import classifier: {e}")
         return False
@@ -184,14 +212,13 @@ def evaluate_models() -> bool:
     test_samples = eval_data.get("test_samples", [])
     
     # Load trained model
-    model_path = DATA_DIR / "models" / "classifier_model.pkl"
+    model_path = DATA_DIR / "models" / "classifier_model"
     if not model_path.exists():
         logger.error("No trained model found. Run training first.")
         return False
     
     try:
-        classifier = BaselineTriageClassifier()
-        classifier.load(str(model_path))
+        classifier = BaselineRouter.load(str(model_path))
         
         # Evaluate
         correct = 0
@@ -199,10 +226,10 @@ def evaluate_models() -> bool:
         results_by_category = {}
         
         for sample in test_samples:
-            prediction = classifier.predict(sample["text"])
+            prediction = classifier.predict(sample["text"], "")  # Empty body
             expected = sample["expected_category"]
             
-            is_correct = prediction == expected
+            is_correct = prediction.category == expected
             if is_correct:
                 correct += 1
             
@@ -294,7 +321,7 @@ def show_data_summary():
         logger.info(f"\nEvaluation Samples: {len(samples)}")
     
     # Check for trained models
-    model_path = DATA_DIR / "models" / "classifier_model.pkl"
+    model_path = DATA_DIR / "models" / "classifier_model"
     if model_path.exists():
         logger.info(f"\n✓ Trained classifier model exists")
     else:

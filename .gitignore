@@ -205,3 +205,20 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Project-specific
+# HuggingFace model cache (large files)
+models/hf_cache/
+*.safetensors
+*.bin
+*.gguf
+
+# Temporary files
+/tmp/
+*.log
+nohup.out
+
+# Local data that shouldn't be committed
+# (keep structure but ignore large binary files)
+data/indices/*.index
+data/indices/*.faiss
