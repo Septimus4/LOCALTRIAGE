@@ -1,25 +1,37 @@
 {
-  "measurement_date": "2026-02-03",
+  "measurement_date": "2026-02-10",
   "data_inventory": {
-    "training_samples": 96,
-    "test_samples": 30,
-    "kb_articles": 25,
-    "raw_tickets": 20,
-    "categories": ["Technical", "Billing", "Account", "Feature Request", "General Inquiry"]
+    "training_samples": 195,
+    "test_samples": 60,
+    "kb_articles": 40,
+    "raw_tickets_json": 40,
+    "raw_tickets_csv": 40,
+    "categories": ["Technical", "Billing", "Account", "Feature Request", "General Inquiry"],
+    "version": "2.0.0"
   },
   "routing_accuracy": {
     "random_baseline": 0.20,
     "majority_class_baseline": 0.30,
-    "tfidf_logreg_current": 0.60,
+    "tfidf_logreg_v1": 0.60,
+    "tfidf_logreg_v2": 0.7333,
     "cross_validation_mean": 0.396,
-    "notes": "Majority class is 'Technical'. 60% is 3x random, 2x majority."
+    "per_category_v2": {
+      "Account": 0.8462,
+      "Billing": 0.75,
+      "Feature Request": 0.625,
+      "General Inquiry": 0.2857,
+      "Technical": 0.85
+    },
+    "notes": "v2: 73.3% with 195 training samples (up from 60% with 96 samples). Best: Technical 85%, Account 84.6%. Weakest: General Inquiry 28.6%."
   },
   "retrieval_recall_at_5": {
     "bm25_baseline": 0.708,
-    "vector_bge_large": 0.917,
-    "improvement_pp": 20.8,
-    "test_samples_with_kb_labels": 24,
-    "notes": "Vector search significantly outperforms BM25 keyword matching."
+    "vector_bge_large_v1": 0.917,
+    "vector_bge_large_v2": 0.484,
+    "improvement_pp_v1": 20.8,
+    "test_samples_with_kb_labels_v1": 24,
+    "test_queries_v2": 13,
+    "notes": "v2 recall@5 is lower (48.4%) due to harder, more diverse evaluation set (60 samples, 40 KB articles). The v1 benchmark (91.7%) used a simpler 30-sample test with 25 KB articles."
   },
   "draft_quality": {
     "template_baseline": 1.5,

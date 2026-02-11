@@ -11,6 +11,9 @@ from datetime import datetime, timedelta
 from typing import Optional, List, Dict, Any
 from contextlib import asynccontextmanager
 
+from dotenv import load_dotenv
+load_dotenv()
+
 from fastapi import FastAPI, HTTPException, BackgroundTasks, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
@@ -131,8 +134,8 @@ class AppState:
             'user': os.getenv('DB_USER', 'postgres'),
             'password': os.getenv('DB_PASSWORD', 'postgres')
         }
-        self.llm_base_url = os.getenv('LLM_BASE_URL', 'http://localhost:8000/v1')
-        self.llm_model = os.getenv('LLM_MODEL', 'Qwen/Qwen2.5-14B-Instruct')
+        self.llm_base_url = os.getenv('LLM_BASE_URL', 'http://localhost:11434/v1')
+        self.llm_model = os.getenv('LLM_MODEL', 'qwen3:32b')
         self.use_llm = os.getenv('USE_LLM', 'true').lower() == 'true'
         
         # Lazy-loaded components
@@ -348,6 +351,43 @@ async def triage_ticket(
             processing_time_ms=processing_time_ms
         )
         
+        # Persist ticket to database
+        try:
+            conn = state.get_db_connection()
+            with conn.cursor() as cur:
+                cur.execute("""
+                    INSERT INTO tickets (
+                        id, subject, body, predicted_category, predicted_priority,
+                        predicted_confidence, assignee_queue, status, customer_email
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, 'open', %s)
+                    ON CONFLICT (id) DO UPDATE SET
+                        predicted_category = EXCLUDED.predicted_category,
+                        predicted_priority = EXCLUDED.predicted_priority,
+                        predicted_confidence = EXCLUDED.predicted_confidence,
+                        assignee_queue = EXCLUDED.assignee_queue,
+                        updated_at = CURRENT_TIMESTAMP
+                """, (
+                    ticket_id,
+                    ticket.subject,
+                    ticket.body,
+                    prediction.category,
+                    prediction.priority,
+                    prediction.category_confidence,
+                    suggested_queue,
+                    ticket.customer_email
+                ))
+                # Update search vector
+                cur.execute("""
+                    UPDATE tickets SET search_vector =
+                        setweight(to_tsvector('english', COALESCE(subject, '')), 'A') ||
+                        setweight(to_tsvector('english', COALESCE(body, '')), 'B')
+                    WHERE id = %s
+                """, (ticket_id,))
+                conn.commit()
+            conn.close()
+        except Exception as db_err:
+            logger.error(f"Failed to persist ticket: {db_err}")
+
         # Log request
         background_tasks.add_task(
             log_request,
@@ -403,6 +443,38 @@ async def generate_draft(
                 total_time_ms=total_time_ms
             )
             
+            # Persist draft to database
+            try:
+                conn = state.get_db_connection()
+                with conn.cursor() as cur:
+                    # Ensure the ticket exists first
+                    cur.execute("SELECT id FROM tickets WHERE id = %s", (ticket_id,))
+                    if cur.fetchone():
+                        cur.execute("""
+                            INSERT INTO response_drafts (
+                                ticket_id, draft_text, rationale, confidence,
+                                confidence_score, citations, follow_up_questions,
+                                model_name, generation_time_ms, prompt_tokens,
+                                completion_tokens
+                            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        """, (
+                            ticket_id,
+                            draft.draft_text,
+                            draft.rationale,
+                            draft.confidence,
+                            draft.confidence_score,
+                            psycopg2.extras.Json([c.__dict__ for c in draft.citations]),
+                            psycopg2.extras.Json(draft.follow_up_questions),
+                            draft.model_name,
+                            draft.generation_time_ms,
+                            draft.prompt_tokens,
+                            draft.completion_tokens
+                        ))
+                        conn.commit()
+                conn.close()
+            except Exception as db_err:
+                logger.error(f"Failed to persist draft: {db_err}")
+
             # Log request
             background_tasks.add_task(
                 log_request,
@@ -453,7 +525,8 @@ async def find_similar_tickets(request: SimilarTicketsRequest):
         results = state.retriever.search_similar_tickets(
             query=request.query,
             top_k=request.top_k,
-            category_filter=request.category_filter
+            category_filter=request.category_filter,
+            resolved_only=False
         )
         
         return [
@@ -526,7 +599,7 @@ async def get_metrics(
         
         conn = state.get_db_connection()
         with conn.cursor(cursor_factory=RealDictCursor) as cur:
-            # Total tickets
+            # Total tickets (from DB + triage requests in period)
             cur.execute("""
                 SELECT COUNT(*) as count
                 FROM tickets
@@ -534,13 +607,31 @@ async def get_metrics(
             """, (start_date,))
             total_tickets = cur.fetchone()['count']
             
-            # Total drafts
+            # If no tickets in period, count from request_logs as fallback
+            if total_tickets == 0:
+                cur.execute("""
+                    SELECT COUNT(*) as count
+                    FROM request_logs
+                    WHERE created_at >= %s AND endpoint = '/triage'
+                """, (start_date,))
+                total_tickets = cur.fetchone()['count']
+            
+            # Total drafts (from DB + draft requests in period)
             cur.execute("""
                 SELECT COUNT(*) as count
                 FROM response_drafts
                 WHERE created_at >= %s
             """, (start_date,))
             total_drafts = cur.fetchone()['count']
+            
+            # If no drafts in period, count from request_logs as fallback
+            if total_drafts == 0:
+                cur.execute("""
+                    SELECT COUNT(*) as count
+                    FROM request_logs
+                    WHERE created_at >= %s AND endpoint = '/draft'
+                """, (start_date,))
+                total_drafts = cur.fetchone()['count']
             
             # Average draft rating
             cur.execute("""
@@ -558,23 +649,49 @@ async def get_metrics(
             """, (start_date,))
             avg_latency = cur.fetchone()['avg_latency']
             
-            # Tickets by category
+            # Tickets by category - use predicted_category if category is null
             cur.execute("""
-                SELECT category, COUNT(*) as count
+                SELECT COALESCE(category, predicted_category) as cat, COUNT(*) as count
                 FROM tickets
-                WHERE created_at >= %s AND category IS NOT NULL
-                GROUP BY category
+                WHERE created_at >= %s AND COALESCE(category, predicted_category) IS NOT NULL
+                GROUP BY cat
             """, (start_date,))
-            by_category = {row['category']: row['count'] for row in cur.fetchall()}
+            by_category = {row['cat']: row['count'] for row in cur.fetchall()}
             
-            # Tickets by priority
+            # If no tickets in DB for period, extract from request_logs
+            if not by_category:
+                cur.execute("""
+                    SELECT
+                        response_body->>'category' as cat,
+                        COUNT(*) as count
+                    FROM request_logs
+                    WHERE created_at >= %s AND endpoint = '/triage'
+                        AND response_body->>'category' IS NOT NULL
+                    GROUP BY cat
+                """, (start_date,))
+                by_category = {row['cat']: row['count'] for row in cur.fetchall()}
+            
+            # Tickets by priority - use predicted_priority if priority is null
             cur.execute("""
-                SELECT priority, COUNT(*) as count
+                SELECT COALESCE(priority, predicted_priority) as prio, COUNT(*) as count
                 FROM tickets
-                WHERE created_at >= %s AND priority IS NOT NULL
-                GROUP BY priority
+                WHERE created_at >= %s AND COALESCE(priority, predicted_priority) IS NOT NULL
+                GROUP BY prio
             """, (start_date,))
-            by_priority = {row['priority']: row['count'] for row in cur.fetchall()}
+            by_priority = {row['prio']: row['count'] for row in cur.fetchall()}
+            
+            # If no tickets in DB for period, extract from request_logs
+            if not by_priority:
+                cur.execute("""
+                    SELECT
+                        response_body->>'priority' as prio,
+                        COUNT(*) as count
+                    FROM request_logs
+                    WHERE created_at >= %s AND endpoint = '/triage'
+                        AND response_body->>'priority' IS NOT NULL
+                    GROUP BY prio
+                """, (start_date,))
+                by_priority = {row['prio']: row['count'] for row in cur.fetchall()}
         
         conn.close()
         

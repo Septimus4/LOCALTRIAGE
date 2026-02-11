@@ -125,8 +125,9 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./docker/Dockerfile.api
+          file: ./infra/docker/Dockerfile
           push: false
+          load: true
           tags: localtriage-api:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max

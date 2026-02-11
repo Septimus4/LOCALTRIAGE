@@ -46,6 +46,7 @@ st.markdown("""
     }
     .citation-box {
         background-color: #e8f4f8;
+        color: #1a1a1a;
         padding: 0.5rem;
         border-left: 3px solid #1f77b4;
         margin: 0.5rem 0;
@@ -230,11 +231,18 @@ def render_new_ticket_page():
             "Account Access": ("Cannot login", "I forgot my password and the reset email never arrived. I've checked spam folder too."),
         }
         
+        def _apply_template(subj, desc):
+            st.session_state.ticket_subject = subj
+            st.session_state.ticket_body = desc
+
         for name, (subj, desc) in templates.items():
-            if st.button(name, key=f"template_{name}", use_container_width=True):
-                st.session_state.ticket_subject = subj
-                st.session_state.ticket_body = desc
-                st.rerun()
+            st.button(
+                name,
+                key=f"template_{name}",
+                use_container_width=True,
+                on_click=_apply_template,
+                args=(subj, desc),
+            )
     
     st.markdown("---")
     
