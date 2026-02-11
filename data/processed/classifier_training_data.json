@@ -1,7 +1,7 @@
 {
   "description": "Training data for ticket classification model",
-  "version": "1.0.0",
-  "created_date": "2025-01-15",
+  "version": "2.0.0",
+  "created_date": "2026-02-10",
   "categories": ["Technical", "Billing", "Account", "Feature Request", "General Inquiry"],
   "priorities": ["P1-Critical", "P2-High", "P3-Medium", "P4-Low"],
   "training_samples": [
@@ -484,6 +484,501 @@
       "text": "Request for template library feature",
       "category": "Feature Request",
       "priority": "P4-Low"
+    },
+    {
+      "text": "Video conferencing integration not connecting audio",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Report generation times out with large datasets",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Cannot attach files to tickets, upload button is greyed out",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "CORS error when calling API from our frontend",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Desktop app using excessive CPU even when idle",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Scheduled reports not being sent at the configured time",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Database migration failed during upgrade",
+      "category": "Technical",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "Custom fields not showing in exported CSV",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Push notifications delayed by several hours on Android",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "The search index seems to be broken or outdated",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Two-factor authentication SMS codes not arriving",
+      "category": "Account",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Cannot change my profile picture keeps reverting",
+      "category": "Account",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Need to transfer data between two workspaces",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "How do I set up SCIM provisioning with Okta",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "User deprovisioning not working when removed from IdP",
+      "category": "Account",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Session timeout is too aggressive want to extend it",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Cannot access workspace after company domain change",
+      "category": "Account",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Need help setting up Azure AD integration",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Data residency question, where is our data stored",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Audit log shows unknown IP addresses accessing account",
+      "category": "Account",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "My credit card was declined when trying to pay",
+      "category": "Billing",
+      "priority": "P2-High"
+    },
+    {
+      "text": "We need a purchase order number added to our invoices",
+      "category": "Billing",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Can we pay by wire transfer instead of credit card",
+      "category": "Billing",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Price increased without prior notification",
+      "category": "Billing",
+      "priority": "P2-High"
+    },
+    {
+      "text": "I need a consolidated invoice for all our workspaces",
+      "category": "Billing",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Promo code says expired but email says valid until end of month",
+      "category": "Billing",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Free trial ended before the promised 14 days",
+      "category": "Billing",
+      "priority": "P2-High"
+    },
+    {
+      "text": "How to get a prorated refund for mid-cycle downgrade",
+      "category": "Billing",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Payment retry keeps failing but card works everywhere else",
+      "category": "Billing",
+      "priority": "P2-High"
+    },
+    {
+      "text": "3D Secure authentication failing during payment",
+      "category": "Billing",
+      "priority": "P2-High"
+    },
+    {
+      "text": "We want to see a mobile-native document scanner feature",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Please add two-way sync with Google Sheets",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Can you add conditional logic to automation workflows",
+      "category": "Feature Request",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "It would be helpful to have a kanban board view",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Need ability to set recurring tasks with custom intervals",
+      "category": "Feature Request",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Would love Git integration for version control on documents",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Please support SAML Just-In-Time user provisioning",
+      "category": "Feature Request",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "A built-in time tracking feature would be very useful",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Can you add AI-powered auto-tagging for uploaded documents",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "We need better granularity for role-based access permissions",
+      "category": "Feature Request",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "What is your data retention policy",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Do you have any case studies from healthcare organizations",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Is there a partner or reseller program",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "What languages does the platform support",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "How long does the onboarding process typically take",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Do you offer training sessions or webinars for new users",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Can I get a list of all supported third-party integrations",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Where can I find your changelog and release notes",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Is there an uptime SLA for the Team plan",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "What is the maximum number of users supported per workspace",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "How do I report a security vulnerability I found",
+      "category": "General Inquiry",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Does the mobile app work offline",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "What analytics and reporting features are available",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Can you share your security whitepaper",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Do you support HIPAA compliance for healthcare clients",
+      "category": "General Inquiry",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Entire platform is unreachable with 503 errors",
+      "category": "Technical",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "Data corruption detected in our workspace backups",
+      "category": "Technical",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "Critical: All webhook deliveries failing with SSL certificate error",
+      "category": "Technical",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "Login page showing 502 Bad Gateway to all users in our org",
+      "category": "Technical",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "Bulk delete accidentally removes wrong items need urgent recovery",
+      "category": "Technical",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "Customer data visible to wrong accounts, potential data breach",
+      "category": "Account",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "Charged annual fee after explicit cancellation confirmation email",
+      "category": "Billing",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "Safari users cannot scroll or click any buttons since update",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "SAML login loop redirects endlessly between IdP and our app",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "GraphQL mutations returning null but data in database is changed",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Automation rules stopped running silently two days ago",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "PDF export missing all images and tables from the original document",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Does the annual plan lock in the current pricing",
+      "category": "Billing",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "We have 500 users, what volume discount can you offer",
+      "category": "Billing",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Need help configuring OIDC authentication for our workspace",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Please add webhook event for when a user role changes",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Is there a way to white-label the product for our clients",
+      "category": "General Inquiry",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "CSV import fails with encoding error for non-ASCII characters",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "How do I enable SCIM user provisioning with Azure AD",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Requesting multi-year contract with fixed pricing",
+      "category": "Billing",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Custom webhook payloads would be incredibly useful",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "What is the recommended browser for best performance",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Rate limit headers are missing from batch API endpoints",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Cannot remove a user who has pending shared items",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Invoice says paid but payment actually failed",
+      "category": "Billing",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Need the ability to schedule data exports on a recurring basis",
+      "category": "Feature Request",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Do you have a bug bounty program",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "API pagination cursor breaks when data is modified between pages",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Emergency password reset not working for admin accounts",
+      "category": "Account",
+      "priority": "P1-Critical"
+    },
+    {
+      "text": "Billing portal shows different amount than what was charged",
+      "category": "Billing",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Dashboard widgets are loading data from the wrong time range",
+      "category": "Technical",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "How do I configure data loss prevention DLP policies",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Need SOC 2 Type II audit report for vendor evaluation",
+      "category": "General Inquiry",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "We want calendar view and drag-to-reschedule capability",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Tax exemption certificate was uploaded but tax still charged",
+      "category": "Billing",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Cross-origin iframe embedding not working for our portal",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Email notifications landing in spam for all Gmail users",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Need ability to clone workspace with all settings and templates",
+      "category": "Feature Request",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "SSO users cannot set a fallback password for emergency access",
+      "category": "Account",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Is there an academic license or education pricing",
+      "category": "General Inquiry",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Response time for our region is consistently over 5 seconds",
+      "category": "Technical",
+      "priority": "P2-High"
+    },
+    {
+      "text": "Want to bulk update payment method across all workspaces",
+      "category": "Billing",
+      "priority": "P3-Medium"
+    },
+    {
+      "text": "Custom CSS injection for embedding in our customer portal",
+      "category": "Feature Request",
+      "priority": "P4-Low"
+    },
+    {
+      "text": "Is my data encrypted at rest and in transit",
+      "category": "General Inquiry",
+      "priority": "P3-Medium"
     }
   ]
 }

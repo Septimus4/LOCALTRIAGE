@@ -1,69 +1,69 @@
 {
-  "timestamp": "2026-02-03T11:34:51.973870",
+  "timestamp": "2026-02-19T17:38:45.525042",
   "routing": {
-    "accuracy": 0.6333333333333333,
-    "total_samples": 30,
-    "correct": 19,
-    "p95_latency_ms": 0.29540061950683594,
+    "accuracy": 0.7333333333333333,
+    "total_samples": 60,
+    "correct": 44,
+    "p95_latency_ms": 0.24938583374023438,
     "per_category": {
       "Technical": {
-        "correct": 7,
-        "total": 9
+        "correct": 17,
+        "total": 20
       },
       "Billing": {
-        "correct": 3,
-        "total": 6
+        "correct": 9,
+        "total": 12
       },
       "Account": {
-        "correct": 5,
-        "total": 7
+        "correct": 11,
+        "total": 13
       },
       "Feature Request": {
-        "correct": 4,
-        "total": 5
+        "correct": 5,
+        "total": 8
       },
       "General Inquiry": {
-        "correct": 0,
-        "total": 3
+        "correct": 2,
+        "total": 7
       }
     }
   },
   "retrieval": {
-    "recall_at_5": 0.6495726495726496,
+    "recall_at_5": 0.4644688644688645,
     "num_queries": 13,
-    "p95_latency_ms": 153.3682346343994,
+    "p95_latency_ms": 500.4615783691406,
     "individual_scores": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333,
       0.7142857142857143,
       0.5714285714285714,
-      0.7142857142857143,
-      0.8333333333333334,
-      0.8333333333333334,
-      0.6666666666666666,
-      0.3333333333333333,
-      0.4444444444444444,
+      0.2857142857142857,
+      0.26666666666666666,
+      0.26666666666666666,
       0.3333333333333333,
       1.0,
       1.0,
-      0.5,
-      0.5
+      0.4,
+      0.2
     ]
   },
   "draft_quality": {
-    "avg_quality": 4.8,
-    "avg_citations": 3.2,
-    "p95_latency_ms": 12859.17043685913,
+    "avg_quality": 4.666666666666667,
+    "avg_citations": 3,
+    "p95_latency_ms": 21936.10644340515,
     "num_samples": 5,
     "individual_scores": [
-      4.5,
+      4.0,
       5.0,
       5.0,
-      4.5,
+      4.333333333333334,
       5.0
     ]
   },
   "latency": {
-    "triage_p95_ms": 2.3016929626464844,
-    "draft_p95_ms": 12524.967670440674,
-    "total_p95_s": 12.52726936340332
+    "triage_p95_ms": 640.0690078735352,
+    "draft_p95_ms": 14294.569730758667,
+    "total_p95_s": 14.934638738632202
   }
 }

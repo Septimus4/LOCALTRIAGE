@@ -57,17 +57,20 @@ This document captures the technical decisions made for the Local LLM Customer S
 
 | Model | Quality (MTEB) | Speed | Dimensions | Memory | Decision |
 |-------|----------------|-------|------------|--------|----------|
-| bge-base-en-v1.5 | 63.5 | Fast | 768 | 440MB | **Selected** |
+| bge-base-en-v1.5 | 63.5 | Fast | 768 | 440MB | Previous |
 | all-MiniLM-L6-v2 | 58.8 | V.Fast | 384 | 90MB | Baseline |
-| bge-large-en-v1.5 | 64.2 | Moderate | 1024 | 1.3GB | Alternative |
+| bge-large-en-v1.5 | 64.2 | Moderate | 1024 | 1.3GB | Previous |
 | nomic-embed-text | 62.4 | Fast | 768 | 550MB | Considered |
+| Qwen3-Embedding-8B | 70.58 | Moderate | 4096 | 16GB | **Selected** |
 
 #### Decision
 
-**Selected:** bge-base-en-v1.5
-- Excellent MTEB benchmark performance
-- Good balance of quality and speed
-- Widely adopted, well-documented
+**Selected:** Qwen3-Embedding-8B
+- #1 on MTEB multilingual leaderboard (70.58)
+- 4096-dimensional embeddings with MRL (Matryoshka) support
+- 32K context length, 100+ languages
+- Instruction-aware for task-specific optimization
+- Compatible with sentence-transformers >= 2.7.0
 
 ---
 

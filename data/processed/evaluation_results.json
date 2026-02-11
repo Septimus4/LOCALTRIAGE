@@ -1,27 +1,27 @@
 {
-  "overall_accuracy": 0.6333333333333333,
-  "total_samples": 30,
-  "correct_predictions": 19,
+  "overall_accuracy": 0.7333333333333333,
+  "total_samples": 60,
+  "correct_predictions": 44,
   "per_category": {
     "Technical": {
-      "correct": 7,
-      "total": 9
+      "correct": 17,
+      "total": 20
     },
     "Billing": {
-      "correct": 3,
-      "total": 6
+      "correct": 9,
+      "total": 12
     },
     "Account": {
-      "correct": 5,
-      "total": 7
+      "correct": 11,
+      "total": 13
     },
     "Feature Request": {
-      "correct": 4,
-      "total": 5
+      "correct": 5,
+      "total": 8
     },
     "General Inquiry": {
-      "correct": 0,
-      "total": 3
+      "correct": 2,
+      "total": 7
     }
   }
 }

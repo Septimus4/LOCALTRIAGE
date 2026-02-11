@@ -60,9 +60,9 @@ def validate_data() -> bool:
                 all_valid = False
     
     if all_valid:
-        logger.info("✓ All data files validated successfully")
+        logger.info("[OK] All data files validated successfully")
     else:
-        logger.error("✗ Data validation failed")
+        logger.error("[FAIL] Data validation failed")
     
     return all_valid
 
@@ -115,7 +115,7 @@ def train_classifier() -> bool:
         model_path.parent.mkdir(parents=True, exist_ok=True)
         classifier.save(str(model_path))
         
-        logger.info(f"✓ Classifier trained and saved to {model_path}")
+        logger.info(f"[OK] Classifier trained and saved to {model_path}")
         return True
     except Exception as e:
         logger.error(f"Failed to train classifier: {e}")
@@ -145,7 +145,7 @@ def build_vector_index() -> bool:
     try:
         import os
         # Initialize embedding model
-        embedding_model_name = os.environ.get('EMBEDDING_MODEL', 'BAAI/bge-large-en-v1.5')
+        embedding_model_name = os.environ.get('EMBEDDING_MODEL', 'Qwen/Qwen3-Embedding-8B')
         embedding_model = EmbeddingModel(model_name=embedding_model_name, device='cuda')
         dimension = embedding_model.dimension
         
@@ -182,7 +182,7 @@ def build_vector_index() -> bool:
         # Add documents to Qdrant
         vector_store.add(embeddings, documents)
         
-        logger.info(f"✓ Vector index built in Qdrant collection 'kb_articles'")
+        logger.info(f"[OK] Vector index built in Qdrant collection 'kb_articles'")
         return True
     except Exception as e:
         logger.error(f"Failed to build vector index: {e}")
@@ -264,7 +264,7 @@ def evaluate_models() -> bool:
         with open(results_path, "w") as f:
             json.dump(results, f, indent=2)
         
-        logger.info(f"✓ Evaluation results saved to {results_path}")
+        logger.info(f"[OK] Evaluation results saved to {results_path}")
         return True
     except Exception as e:
         logger.error(f"Failed to evaluate models: {e}")
@@ -323,16 +323,16 @@ def show_data_summary():
     # Check for trained models
     model_path = DATA_DIR / "models" / "classifier_model"
     if model_path.exists():
-        logger.info(f"\n✓ Trained classifier model exists")
+        logger.info(f"\n[OK] Trained classifier model exists")
     else:
-        logger.info(f"\n✗ No trained classifier model")
+        logger.info(f"\n[MISSING] No trained classifier model")
     
     # Check for indices
     index_path = DATA_DIR / "indices" / "kb_index"
     if index_path.exists():
-        logger.info(f"✓ Vector search index exists")
+        logger.info(f"[OK] Vector search index exists")
     else:
-        logger.info(f"✗ No vector search index")
+        logger.info(f"[MISSING] No vector search index")
     
     logger.info("="*50 + "\n")
 
@@ -407,9 +407,9 @@ def main():
         success = seed_database() and success
     
     if success:
-        logger.info("✓ All operations completed successfully")
+        logger.info("[OK] All operations completed successfully")
     else:
-        logger.error("✗ Some operations failed")
+        logger.error("[FAIL] Some operations failed")
         sys.exit(1)
 
 

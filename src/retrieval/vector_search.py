@@ -26,7 +26,7 @@ class VectorSearchResult:
 class EmbeddingModel:
     """Wrapper for embedding model"""
     
-    DEFAULT_MODEL = "BAAI/bge-base-en-v1.5"
+    DEFAULT_MODEL = "Qwen/Qwen3-Embedding-8B"
     
     def __init__(
         self,
@@ -41,10 +41,38 @@ class EmbeddingModel:
         self._dimension = None
     
     def load(self):
-        """Load the model"""
+        """Load the model.
+        
+        Uses CPU with float32 by default. For GPU with half-precision,
+        ensure your CUDA driver supports BF16/FP16 CUBLAS operations.
+        """
+        import torch
+        # Determine effective device: try half-precision GPU, fallback to CPU
+        effective_device = self.device
+        dtype = torch.bfloat16
+        if effective_device != "cpu":
+            try:
+                # Quick CUBLAS sanity check for half-precision
+                a = torch.randn(2, 128, dtype=torch.bfloat16, device=effective_device)
+                b = torch.randn(128, 128, dtype=torch.bfloat16, device=effective_device)
+                _ = a @ b
+                del a, b
+                torch.cuda.empty_cache()
+            except RuntimeError:
+                import logging
+                logging.getLogger(__name__).warning(
+                    "GPU half-precision CUBLAS unavailable, falling back to CPU for embeddings"
+                )
+                effective_device = "cpu"
+                dtype = torch.float32
+        else:
+            dtype = torch.float32
+
         self.model = SentenceTransformer(
             self.model_name,
-            device=self.device
+            device=effective_device,
+            model_kwargs={"torch_dtype": dtype},
+            tokenizer_kwargs={"padding_side": "left"},
         )
         self._dimension = self.model.get_sentence_embedding_dimension()
         return self

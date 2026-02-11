@@ -75,9 +75,9 @@
 │  │  │   PostgreSQL   │  │     Qdrant     │  │    Model Storage       │   │  │
 │  │  │                │  │  Vector Store  │  │                        │   │  │
 │  │  │ • tickets      │  │                │  │ • Embedding Model      │   │  │
-│  │  │ • kb_articles  │  │ • KB chunk     │  │   (bge-base-en)        │   │  │
+│  │  │ • kb_articles  │  │ • KB chunk     │  │   (Qwen3-Emb-8B)      │   │  │
 │  │  │ • kb_chunks    │  │   embeddings   │  │                        │   │  │
-│  │  │ • drafts       │  │ • 768-dim      │  │ • Classifier Model     │   │  │
+│  │  │ • drafts       │  │ • 4096-dim     │  │ • Classifier Model     │   │  │
 │  │  │ • feedback     │  │   vectors      │  │   (TF-IDF + LogReg)    │   │  │
 │  │  │ • metrics      │  │ • HNSW index   │  │                        │   │  │
 │  │  │ • FTS indices  │  │                │  │ • LLM (external)       │   │  │
@@ -95,7 +95,7 @@
 │  │   vLLM / llama │  │   Embedding    │  │        Monitoring              │ │
 │  │      Server    │  │    Service     │  │                                │ │
 │  │                │  │                │  │  ┌────────────┐ ┌────────────┐ │ │
-│  │ • Qwen2.5-14B  │  │ • bge-base-en  │  │  │ Prometheus │ │  Grafana   │ │ │
+│  │ • Qwen2.5-14B  │  │ • Qwen3-Emb-8B│  │  │ Prometheus │ │  Grafana   │ │ │
 │  │   -Instruct    │  │ • FastAPI      │  │  └────────────┘ └────────────┘ │ │
 │  │ • OpenAI API   │  │ • Batched      │  │                                │ │
 │  │   compatible   │  │   inference    │  └────────────────────────────────┘ │

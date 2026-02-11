@@ -1,7 +1,7 @@
 {
   "description": "Evaluation dataset for testing classifier and retrieval models",
-  "version": "1.0.0",
-  "created_date": "2025-01-15",
+  "version": "2.0.0",
+  "created_date": "2026-02-10",
   "metrics_to_compute": ["accuracy", "precision", "recall", "f1_score", "confusion_matrix"],
   "test_samples": [
     {
@@ -9,7 +9,7 @@
       "text": "The app keeps freezing when I try to upload files larger than 10MB",
       "expected_category": "Technical",
       "expected_priority": "P2-High",
-      "relevant_kb_articles": ["KB-003"],
+      "relevant_kb_articles": ["KB-003", "KB-030"],
       "difficulty": "easy"
     },
     {
@@ -17,7 +17,7 @@
       "text": "I paid for premium but it says I'm still on free plan",
       "expected_category": "Billing",
       "expected_priority": "P2-High",
-      "relevant_kb_articles": ["KB-002", "KB-007"],
+      "relevant_kb_articles": ["KB-002", "KB-016"],
       "difficulty": "easy"
     },
     {
@@ -25,7 +25,7 @@
       "text": "Can't remember my login credentials and email won't reset",
       "expected_category": "Account",
       "expected_priority": "P2-High",
-      "relevant_kb_articles": ["KB-001", "KB-004"],
+      "relevant_kb_articles": ["KB-001", "KB-011"],
       "difficulty": "easy"
     },
     {
@@ -33,7 +33,7 @@
       "text": "It would be nice if you supported markdown formatting",
       "expected_category": "Feature Request",
       "expected_priority": "P4-Low",
-      "relevant_kb_articles": [],
+      "relevant_kb_articles": ["KB-021"],
       "difficulty": "easy"
     },
     {
@@ -41,7 +41,7 @@
       "text": "What time zone are your servers in?",
       "expected_category": "General Inquiry",
       "expected_priority": "P4-Low",
-      "relevant_kb_articles": [],
+      "relevant_kb_articles": ["KB-024"],
       "difficulty": "easy"
     },
     {
@@ -65,7 +65,7 @@
       "text": "Why was I charged $49.99 when my plan is supposed to be $29.99?",
       "expected_category": "Billing",
       "expected_priority": "P2-High",
-      "relevant_kb_articles": ["KB-002"],
+      "relevant_kb_articles": ["KB-002", "KB-012"],
       "difficulty": "easy"
     },
     {
@@ -73,7 +73,7 @@
       "text": "My colleague left the company and I need to take over their workspace",
       "expected_category": "Account",
       "expected_priority": "P3-Medium",
-      "relevant_kb_articles": ["KB-006"],
+      "relevant_kb_articles": ["KB-006", "KB-028"],
       "difficulty": "medium"
     },
     {
@@ -81,7 +81,7 @@
       "text": "Have you considered adding Jira integration?",
       "expected_category": "Feature Request",
       "expected_priority": "P4-Low",
-      "relevant_kb_articles": ["KB-009"],
+      "relevant_kb_articles": ["KB-009", "KB-021"],
       "difficulty": "easy"
     },
     {
@@ -97,7 +97,7 @@
       "text": "I need my account deleted for GDPR compliance",
       "expected_category": "Account",
       "expected_priority": "P3-Medium",
-      "relevant_kb_articles": ["KB-010"],
+      "relevant_kb_articles": ["KB-010", "KB-032"],
       "difficulty": "easy"
     },
     {
@@ -113,7 +113,7 @@
       "text": "Need to add 50 more seats to our enterprise contract",
       "expected_category": "Billing",
       "expected_priority": "P3-Medium",
-      "relevant_kb_articles": ["KB-002", "KB-006"],
+      "relevant_kb_articles": ["KB-002", "KB-016"],
       "difficulty": "medium"
     },
     {
@@ -129,7 +129,7 @@
       "text": "I can't believe there's no dark mode in 2025",
       "expected_category": "Feature Request",
       "expected_priority": "P4-Low",
-      "relevant_kb_articles": [],
+      "relevant_kb_articles": ["KB-021"],
       "difficulty": "easy"
     },
     {
@@ -137,7 +137,7 @@
       "text": "Where can I find your SOC 2 certification?",
       "expected_category": "General Inquiry",
       "expected_priority": "P4-Low",
-      "relevant_kb_articles": [],
+      "relevant_kb_articles": ["KB-032"],
       "difficulty": "easy"
     },
     {
@@ -145,7 +145,7 @@
       "text": "Payment failed and now I'm locked out of my account",
       "expected_category": "Billing",
       "expected_priority": "P2-High",
-      "relevant_kb_articles": ["KB-002", "KB-007"],
+      "relevant_kb_articles": ["KB-039", "KB-007"],
       "difficulty": "medium"
     },
     {
@@ -161,7 +161,7 @@
       "text": "Export to PDF creates a blank document with no content",
       "expected_category": "Technical",
       "expected_priority": "P2-High",
-      "relevant_kb_articles": ["KB-003"],
+      "relevant_kb_articles": ["KB-003", "KB-022"],
       "difficulty": "easy"
     },
     {
@@ -169,7 +169,7 @@
       "text": "I want to downgrade my plan but keep my data",
       "expected_category": "Billing",
       "expected_priority": "P3-Medium",
-      "relevant_kb_articles": ["KB-002", "KB-007"],
+      "relevant_kb_articles": ["KB-016", "KB-007"],
       "difficulty": "medium"
     },
     {
@@ -177,7 +177,7 @@
       "text": "Someone unauthorized is accessing my account, please help immediately",
       "expected_category": "Account",
       "expected_priority": "P1-Critical",
-      "relevant_kb_articles": ["KB-004", "KB-010"],
+      "relevant_kb_articles": ["KB-017", "KB-004"],
       "difficulty": "easy"
     },
     {
@@ -185,7 +185,7 @@
       "text": "The mobile app on Android 14 crashes when opening notifications",
       "expected_category": "Technical",
       "expected_priority": "P2-High",
-      "relevant_kb_articles": ["KB-003"],
+      "relevant_kb_articles": ["KB-023", "KB-003"],
       "difficulty": "easy"
     },
     {
@@ -193,7 +193,7 @@
       "text": "Could you add a bulk action feature for managing items?",
       "expected_category": "Feature Request",
       "expected_priority": "P4-Low",
-      "relevant_kb_articles": [],
+      "relevant_kb_articles": ["KB-021"],
       "difficulty": "easy"
     },
     {
@@ -201,7 +201,7 @@
       "text": "Do you offer any discounts for educational institutions?",
       "expected_category": "General Inquiry",
       "expected_priority": "P4-Low",
-      "relevant_kb_articles": [],
+      "relevant_kb_articles": ["KB-013"],
       "difficulty": "easy"
     },
     {
@@ -209,7 +209,7 @@
       "text": "Password reset email never arrives, tried multiple times",
       "expected_category": "Account",
       "expected_priority": "P2-High",
-      "relevant_kb_articles": ["KB-001"],
+      "relevant_kb_articles": ["KB-001", "KB-026"],
       "difficulty": "easy"
     },
     {
@@ -217,7 +217,7 @@
       "text": "Annual billing shows monthly rate, very confusing",
       "expected_category": "Billing",
       "expected_priority": "P3-Medium",
-      "relevant_kb_articles": ["KB-002"],
+      "relevant_kb_articles": ["KB-002", "KB-016"],
       "difficulty": "medium"
     },
     {
@@ -225,7 +225,7 @@
       "text": "Webhook payload doesn't include the fields documented in API docs",
       "expected_category": "Technical",
       "expected_priority": "P3-Medium",
-      "relevant_kb_articles": ["KB-005", "KB-009"],
+      "relevant_kb_articles": ["KB-014", "KB-005"],
       "difficulty": "hard"
     },
     {
@@ -233,7 +233,7 @@
       "text": "Please add support for Teams in addition to Slack",
       "expected_category": "Feature Request",
       "expected_priority": "P4-Low",
-      "relevant_kb_articles": ["KB-009"],
+      "relevant_kb_articles": ["KB-009", "KB-021"],
       "difficulty": "easy"
     },
     {
@@ -241,8 +241,248 @@
       "text": "Everything was working yesterday but today nothing loads - just white screen",
       "expected_category": "Technical",
       "expected_priority": "P1-Critical",
-      "relevant_kb_articles": ["KB-003", "KB-008"],
+      "relevant_kb_articles": ["KB-003", "KB-020"],
       "difficulty": "easy"
+    },
+    {
+      "id": "eval-031",
+      "text": "Our SAML SSO keeps returning an invalid assertion error after IdP certificate rotation",
+      "expected_category": "Technical",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-027"],
+      "difficulty": "hard"
+    },
+    {
+      "id": "eval-032",
+      "text": "The import wizard miscounts rows and skips every 100th record from our CSV",
+      "expected_category": "Technical",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-037"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-033",
+      "text": "How do I configure automated escalation rules for P1 tickets?",
+      "expected_category": "General Inquiry",
+      "expected_priority": "P4-Low",
+      "relevant_kb_articles": ["KB-033"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-034",
+      "text": "We need separate invoices for each department workspace",
+      "expected_category": "Billing",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-019"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-035",
+      "text": "My account shows as 'suspended' even though I just paid the invoice",
+      "expected_category": "Billing",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-039", "KB-002"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-036",
+      "text": "Can we get a sandbox/staging environment for testing before production?",
+      "expected_category": "Feature Request",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-021"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-037",
+      "text": "The file upload progress bar freezes at 99% for files over 25MB",
+      "expected_category": "Technical",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-030"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-038",
+      "text": "How do I set up SCIM provisioning with Azure Active Directory?",
+      "expected_category": "Account",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-027", "KB-032"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-039",
+      "text": "Our enterprise contract renewal is coming up and we want multi-year pricing",
+      "expected_category": "Billing",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-016"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-040",
+      "text": "Automation rule fires multiple times for the same event, creating duplicate actions",
+      "expected_category": "Technical",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-033"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-041",
+      "text": "What is your scheduled maintenance window? We need to plan around it",
+      "expected_category": "General Inquiry",
+      "expected_priority": "P4-Low",
+      "relevant_kb_articles": ["KB-038", "KB-036"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-042",
+      "text": "Custom domain SSL certificate is not auto-renewing",
+      "expected_category": "Technical",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-031"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-043",
+      "text": "We want an audit trail of all data exports from our workspace",
+      "expected_category": "Account",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-032"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-044",
+      "text": "Reports are showing timezone as UTC instead of our local timezone setting",
+      "expected_category": "Technical",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-034"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-045",
+      "text": "I signed up for trial but it says only 7 days not 14 like advertised",
+      "expected_category": "Billing",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-035"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-046",
+      "text": "Would love to see an API endpoint for bulk user creation via SCIM",
+      "expected_category": "Feature Request",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-021", "KB-040"],
+      "difficulty": "hard"
+    },
+    {
+      "id": "eval-047",
+      "text": "Our OAuth tokens are expiring after only 30 minutes instead of 1 hour",
+      "expected_category": "Technical",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-040"],
+      "difficulty": "hard"
+    },
+    {
+      "id": "eval-048",
+      "text": "Need IP allowlisting configured for our compliance requirements",
+      "expected_category": "Account",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-032"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-049",
+      "text": "Credit card payment failing with 3D Secure authentication error",
+      "expected_category": "Billing",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-039"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-050",
+      "text": "Is your platform FedRAMP authorized for government use?",
+      "expected_category": "General Inquiry",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-032"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-051",
+      "text": "Database backup restoration failed with data integrity error during migration",
+      "expected_category": "Technical",
+      "expected_priority": "P1-Critical",
+      "relevant_kb_articles": ["KB-029"],
+      "difficulty": "hard"
+    },
+    {
+      "id": "eval-052",
+      "text": "Notifications are going to my old email that I updated 2 weeks ago",
+      "expected_category": "Account",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-018", "KB-026"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-053",
+      "text": "We accidentally deleted a workspace, is there any way to recover it?",
+      "expected_category": "Account",
+      "expected_priority": "P1-Critical",
+      "relevant_kb_articles": ["KB-028"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-054",
+      "text": "Monthly analytics report shows incorrect MAU numbers compared to our tracking",
+      "expected_category": "Technical",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-034"],
+      "difficulty": "hard"
+    },
+    {
+      "id": "eval-055",
+      "text": "Need to change billing currency from USD to EUR for our EU entity",
+      "expected_category": "Billing",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-039", "KB-018"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-056",
+      "text": "Please add the ability to create custom dashboards with drag-and-drop widgets",
+      "expected_category": "Feature Request",
+      "expected_priority": "P4-Low",
+      "relevant_kb_articles": ["KB-021", "KB-034"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-057",
+      "text": "API rate limit counter doesn't reset at the documented interval",
+      "expected_category": "Technical",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-005", "KB-040"],
+      "difficulty": "hard"
+    },
+    {
+      "id": "eval-058",
+      "text": "Do you provide a BAA for HIPAA compliance?",
+      "expected_category": "General Inquiry",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-032"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "eval-059",
+      "text": "Safari browser shows blank page after login redirect, works fine on Chrome",
+      "expected_category": "Technical",
+      "expected_priority": "P2-High",
+      "relevant_kb_articles": ["KB-020", "KB-003"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "eval-060",
+      "text": "We need to migrate our workspace data from US region to EU for GDPR",
+      "expected_category": "Account",
+      "expected_priority": "P3-Medium",
+      "relevant_kb_articles": ["KB-032", "KB-010"],
+      "difficulty": "hard"
     }
   ]
 }

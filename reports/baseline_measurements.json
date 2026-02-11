@@ -1,43 +1,59 @@
 {
-  "measurement_date": "2026-02-03",
+  "measurement_date": "2026-02-10",
   "data_inventory": {
-    "training_samples": 96,
-    "test_samples": 30,
-    "kb_articles": 25,
-    "raw_tickets": 20,
-    "categories": ["Technical", "Billing", "Account", "Feature Request", "General Inquiry"]
+    "training_samples": 195,
+    "test_samples": 60,
+    "kb_articles": 40,
+    "raw_tickets_json": 40,
+    "raw_tickets_csv": 40,
+    "categories": ["Technical", "Billing", "Account", "Feature Request", "General Inquiry"],
+    "version": "2.0.0"
   },
   "routing_accuracy": {
     "random_baseline": 0.20,
     "majority_class_baseline": 0.30,
-    "tfidf_logreg_current": 0.60,
+    "tfidf_logreg_v1": 0.60,
+    "tfidf_logreg_v2": 0.7333,
     "cross_validation_mean": 0.396,
-    "notes": "Majority class is 'Technical'. 60% is 3x random, 2x majority."
+    "per_category_v2": {
+      "Account": 0.8462,
+      "Billing": 0.75,
+      "Feature Request": 0.625,
+      "General Inquiry": 0.2857,
+      "Technical": 0.85
+    },
+    "notes": "v2: 73.3% with 195 training samples (up from 60% with 96 samples). Best: Technical 85%, Account 84.6%. Weakest: General Inquiry 28.6%."
   },
   "retrieval_recall_at_5": {
     "bm25_baseline": 0.708,
-    "vector_bge_large": 0.917,
-    "improvement_pp": 20.8,
-    "test_samples_with_kb_labels": 24,
-    "notes": "Vector search significantly outperforms BM25 keyword matching."
+    "vector_bge_large_v1": 0.917,
+    "vector_bge_large_v2": 0.484,
+    "vector_qwen3_emb_8b_v3": 0.464,
+    "improvement_pp_v1": 20.8,
+    "test_samples_with_kb_labels_v1": 24,
+    "test_queries_v2": 13,
+    "notes": "v3 uses Qwen3-Embedding-8B (4096-dim, MTEB #1). Recall@5=46.4% on harder v2 evaluation set (13 queries, 40 KB articles). Comparable to BGE-Large v2 (48.4%) on the same challenging benchmark."
   },
   "draft_quality": {
     "template_baseline": 1.5,
-    "llm_rag_current": 4.74,
-    "improvement": 3.24,
+    "llm_rag_current": 4.67,
+    "improvement": 3.17,
     "scale": "1-5",
+    "avg_citations_per_draft": 3.0,
     "criteria": ["relevance", "completeness", "actionability", "personalization", "citations"]
   },
   "latency": {
     "template_p95_ms": 100,
-    "llm_rag_p95_ms": 20000,
-    "notes": "LLM adds significant latency but quality improvement justifies trade-off for async workflows."
+    "llm_rag_p95_ms": 14935,
+    "triage_p95_ms": 640,
+    "draft_p95_ms": 21936,
+    "notes": "LLM adds significant latency but quality improvement justifies trade-off for async workflows. E2E P95 ~14.9s."
   },
   "hardware": {
     "gpu": "NVIDIA RTX 5090",
     "vram_gb": 32,
     "cuda_version": "13.0",
     "llm": "qwen3:32b via Ollama",
-    "embeddings": "BAAI/bge-large-en-v1.5"
+    "embeddings": "Qwen/Qwen3-Embedding-8B"
   }
 }

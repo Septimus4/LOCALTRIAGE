@@ -24,7 +24,7 @@ API_BASE_URL = os.getenv('API_BASE_URL', 'http://localhost:8080')
 
 st.set_page_config(
     page_title="LOCALTRIAGE - Support Triage Platform",
-    page_icon="🎫",
+    page_icon="LT",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -46,6 +46,7 @@ st.markdown("""
     }
     .citation-box {
         background-color: #e8f4f8;
+        color: #1a1a1a;
         padding: 0.5rem;
         border-left: 3px solid #1f77b4;
         margin: 0.5rem 0;
@@ -147,13 +148,13 @@ def list_tickets(page: int = 1, page_size: int = 20, **filters) -> Dict:
 def render_sidebar():
     """Render sidebar with navigation and status"""
     with st.sidebar:
-        st.markdown("# 🎫 LOCALTRIAGE")
+        st.markdown("# LOCALTRIAGE")
         st.markdown("---")
         
         # Navigation
         page = st.radio(
             "Navigation",
-            ["🆕 New Ticket", "📋 Ticket List", "📊 Analytics", "⚙️ Settings"],
+            ["New Ticket", "Ticket List", "Analytics", "Settings"],
             index=0
         )
         
@@ -164,10 +165,10 @@ def render_sidebar():
         health = get_health_status()
         
         if health:
-            status_colors = {'healthy': '🟢', 'unhealthy': '🔴', 'disabled': '⚪', 'unknown': '🟡'}
+            status_colors = {'healthy': '[OK]', 'unhealthy': '[ERR]', 'disabled': '[OFF]', 'unknown': '[?]'}
             
             for component, status in health.items():
-                color = status_colors.get(status.split(':')[0] if ':' in str(status) else status, '🟡')
+                color = status_colors.get(status.split(':')[0] if ':' in str(status) else status, '[?]')
                 st.markdown(f"{color} **{component.title()}**: {status}")
         else:
             st.error("Unable to connect to API")
@@ -190,7 +191,7 @@ def render_sidebar():
 
 def render_new_ticket_page():
     """Render new ticket triage and drafting page"""
-    st.markdown('<div class="main-header">🆕 New Ticket Triage & Draft</div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-header">New Ticket Triage & Draft</div>', unsafe_allow_html=True)
     
     # Input Section
     col1, col2 = st.columns([2, 1])
@@ -214,13 +215,13 @@ def render_new_ticket_page():
         col_btn1, col_btn2, col_btn3 = st.columns(3)
         
         with col_btn1:
-            triage_btn = st.button("🏷️ Triage Only", use_container_width=True)
+            triage_btn = st.button("Triage Only", use_container_width=True)
         
         with col_btn2:
-            draft_btn = st.button("📝 Generate Draft", type="primary", use_container_width=True)
+            draft_btn = st.button("Generate Draft", type="primary", use_container_width=True)
         
         with col_btn3:
-            similar_btn = st.button("🔍 Find Similar", use_container_width=True)
+            similar_btn = st.button("Find Similar", use_container_width=True)
     
     with col2:
         st.markdown("### Quick Templates")
@@ -230,11 +231,18 @@ def render_new_ticket_page():
             "Account Access": ("Cannot login", "I forgot my password and the reset email never arrived. I've checked spam folder too."),
         }
         
+        def _apply_template(subj, desc):
+            st.session_state.ticket_subject = subj
+            st.session_state.ticket_body = desc
+
         for name, (subj, desc) in templates.items():
-            if st.button(name, key=f"template_{name}", use_container_width=True):
-                st.session_state.ticket_subject = subj
-                st.session_state.ticket_body = desc
-                st.rerun()
+            st.button(
+                name,
+                key=f"template_{name}",
+                use_container_width=True,
+                on_click=_apply_template,
+                args=(subj, desc),
+            )
     
     st.markdown("---")
     
@@ -282,7 +290,7 @@ def render_new_ticket_page():
 
 def render_triage_results(result: Dict):
     """Render triage results"""
-    st.markdown("### 🏷️ Triage Results")
+    st.markdown("### Triage Results")
     
     col1, col2, col3, col4 = st.columns(4)
     
@@ -307,9 +315,9 @@ def render_triage_results(result: Dict):
     with col4:
         st.markdown("**SLA Risk**")
         if result.get('sla_risk'):
-            st.markdown("### ⚠️ At Risk")
+            st.markdown("### AT RISK")
         else:
-            st.markdown("### ✅ On Track")
+            st.markdown("### On Track")
     
     # Show probability distribution
     with st.expander("View Category Probabilities"):
@@ -326,7 +334,7 @@ def render_triage_results(result: Dict):
 
 def render_draft_results(result: Dict):
     """Render draft response results"""
-    st.markdown("### 📝 Draft Response")
+    st.markdown("### Draft Response")
     
     # Confidence indicator
     confidence = result.get('confidence', 'medium')
@@ -350,16 +358,16 @@ def render_draft_results(result: Dict):
     # Copy button
     col1, col2, col3 = st.columns([1, 1, 2])
     with col1:
-        if st.button("📋 Copy to Clipboard"):
+        if st.button("Copy to Clipboard"):
             st.write("Draft copied!")
     with col2:
-        if st.button("✏️ Edit Draft"):
+        if st.button("Edit Draft"):
             st.session_state.editing_draft = True
     
     # Citations
     citations = result.get('citations', [])
     if citations:
-        st.markdown("#### 📚 Sources")
+        st.markdown("#### Sources")
         for citation in citations:
             st.markdown(
                 f'<div class="citation-box">'
@@ -373,7 +381,7 @@ def render_draft_results(result: Dict):
     # Follow-up questions
     follow_ups = result.get('follow_up_questions', [])
     if follow_ups:
-        st.markdown("#### ❓ Verification Questions")
+        st.markdown("#### Verification Questions")
         for q in follow_ups:
             st.markdown(f"- {q}")
     
@@ -389,7 +397,7 @@ def render_draft_results(result: Dict):
     
     # Feedback section
     st.markdown("---")
-    st.markdown("#### 📊 Feedback")
+    st.markdown("#### Feedback")
     
     col1, col2 = st.columns(2)
     with col1:
@@ -412,7 +420,7 @@ def render_draft_results(result: Dict):
 
 def render_similar_tickets(tickets: List[Dict]):
     """Render similar tickets"""
-    st.markdown("### 🔍 Similar Tickets")
+    st.markdown("### Similar Tickets")
     
     if not tickets:
         st.info("No similar tickets found.")
@@ -432,7 +440,7 @@ def render_similar_tickets(tickets: List[Dict]):
 
 def render_ticket_list_page():
     """Render ticket list page"""
-    st.markdown('<div class="main-header">📋 Ticket List</div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-header">Ticket List</div>', unsafe_allow_html=True)
     
     # Filters
     col1, col2, col3, col4 = st.columns(4)
@@ -514,7 +522,7 @@ def render_ticket_list_page():
 
 def render_analytics_page():
     """Render analytics dashboard"""
-    st.markdown('<div class="main-header">📊 Analytics Dashboard</div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-header">Analytics Dashboard</div>', unsafe_allow_html=True)
     
     # Time period selector
     period = st.selectbox("Time Period", ["day", "week", "month"], index=1)
@@ -622,7 +630,7 @@ def render_analytics_page():
 
 def render_settings_page():
     """Render settings page"""
-    st.markdown('<div class="main-header">⚙️ Settings</div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-header">Settings</div>', unsafe_allow_html=True)
     
     st.markdown("### API Configuration")
     st.text_input("API Base URL", value=API_BASE_URL, disabled=True)
@@ -657,10 +665,10 @@ DB_NAME=localtriage
     **LOCALTRIAGE** is a self-hosted, privacy-preserving customer support triage platform.
     
     Features:
-    - 🏷️ Automatic ticket categorization and prioritization
-    - 📝 RAG-powered response drafting with citations
-    - 📊 Analytics and insights
-    - 🔒 Fully local LLM inference
+    - Automatic ticket categorization and prioritization
+    - RAG-powered response drafting with citations
+    - Analytics and insights
+    - Fully local LLM inference
     
     Version: 1.0.0
     """)
@@ -674,13 +682,13 @@ def main():
     """Main application entry point"""
     page = render_sidebar()
     
-    if page == "🆕 New Ticket":
+    if page == "New Ticket":
         render_new_ticket_page()
-    elif page == "📋 Ticket List":
+    elif page == "Ticket List":
         render_ticket_list_page()
-    elif page == "📊 Analytics":
+    elif page == "Analytics":
         render_analytics_page()
-    elif page == "⚙️ Settings":
+    elif page == "Settings":
         render_settings_page()
 
 

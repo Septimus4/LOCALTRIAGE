@@ -15,11 +15,11 @@ This report documents the audit of the baseline customer support triage system. 
 
 | Area | Baseline (Measured) | Current System | Improvement |
 |------|---------------------|----------------|-------------|
-| Routing Accuracy | 30% (majority class) | 60.0% | **+30pp** |
-| Retrieval Recall@5 | 70.8% (BM25) | 91.7% | **+20.8pp** |
-| Response Usefulness | 1.5/5 (templates) | 4.74/5 | **+3.2** |
-| P95 Latency | <100ms (templates) | ~20s | Trade-off |
-| Citations | 0% | 100% | ✓ Implemented |
+| Routing Accuracy | 30% (majority class) | 73.3% | **+43.3pp** |
+| Retrieval Recall@5 | 70.8% (BM25) | 46.4% | **-24.4pp** (harder eval set) |
+| Response Usefulness | 1.5/5 (templates) | 4.67/5 | **+3.2** |
+| P95 Latency | <100ms (templates) | ~14.9s | Trade-off |
+| Citations | 0% | 100% | Implemented |
 
 ### Baseline Definitions
 
@@ -27,11 +27,11 @@ This report documents the audit of the baseline customer support triage system. 
 |--------|-------------|---------------------|
 | Random | Uniform random prediction | 20% (5 categories) |
 | Majority Class | Always predict "Technical" | 30% |
-| TF-IDF + LogReg | Our classifier | 60% |
+| TF-IDF + LogReg | Our classifier | 73.3% |
 | BM25 | Keyword-based retrieval | 70.8% Recall@5 |
-| Vector (BGE-Large) | Semantic search | 91.7% Recall@5 |
+| Vector (Qwen3-Emb-8B) | Semantic search | 46.4% Recall@5 |
 | Template Response | Generic canned responses | 1.5/5 quality |
-| LLM + RAG | Qwen3:32B with context | 4.74/5 quality |
+| LLM + RAG | Qwen3:32B with context | 4.67/5 quality |
 
 ---
 
@@ -109,57 +109,57 @@ The baseline system consists of three main components:
 
 | Requirement ID | Requirement | Status | Notes |
 |----------------|-------------|--------|-------|
-| FR-ING-001 | Ingest tickets from CSV | ✅ Covered | Working implementation |
-| FR-ING-002 | Ingest tickets from JSON | ✅ Covered | Working implementation |
-| FR-ING-003 | Store normalized records | ✅ Covered | PostgreSQL schema |
-| FR-ING-004 | Ingest KB articles | ✅ Covered | Markdown parser |
-| FR-ING-005 | Version KB content | ⚠️ Partial | No version history |
-| FR-ING-006 | Chunk KB for retrieval | ❌ Gap | Full articles only |
-| FR-TRI-001 | Predict category | ✅ Covered | LogReg classifier |
-| FR-TRI-002 | Predict priority | ✅ Covered | LogReg classifier |
-| FR-TRI-003 | Suggest assignee queue | ❌ Gap | Not implemented |
-| FR-TRI-004 | Detect SLA risk | ❌ Gap | Not implemented |
-| FR-TRI-005 | Explain routing | ❌ Gap | No explanations |
-| FR-DRF-001 | Retrieve relevant KB | ⚠️ Partial | BM25 only, low recall |
-| FR-DRF-002 | Retrieve similar tickets | ❌ Gap | Not implemented |
-| FR-DRF-003 | Generate grounded response | ❌ Gap | Templates only |
-| FR-DRF-004 | Include citations | ❌ Gap | No citations |
-| FR-DRF-005 | Confidence indicators | ❌ Gap | Not implemented |
-| FR-DRF-006 | Template override | ⚠️ Partial | Manual only |
-| FR-ANA-001 | Volume trends | ❌ Gap | Not implemented |
-| FR-ANA-002 | Category distribution | ❌ Gap | Not implemented |
-| FR-ANA-003 | Emerging clusters | ❌ Gap | Not implemented |
-| FR-ANA-004 | SLA dashboard | ❌ Gap | Not implemented |
-| FR-ANA-005 | Weekly insights | ❌ Gap | Not implemented |
-| FR-FBK-001 | Draft rating | ❌ Gap | Not implemented |
-| FR-FBK-002 | Track corrections | ❌ Gap | Not implemented |
-| FR-FBK-003 | Store feedback | ❌ Gap | Not implemented |
+| FR-ING-001 | Ingest tickets from CSV | [DONE] Covered | Working implementation |
+| FR-ING-002 | Ingest tickets from JSON | [DONE] Covered | Working implementation |
+| FR-ING-003 | Store normalized records | [DONE] Covered | PostgreSQL schema |
+| FR-ING-004 | Ingest KB articles | [DONE] Covered | Markdown parser |
+| FR-ING-005 | Version KB content | [PARTIAL] | No version history |
+| FR-ING-006 | Chunk KB for retrieval | [GAP] | Full articles only |
+| FR-TRI-001 | Predict category | [DONE] Covered | LogReg classifier |
+| FR-TRI-002 | Predict priority | [DONE] Covered | LogReg classifier |
+| FR-TRI-003 | Suggest assignee queue | [GAP] | Not implemented |
+| FR-TRI-004 | Detect SLA risk | [GAP] | Not implemented |
+| FR-TRI-005 | Explain routing | [GAP] | No explanations |
+| FR-DRF-001 | Retrieve relevant KB | [PARTIAL] | BM25 only, low recall |
+| FR-DRF-002 | Retrieve similar tickets | [GAP] | Not implemented |
+| FR-DRF-003 | Generate grounded response | [GAP] | Templates only |
+| FR-DRF-004 | Include citations | [GAP] | No citations |
+| FR-DRF-005 | Confidence indicators | [GAP] | Not implemented |
+| FR-DRF-006 | Template override | [PARTIAL] | Manual only |
+| FR-ANA-001 | Volume trends | [GAP] | Not implemented |
+| FR-ANA-002 | Category distribution | [GAP] | Not implemented |
+| FR-ANA-003 | Emerging clusters | [GAP] | Not implemented |
+| FR-ANA-004 | SLA dashboard | [GAP] | Not implemented |
+| FR-ANA-005 | Weekly insights | [GAP] | Not implemented |
+| FR-FBK-001 | Draft rating | [GAP] | Not implemented |
+| FR-FBK-002 | Track corrections | [GAP] | Not implemented |
+| FR-FBK-003 | Store feedback | [GAP] | Not implemented |
 
 **Coverage Summary:**
-- ✅ Fully Covered: 7 (30%)
-- ⚠️ Partially Covered: 4 (17%)
-- ❌ Not Covered: 12 (52%)
+- Fully Covered: 7 (30%)
+- Partially Covered: 4 (17%)
+- Not Covered: 12 (52%)
 
 ### 3.2 Non-Functional Requirements Coverage
 
 | Requirement ID | Requirement | Status | Notes |
 |----------------|-------------|--------|-------|
-| NFR-SEC-001 | Local inference | ✅ Covered | All processing local |
-| NFR-SEC-002 | No data egress | ✅ Covered | No external calls |
-| NFR-SEC-003 | Audit trail | ❌ Gap | Minimal logging |
-| NFR-SEC-004 | RBAC | ❌ Gap | Not implemented |
-| NFR-PRF-001 | Draft <30s | ✅ Covered* | Template instant |
-| NFR-PRF-002 | Triage <5s | ✅ Covered | ~200ms |
-| NFR-PRF-003 | 10 concurrent | ⚠️ Partial | Not tested |
-| NFR-PRF-004 | 1000 tickets/hr | ✅ Covered | Easily exceeds |
+| NFR-SEC-001 | Local inference | [DONE] Covered | All processing local |
+| NFR-SEC-002 | No data egress | [DONE] Covered | No external calls |
+| NFR-SEC-003 | Audit trail | [GAP] | Minimal logging |
+| NFR-SEC-004 | RBAC | [GAP] | Not implemented |
+| NFR-PRF-001 | Draft <30s | [DONE] Covered* | Template instant |
+| NFR-PRF-002 | Triage <5s | [DONE] Covered | ~200ms |
+| NFR-PRF-003 | 10 concurrent | [PARTIAL] | Not tested |
+| NFR-PRF-004 | 1000 tickets/hr | [DONE] Covered | Easily exceeds |
 | NFR-TRC-001 | Log prompts | N/A | No prompts |
-| NFR-TRC-002 | Log retrieved docs | ❌ Gap | Not logged |
-| NFR-TRC-003 | Log model config | ⚠️ Partial | Basic only |
-| NFR-TRC-004 | Reproducible | ✅ Covered | Deterministic |
-| NFR-MNT-001 | Docker deployment | ❌ Gap | Not containerized |
+| NFR-TRC-002 | Log retrieved docs | [GAP] | Not logged |
+| NFR-TRC-003 | Log model config | [PARTIAL] | Basic only |
+| NFR-TRC-004 | Reproducible | [DONE] Covered | Deterministic |
+| NFR-MNT-001 | Docker deployment | [GAP] | Not containerized |
 | NFR-MNT-002 | Rollback capability | N/A | Is the baseline |
 | NFR-MNT-003 | Model hot-swap | N/A | No LLM |
-| NFR-MNT-004 | Config externalized | ⚠️ Partial | Some hardcoded |
+| NFR-MNT-004 | Config externalized | [PARTIAL] | Some hardcoded |
 
 ---
 
@@ -292,13 +292,13 @@ Actual Bil    0.79 0.05 0.06 0.02 0.02 0.03 0.02 0.01
 
 | Metric | Value | Target | Status |
 |--------|-------|--------|--------|
-| Triage latency (p50) | 120ms | <5s | ✅ Pass |
-| Triage latency (p95) | 280ms | <5s | ✅ Pass |
-| Retrieval latency (p50) | 45ms | <1s | ✅ Pass |
-| Retrieval latency (p95) | 95ms | <1s | ✅ Pass |
-| Template generation | <10ms | <30s | ✅ Pass |
-| Throughput | 3,200/hr | 1,000/hr | ✅ Pass |
-| Memory usage | 2.1GB | <8GB | ✅ Pass |
+| Triage latency (p50) | 120ms | <5s | Pass |
+| Triage latency (p95) | 280ms | <5s | Pass |
+| Retrieval latency (p50) | 45ms | <1s | Pass |
+| Retrieval latency (p95) | 95ms | <1s | Pass |
+| Template generation | <10ms | <30s | Pass |
+| Throughput | 3,200/hr | 1,000/hr | Pass |
+| Memory usage | 2.1GB | <8GB | Pass |
 
 ---
 

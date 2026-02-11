@@ -106,10 +106,10 @@ Modern RAG systems combine multiple retrieval strategies:
 | Model | Dimensions | Speed | Quality | Notes |
 |-------|------------|-------|---------|-------|
 | all-MiniLM-L6-v2 | 384 | Very Fast | Good | Great baseline |
-| bge-base-en-v1.5 | 768 | Fast | Very Good | Recommended |
-| bge-large-en-v1.5 | 1024 | Moderate | Excellent | Quality-first |
+| bge-base-en-v1.5 | 768 | Fast | Very Good | Previous candidate |
+| bge-large-en-v1.5 | 1024 | Moderate | Excellent | Previous choice |
 | nomic-embed-text | 768 | Fast | Very Good | Long context |
-| gte-base | 768 | Fast | Very Good | Alternative |
+| Qwen3-Embedding-8B | 4096 | Moderate | SOTA | **Selected** — MTEB #1 (70.58), 32K ctx, MRL support |
 
 ---
 
@@ -221,7 +221,7 @@ Our solution is differentiated by:
 |----------|--------|-----------|
 | Primary database | PostgreSQL | Mature, full-text search, JSON support |
 | Vector store | Qdrant | Production-ready, filtering, easy setup |
-| Embedding model | bge-base-en-v1.5 | Balance of speed and quality |
+| Embedding model | Qwen3-Embedding-8B | SOTA quality (MTEB #1), 4096-dim, 32K context |
 | LLM serving | vLLM (GPU) / llama.cpp (CPU) | Flexibility for different hardware |
 | API framework | FastAPI | Modern, async, auto-docs |
 | UI framework | Streamlit | Rapid prototyping, data-friendly |

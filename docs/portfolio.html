@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - William Le Roux | ML Data Scientist</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --accent: #58a6ff;
+      --accent2: #3fb950;
+      --accent3: #d2a8ff;
+      --accent4: #f0883e;
+      --accent5: #f778ba;
+      --gradient1: linear-gradient(135deg, #58a6ff 0%, #3fb950 100%);
+      --gradient2: linear-gradient(135deg, #d2a8ff 0%, #f778ba 100%);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Header ── */
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem 3rem;
+      background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero h1 { font-size: 2.8rem; margin-bottom: .4rem; }
+    .hero .subtitle { color: var(--text-muted); font-size: 1.2rem; }
+    .hero .links { margin-top: 1rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+    .hero .links a {
+      padding: .5rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color .2s;
+    }
+    .hero .links a:hover { border-color: var(--accent); text-decoration: none; }
+
+    /* ── Layout ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+    section { margin-bottom: 3.5rem; }
+    h2 {
+      font-size: 1.7rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: .5rem;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    h2 .num {
+      background: var(--accent);
+      color: var(--bg);
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    h3 { font-size: 1.2rem; margin: 1.2rem 0 .6rem; color: var(--accent); }
+    h4 { font-size: 1.05rem; margin: .8rem 0 .4rem; }
+    p, li { color: var(--text); }
+
+    /* ── Cards ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.2rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem;
+      transition: border-color .25s;
+    }
+    .card:hover { border-color: var(--accent); }
+    .card .tag {
+      display: inline-block;
+      font-size: .7rem;
+      padding: .15rem .55rem;
+      border-radius: 999px;
+      margin-right: .3rem;
+      margin-bottom: .3rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .tag-personal { background: #1f3a2b; color: #3fb950; }
+    .tag-training { background: #2a1f3a; color: #d2a8ff; }
+    .tag-oss { background: #3a2a1f; color: #f0883e; }
+    .tag-tech { background: #1a2a3a; color: #79c0ff; }
+    .card h4 { margin-top: .6rem; }
+    .card p { font-size: .9rem; color: var(--text-muted); margin-top: .4rem; }
+    .card .metrics { margin-top: .6rem; font-size: .82rem; color: var(--accent2); }
+    .card .link-row { margin-top: .7rem; font-size: .85rem; }
+
+    /* ── Skill bars ── */
+    .skill-category { margin-bottom: 2rem; }
+    .skill-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: .6rem;
+      gap: .8rem;
+    }
+    .skill-row .label {
+      min-width: 200px;
+      font-size: .9rem;
+      text-align: right;
+      color: var(--text-muted);
+    }
+    .bar-bg {
+      flex: 1;
+      height: 14px;
+      background: #21262d;
+      border-radius: 7px;
+      overflow: hidden;
+      position: relative;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 7px;
+      transition: width .6s ease;
+    }
+    .bar-fill.g1 { background: var(--gradient1); }
+    .bar-fill.g2 { background: var(--gradient2); }
+    .bar-fill.g3 { background: linear-gradient(135deg, #f0883e, #f778ba); }
+    .skill-row .pct {
+      min-width: 40px;
+      font-size: .8rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Language rings ── */
+    .lang-rings { display: flex; gap: 2.5rem; flex-wrap: wrap; justify-content: center; margin-top: 1rem; }
+    .ring-item { text-align: center; }
+    .ring-item svg { width: 90px; height: 90px; }
+    .ring-item .ring-label { font-size: .85rem; margin-top: .4rem; color: var(--text-muted); }
+    circle.track { fill: none; stroke: #21262d; stroke-width: 6; }
+    circle.value { fill: none; stroke-width: 6; stroke-linecap: round; transition: stroke-dashoffset .8s ease; }
+
+    /* ── Table ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+      margin-top: .8rem;
+    }
+    th, td {
+      padding: .6rem .8rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    th { color: var(--text-muted); font-weight: 600; }
+
+    /* ── Reflection boxes ── */
+    .reflection-box {
+      background: var(--surface);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .reflection-box.warn { border-left-color: var(--accent4); }
+    .reflection-box.success { border-left-color: var(--accent2); }
+    .reflection-box h4 { margin: 0 0 .4rem; }
+    .reflection-box p, .reflection-box li { font-size: .92rem; color: var(--text-muted); }
+    .reflection-box ul { padding-left: 1.2rem; margin-top: .3rem; }
+
+    /* ── Soft skill radar (simplified bars) ── */
+    .soft-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 640px) { .soft-grid { grid-template-columns: 1fr; } }
+    .soft-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem;
+    }
+    .soft-card h4 { margin: 0 0 .3rem; font-size: 1rem; }
+    .soft-card p { font-size: .85rem; color: var(--text-muted); }
+
+    /* ── Mind map ── */
+    .mindmap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      overflow-x: auto;
+    }
+    .mindmap svg text { fill: var(--text); font-family: inherit; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-muted);
+      font-size: .8rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<header class="hero">
+  <h1>William Le Roux</h1>
+  <div class="subtitle">Machine Learning Data Scientist &amp; Software Engineer</div>
+  <p style="color:var(--text-muted); margin-top:.4rem;">France &middot; Epitech &amp; UTT Graduate &middot; Security &amp; Blockchain Enthusiast</p>
+  <div class="links">
+    <a href="https://github.com/Septimus4" target="_blank">GitHub &mdash; Septimus4</a>
+    <a href="https://www.linkedin.com/in/william-le-roux/" target="_blank">LinkedIn</a>
+    <a href="mailto:septimus4.eth" target="_blank">septimus4.eth</a>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- ═══════════════════ 1. SKILLS & PROJECTS ═══════════════════ -->
+<section id="skills">
+  <h2><span class="num">1</span> Skills &amp; Experience - Projects Portfolio</h2>
+
+  <h3>1.1 Personal Technical Projects</h3>
+  <div class="card-grid">
+
+    <!-- LOCALTRIAGE -->
+    <div class="card">
+      <span class="tag tag-personal">Personal</span>
+      <span class="tag tag-tech">LLM</span>
+      <span class="tag tag-tech">RAG</span>
+      <span class="tag tag-tech">MLOps</span>
+      <h4>LOCALTRIAGE - Privacy-Preserving LLM Support Triage</h4>
+      <p>End-to-end self-hosted customer support platform: ticket routing (TF-IDF + Logistic Regression, 73.3% accuracy), RAG-powered response drafting (100% citation rate, 3.0 avg citations/draft), hybrid retrieval (BM25 + dense vectors with RRF fusion), analytics dashboard, full evaluation harness.</p>
+      <div class="metrics">
+        <strong>Stack:</strong> Python, FastAPI, Streamlit, Qwen3:32B, Qdrant, PostgreSQL, Qwen3-Embedding-8B embeddings, Docker Compose, Prometheus<br>
+        <strong>KPIs:</strong> Routing 73.3% accuracy (2.4x vs majority class baseline) -- Recall@5 46.4% (harder v2 eval set) -- Draft quality 4.67/5 -- p95 latency 14.9s
+      </div>
+      <div class="link-row"><a href="https://github.com/Septimus4/LOCALTRIAGE" target="_blank">github.com/Septimus4/LOCALTRIAGE</a></div>
+    </div>
+
+    <!-- Planar -->
+    <div class="card">
+      <span class="tag tag-personal">Personal</span>
+      <span class="tag tag-tech">IoT</span>
+      <span class="tag tag-tech">LiDAR</span>
+      <h4>Planar - Indoor 2D Scanning System</h4>
+      <p>Tripod-based LiDAR scanning system for precise floor plans. RPLidar S3 integration, BMI160 IMU, remote control via HTTP/WebSocket, web UI with real-time preview, ICP scan registration, pose graph optimization, DBSCAN + RANSAC wall extraction, DXF CAD export.</p>
+      <div class="metrics">
+        <strong>Stack:</strong> Python, aiohttp, asyncio, Raspberry Pi, I²C, serial, ezdxf, pytest (195 tests)<br>
+        <strong>Highlights:</strong> Hardware/software co-design, mock drivers for CI
+      </div>
+      <div class="link-row"><a href="https://github.com/Septimus4/Planar" target="_blank">github.com/Septimus4/Planar</a></div>
+    </div>
+
+    <!-- Chronogen -->
+    <div class="card">
+      <span class="tag tag-personal">Personal</span>
+      <span class="tag tag-oss">Open Source</span>
+      <span class="tag tag-tech">Security</span>
+      <h4>Chronogen - Date-Based Wordlist Generator</h4>
+      <p>CLI tool and Python library for penetration testing and QA. Symbolic format templates, strftime patterns, month/day filtering, leap-day aware. Published on PyPI, Docker-ready, 16 stars, 6 forks, 3 contributors.</p>
+      <div class="metrics">
+        <strong>Stack:</strong> Python, PyPI packaging, Docker, GitHub Actions CI/CD
+      </div>
+      <div class="link-row"><a href="https://github.com/Septimus4/Chronogen" target="_blank">github.com/Septimus4/Chronogen</a></div>
+    </div>
+
+    <!-- Concord -->
+    <div class="card">
+      <span class="tag tag-personal">Personal</span>
+      <span class="tag tag-oss">Open Source</span>
+      <span class="tag tag-tech">NLP</span>
+      <h4>Concord - AI Community Connector</h4>
+      <p>Open-source AI plugin using FastAPI, Neo4j graph database, and BERTopic for topic modeling to connect community members to relevant conversations. Nuxt.js frontend, NLTK preprocessing, OpenAPI-generated server.</p>
+      <div class="metrics">
+        <strong>Stack:</strong> Python, FastAPI, Neo4j, BERTopic, Nuxt.js/Vue, Docker, Poetry<br>
+        <strong>Highlights:</strong> 4 contributors, OpenAPI spec-driven development
+      </div>
+      <div class="link-row"><a href="https://github.com/Septimus4/Concord" target="_blank">github.com/Septimus4/Concord</a></div>
+    </div>
+
+    <!-- Weebo -->
+    <div class="card">
+      <span class="tag tag-personal">Personal</span>
+      <span class="tag tag-tech">LLM</span>
+      <span class="tag tag-tech">Infra</span>
+      <h4>Weebo - Self-Hosted LLM Workbench</h4>
+      <p>Local LLM infrastructure stack on RTX 5090 (32 GB VRAM). Ollama + Continue.dev + Open WebUI. DeepSeek R1 32 B (chat/reasoning), Codestral 22 B (code), nomic-embed-text (embeddings). Quantization tuning (Q5_K_M, Q6_K), KV cache optimization.</p>
+      <div class="metrics">
+        <strong>Stack:</strong> Ollama, CUDA 12.4, Docker, Continue.dev, Open WebUI<br>
+        <strong>Throughput:</strong> ~65–115 tok/s generation
+      </div>
+      <div class="link-row"><a href="https://github.com/Septimus4/Weebo" target="_blank">github.com/Septimus4/Weebo</a></div>
+    </div>
+  </div>
+
+  <h3>1.2 Training Projects (ML Data Scientist Track)</h3>
+  <div class="card-grid">
+
+    <!-- MLOps -->
+    <div class="card">
+      <span class="tag tag-training">Training</span>
+      <span class="tag tag-tech">MLOps</span>
+      <h4>Home Credit MLOps Pipeline &amp; Serving Stack</h4>
+      <p>End-to-end MLOps workflow: data prep, MLflow experiment tracking, Optuna hyperparameter tuning, XGBoost/LightGBM modeling, SHAP explainability, threshold optimization. Production serving via FastAPI, Gradio tester, Streamlit + Evidently monitoring, Docker, GitHub Actions CI/CD.</p>
+      <div class="metrics">
+        <strong>Stack:</strong> Python, scikit-learn, XGBoost, MLflow, Optuna, FastAPI, Streamlit, Evidently, Docker, GitHub Actions<br>
+        <strong>Deliverables:</strong> Scoring API, drift monitoring dashboard, CI/CD pipeline, GHCR packages
+      </div>
+      <div class="link-row"><a href="https://github.com/Septimus4/MLops" target="_blank">github.com/Septimus4/MLops</a></div>
+    </div>
+
+    <!-- Automated Classification -->
+    <div class="card">
+      <span class="tag tag-training">Training</span>
+      <span class="tag tag-tech">Classification</span>
+      <h4>HR Analytics - Automated Classification</h4>
+      <p>Employee turnover prediction achieving 269 % improvement in F1-score (0.517 vs 0.192 baseline). Feature engineering (1,551 features from 57 variables), class imbalance handling, SHAP interpretability. Business impact: $500 K+ annual savings, 64 % departure recall.</p>
+      <div class="metrics">
+        <strong>Stack:</strong> Python, scikit-learn, SHAP, Plotly, SQLite, Poetry, Jupyter<br>
+        <strong>Phases:</strong> EDA → Feature Eng. → Baseline → Imbalance → Tuning → Executive Presentation
+      </div>
+      <div class="link-row"><a href="https://github.com/Septimus4/Automated-classification" target="_blank">github.com/Septimus4/Automated-classification</a></div>
+    </div>
+
+    <!-- RAG Evaluation -->
+    <div class="card">
+      <span class="tag tag-training">Training</span>
+      <span class="tag tag-tech">RAG</span>
+      <span class="tag tag-tech">NL2SQL</span>
+      <h4>SportSee RAG Evaluation Stack</h4>
+      <p>Modular RAG assistant for basketball analytics. Combines unstructured match reports with structured SQLite statistics. TF-IDF retrieval, Mistral LLM client, NL→SQL queries, RAGAS evaluation framework, Pydantic Logfire observability hooks.</p>
+      <div class="metrics">
+        <strong>Stack:</strong> Python, FastAPI, Streamlit, SQLAlchemy, Pydantic, RAGAS, Logfire
+      </div>
+      <div class="link-row"><a href="https://github.com/Septimus4/RAG-Evaluation" target="_blank">github.com/Septimus4/RAG-Evaluation</a></div>
+    </div>
+
+    <!-- Recommendation System -->
+    <div class="card">
+      <span class="tag tag-training">Training</span>
+      <span class="tag tag-tech">ML</span>
+      <h4>Crop Yield Prediction &amp; Recommendation</h4>
+      <p>ML-powered web application helping farmers predict crop yields and get recommendations. Ridge Regression, Random Forest, Gradient Boosting models. PCA analysis, MLflow experiment tracking, Streamlit frontend, FastAPI backend, Docker-ready.</p>
+      <div class="metrics">
+        <strong>Stack:</strong> Python, scikit-learn, MLflow, FastAPI, Streamlit, Docker, GitHub Actions CI/CD
+      </div>
+      <div class="link-row"><a href="https://github.com/Septimus4/Recommendation-system" target="_blank">github.com/Septimus4/Recommendation-system</a></div>
+    </div>
+
+    <!-- Semi-supervised -->
+    <div class="card">
+      <span class="tag tag-training">Training</span>
+      <span class="tag tag-tech">Deep Learning</span>
+      <h4>Semi-Supervised Image Processing - Brain MRI</h4>
+      <p>Semi-supervised learning pipeline for brain tumor detection from MRI scans. ResNet-18 feature extraction (512-D embeddings), threshold calibration with configurable recall/precision constraints, comprehensive data audit and reproducibility framework.</p>
+      <div class="metrics">
+        <strong>Stack:</strong> Python, PyTorch, torchvision, scikit-learn, NumPy
+      </div>
+      <div class="link-row"><a href="https://github.com/Septimus4/semi-supervised-image-processing" target="_blank">github.com/Septimus4/semi-supervised-image-processing</a></div>
+    </div>
+
+    <!-- Power Consumption -->
+    <div class="card">
+      <span class="tag tag-training">Training</span>
+      <span class="tag tag-tech">Forecasting</span>
+      <h4>Power Consumption Prediction</h4>
+      <p>Supervised modeling notebook for predicting electrical power consumption. Feature engineering on time-series data, multiple regression approaches, model evaluation.</p>
+      <div class="metrics">
+        <strong>Stack:</strong> Python, Jupyter, scikit-learn, pandas, matplotlib
+      </div>
+      <div class="link-row"><a href="https://github.com/Septimus4/machine-learning-predict-power-consumption" target="_blank">github.com/Septimus4/machine-learning-predict-power-consumption</a></div>
+    </div>
+
+    <!-- Categorisation -->
+    <div class="card">
+      <span class="tag tag-training">Training</span>
+      <span class="tag tag-tech">Analytics</span>
+      <h4>Categorisation Algorithmique - Resignation Analysis</h4>
+      <p>Algorithmic categorization and resignation pattern analysis using HR data from SIRH extracts and surveys. Exploratory data analysis and predictive modeling in Jupyter.</p>
+      <div class="metrics">
+        <strong>Stack:</strong> Python, Jupyter, pandas, Poetry
+      </div>
+      <div class="link-row"><a href="https://github.com/Septimus4/categorisation-algorithmique" target="_blank">github.com/Septimus4/categorisation-algorithmique</a></div>
+    </div>
+
+    <!-- Online Education -->
+    <div class="card">
+      <span class="tag tag-training">Training</span>
+      <span class="tag tag-tech">EDA</span>
+      <h4>Online Education Market Insights</h4>
+      <p>Exploratory data analysis notebook investigating the online education market landscape, trends, and insights.</p>
+      <div class="metrics">
+        <strong>Stack:</strong> Python, Jupyter, pandas, matplotlib, seaborn
+      </div>
+      <div class="link-row"><a href="https://github.com/Septimus4/Online-Education-Market-Insights-notebook" target="_blank">github.com/Septimus4/Online-Education-Market-Insights-notebook</a></div>
+    </div>
+  </div>
+
+  <h3>1.3 Other Notable Projects &amp; Contributions</h3>
+  <div class="card-grid">
+
+    <div class="card">
+      <span class="tag tag-oss">Open Source</span>
+      <span class="tag tag-tech">Blockchain</span>
+      <h4>Soroban Versioning (Tansu)</h4>
+      <p>Contributor to Soroban smart-contract versioning framework on Stellar blockchain. Hacktoberfest participation.</p>
+      <div class="link-row"><a href="https://github.com/Septimus4/soroban-versioning" target="_blank">GitHub</a></div>
+    </div>
+
+    <div class="card">
+      <span class="tag tag-personal">Personal</span>
+      <span class="tag tag-tech">Rust</span>
+      <h4>Aurion</h4>
+      <p>Rust-based project exploring systems programming.</p>
+      <div class="link-row"><a href="https://github.com/Septimus4/Aurion" target="_blank">GitHub</a></div>
+    </div>
+
+    <div class="card">
+      <span class="tag tag-personal">Personal</span>
+      <span class="tag tag-tech">Go</span>
+      <h4>Timesync Operator &amp; Go-Ethereum Fork</h4>
+      <p>Kubernetes time-sync operator in Go. Educational fork of Go-Ethereum protocol implementation.</p>
+      <div class="link-row"><a href="https://github.com/Septimus4/timesync-operator" target="_blank">Timesync</a> · <a href="https://github.com/Septimus4/go-ethereum" target="_blank">Geth Fork</a></div>
+    </div>
+
+    <div class="card">
+      <span class="tag tag-personal">Personal</span>
+      <span class="tag tag-tech">TypeScript</span>
+      <h4>Guideline-Aware AI Shop Assistant</h4>
+      <p>TypeScript-based AI shopping assistant that follows configurable guidelines.</p>
+      <div class="link-row"><a href="https://github.com/Septimus4/Guideline-Aware-AI-Shop-Assistant" target="_blank">GitHub</a></div>
+    </div>
+
+    <div class="card">
+      <span class="tag tag-personal">Personal</span>
+      <span class="tag tag-tech">Infra</span>
+      <h4>Homeserver</h4>
+      <p>Self-hosted home server configuration and management.</p>
+      <div class="link-row"><a href="https://github.com/Septimus4/homeserver" target="_blank">GitHub</a></div>
+    </div>
+  </div>
+
+  <!-- ── Skill Bars ── -->
+  <h3>1.4 Technical Skills - Proficiency Levels</h3>
+
+  <div class="skill-category">
+    <h4>Programming Languages</h4>
+    <div class="skill-row">
+      <span class="label">Python</span>
+      <div class="bar-bg"><div class="bar-fill g1" style="width:95%"></div></div>
+      <span class="pct">95 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">Go</span>
+      <div class="bar-bg"><div class="bar-fill g1" style="width:65%"></div></div>
+      <span class="pct">65 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">C</span>
+      <div class="bar-bg"><div class="bar-fill g1" style="width:60%"></div></div>
+      <span class="pct">60 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">Rust</span>
+      <div class="bar-bg"><div class="bar-fill g1" style="width:40%"></div></div>
+      <span class="pct">40 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">TypeScript / JavaScript</span>
+      <div class="bar-bg"><div class="bar-fill g1" style="width:55%"></div></div>
+      <span class="pct">55 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">Ruby</span>
+      <div class="bar-bg"><div class="bar-fill g1" style="width:45%"></div></div>
+      <span class="pct">45 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">SQL</span>
+      <div class="bar-bg"><div class="bar-fill g1" style="width:80%"></div></div>
+      <span class="pct">80 %</span>
+    </div>
+  </div>
+
+  <div class="skill-category">
+    <h4>Machine Learning &amp; Data Science</h4>
+    <div class="skill-row">
+      <span class="label">scikit-learn</span>
+      <div class="bar-bg"><div class="bar-fill g2" style="width:90%"></div></div>
+      <span class="pct">90 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">NLP / Text Classification</span>
+      <div class="bar-bg"><div class="bar-fill g2" style="width:85%"></div></div>
+      <span class="pct">85 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">PyTorch / Deep Learning</span>
+      <div class="bar-bg"><div class="bar-fill g2" style="width:70%"></div></div>
+      <span class="pct">70 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">LLMs &amp; Prompt Engineering</span>
+      <div class="bar-bg"><div class="bar-fill g2" style="width:85%"></div></div>
+      <span class="pct">85 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">RAG Systems</span>
+      <div class="bar-bg"><div class="bar-fill g2" style="width:85%"></div></div>
+      <span class="pct">85 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">MLflow / Experiment Tracking</span>
+      <div class="bar-bg"><div class="bar-fill g2" style="width:80%"></div></div>
+      <span class="pct">80 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">Feature Engineering</span>
+      <div class="bar-bg"><div class="bar-fill g2" style="width:85%"></div></div>
+      <span class="pct">85 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">Model Evaluation &amp; RAGAS</span>
+      <div class="bar-bg"><div class="bar-fill g2" style="width:80%"></div></div>
+      <span class="pct">80 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">Embeddings &amp; Vector Search</span>
+      <div class="bar-bg"><div class="bar-fill g2" style="width:80%"></div></div>
+      <span class="pct">80 %</span>
+    </div>
+  </div>
+
+  <div class="skill-category">
+    <h4>Engineering &amp; Infrastructure</h4>
+    <div class="skill-row">
+      <span class="label">Docker / Compose</span>
+      <div class="bar-bg"><div class="bar-fill g3" style="width:85%"></div></div>
+      <span class="pct">85 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">FastAPI / REST APIs</span>
+      <div class="bar-bg"><div class="bar-fill g3" style="width:90%"></div></div>
+      <span class="pct">90 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">PostgreSQL / SQLite</span>
+      <div class="bar-bg"><div class="bar-fill g3" style="width:80%"></div></div>
+      <span class="pct">80 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">Git / GitHub Actions CI/CD</span>
+      <div class="bar-bg"><div class="bar-fill g3" style="width:85%"></div></div>
+      <span class="pct">85 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">Streamlit / Gradio</span>
+      <div class="bar-bg"><div class="bar-fill g3" style="width:80%"></div></div>
+      <span class="pct">80 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">Monitoring (Prometheus, Evidently)</span>
+      <div class="bar-bg"><div class="bar-fill g3" style="width:70%"></div></div>
+      <span class="pct">70 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">Ollama / vLLM / CUDA</span>
+      <div class="bar-bg"><div class="bar-fill g3" style="width:75%"></div></div>
+      <span class="pct">75 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">Kubernetes / Cloud</span>
+      <div class="bar-bg"><div class="bar-fill g3" style="width:50%"></div></div>
+      <span class="pct">50 %</span>
+    </div>
+  </div>
+
+  <div class="skill-category">
+    <h4>Domain Knowledge</h4>
+    <div class="skill-row">
+      <span class="label">Cybersecurity / Pen Testing</span>
+      <div class="bar-bg"><div class="bar-fill g1" style="width:65%"></div></div>
+      <span class="pct">65 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">Blockchain / Web3</span>
+      <div class="bar-bg"><div class="bar-fill g1" style="width:60%"></div></div>
+      <span class="pct">60 %</span>
+    </div>
+    <div class="skill-row">
+      <span class="label">IoT / Embedded Systems</span>
+      <div class="bar-bg"><div class="bar-fill g1" style="width:55%"></div></div>
+      <span class="pct">55 %</span>
+    </div>
+  </div>
+
+  <!-- ── Language Rings ── -->
+  <h3>1.5 Languages</h3>
+  <div class="lang-rings">
+    <!-- French -->
+    <div class="ring-item">
+      <svg viewBox="0 0 40 40">
+        <circle class="track" cx="20" cy="20" r="15.9"/>
+        <circle class="value" cx="20" cy="20" r="15.9"
+          stroke="#58a6ff"
+          stroke-dasharray="100"
+          stroke-dashoffset="0"
+          transform="rotate(-90 20 20)"/>
+        <text x="20" y="21" text-anchor="middle" font-size="6" font-weight="700" fill="#58a6ff">C2</text>
+      </svg>
+      <div class="ring-label">French<br>(Native)</div>
+    </div>
+    <!-- English -->
+    <div class="ring-item">
+      <svg viewBox="0 0 40 40">
+        <circle class="track" cx="20" cy="20" r="15.9"/>
+        <circle class="value" cx="20" cy="20" r="15.9"
+          stroke="#3fb950"
+          stroke-dasharray="100"
+          stroke-dashoffset="10"
+          transform="rotate(-90 20 20)"/>
+        <text x="20" y="21" text-anchor="middle" font-size="6" font-weight="700" fill="#3fb950">C1</text>
+      </svg>
+      <div class="ring-label">English<br>(Professional)</div>
+    </div>
+  </div>
+
+  <!-- ── Deliverables table ── -->
+  <h3>1.6 Key Deliverables &amp; Evidence of Skill Validation</h3>
+  <table>
+    <thead>
+      <tr><th>Skill Area</th><th>Validated By</th><th>Evidence / Link</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Supervised ML &amp; Classification</td><td>HR Analytics (F1 269 % improvement)</td><td><a href="https://github.com/Septimus4/Automated-classification" target="_blank">Repo + FINAL_REPORT.md</a></td></tr>
+      <tr><td>RAG Design &amp; Evaluation</td><td>LOCALTRIAGE (94 % citation rate), SportSee RAG</td><td><a href="https://github.com/Septimus4/LOCALTRIAGE" target="_blank">LOCALTRIAGE</a> · <a href="https://github.com/Septimus4/RAG-Evaluation" target="_blank">RAG-Eval</a></td></tr>
+      <tr><td>MLOps &amp; Production Serving</td><td>Home Credit pipeline (FastAPI + Evidently + CI/CD)</td><td><a href="https://github.com/Septimus4/MLops" target="_blank">Repo + GHCR packages</a></td></tr>
+      <tr><td>Deep Learning &amp; Semi-Supervised</td><td>Brain MRI classification (ResNet-18, threshold calibration)</td><td><a href="https://github.com/Septimus4/semi-supervised-image-processing" target="_blank">Repo + docs/</a></td></tr>
+      <tr><td>NLP / Topic Modeling</td><td>Concord (BERTopic + Neo4j)</td><td><a href="https://github.com/Septimus4/Concord" target="_blank">Repo</a></td></tr>
+      <tr><td>LLM Infrastructure</td><td>Weebo workbench, LOCALTRIAGE Ollama stack</td><td><a href="https://github.com/Septimus4/Weebo" target="_blank">Weebo</a></td></tr>
+      <tr><td>IoT / Hardware Integration</td><td>Planar LiDAR system (RPLidar + IMU + Raspberry Pi)</td><td><a href="https://github.com/Septimus4/Planar" target="_blank">Repo + 195 tests</a></td></tr>
+      <tr><td>OSS Community &amp; Packaging</td><td>Chronogen (16 stars, 6 forks, PyPI)</td><td><a href="https://github.com/Septimus4/Chronogen" target="_blank">Repo + PyPI</a></td></tr>
+      <tr><td>Security Tooling</td><td>Chronogen for pen testing, UTT Master's</td><td><a href="https://github.com/Septimus4/Chronogen" target="_blank">Repo</a></td></tr>
+      <tr><td>Blockchain / Web3</td><td>Go-Ethereum fork, Soroban versioning, ETHcc/ETHDenver</td><td><a href="https://github.com/Septimus4/go-ethereum" target="_blank">Geth</a> · <a href="https://github.com/Septimus4/soroban-versioning" target="_blank">Soroban</a></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════════════════ 2. REFLECTIVE ABILITY ═══════════════════ -->
+<section id="reflection">
+  <h2><span class="num">2</span> Reflective Ability - Stepping Back</h2>
+
+  <h3>2.1 What I Would Do Differently</h3>
+
+  <div class="reflection-box warn">
+    <h4>Start with database-native features</h4>
+    <p>On LOCALTRIAGE, I initially used the <code>rank-bm25</code> Python library for sparse retrieval, only to find it was too slow. Switching to PostgreSQL full-text search cost me a full day. <strong>Lesson:</strong> evaluate library choices against your production constraints before committing.</p>
+  </div>
+
+  <div class="reflection-box warn">
+    <h4>Build evaluation datasets early</h4>
+    <p>I hit an annotation bottleneck, I needed labeled data faster than I could produce it. I had to reduce my evaluation set from 500 to 200 samples, widening confidence intervals. <strong>Next time:</strong> start annotation as a parallel workstream from day 1, and consider synthetic data generation.</p>
+  </div>
+
+  <div class="reflection-box warn">
+    <h4>Define "done" precisely to resist scope creep</h4>
+    <p>Dashboard feature requests kept expanding during LOCALTRIAGE ("Can we add agent performance metrics?"). I learned to set strict MVP scope with explicit phase gates. This discipline also improved my project management in subsequent projects.</p>
+  </div>
+
+  <div class="reflection-box warn">
+    <h4>Think about async processing from the start</h4>
+    <p>Retrofitting asynchronous pattern in a synchronous pipeline is painful. Building async into the architecture from step one would have provided a better UX and simplified scaling.</p>
+  </div>
+
+  <h3>2.2 Methodology Changes I've Already Adopted</h3>
+
+  <div class="reflection-box success">
+    <h4>Baseline-first approach</h4>
+    <p>After LOCALTRIAGE, I systematically quantify baselines before building complex solutions. On the HR Analytics project, this meant establishing a majority-class baseline (8 % recall) before engineering features. It makes improvement claims <strong>defensible</strong> and gives a fallback at every stage.</p>
+  </div>
+
+  <div class="reflection-box success">
+    <h4>Modular architecture as a default</h4>
+    <p>Every project now follows a <strong>component-swappable</strong> design. On LOCALTRIAGE, I could swap Qwen2.5-14B for 7B or 32B without touching pipeline code. On the MLOps project, the same separation let me swap scoring models while keeping the serving layer stable.</p>
+  </div>
+
+  <div class="reflection-box success">
+    <h4>Evaluation is not optional</h4>
+    <p>I pushed myself to build formal evaluation harnesses (RAGAS, F1 rubrics, confusion matrices) <em>before</em> tuning models. "Rubrics beat vibes" is now a personal motto. This made a tangible difference on the Semi-Supervised MRI project where threshold calibration was critical.</p>
+  </div>
+
+  <h3>2.3 Progress Already Visible</h3>
+  <ul style="padding-left:1.5rem; margin-bottom:1rem;">
+    <li><strong>Prompt engineering has high ROI:</strong> hours of prompt work saved weeks of potential fine-tuning on LOCALTRIAGE (73.3% routing accuracy without any task-specific training).</li>
+    <li><strong>Hybrid retrieval is robust:</strong> combining dense and sparse consistently beats either alone, a pattern I've now replicated across 3 projects.</li>
+    <li><strong>Documentation is part of the work:</strong> my recent projects ship with full BRDs, architecture docs, decision matrices, and retrospectives. This was not the case a year ago.</li>
+    <li><strong>Testing discipline:</strong> from 0 tests in early projects to 84 % coverage (LOCALTRIAGE) and 195 tests (Planar).</li>
+  </ul>
+
+  <h3>2.4 What This Training Has Brought Me</h3>
+  <div class="reflection-box">
+    <p>This training fundamentally shifted my approach from <strong>"build first, evaluate later"</strong> to <strong>"measure first, build with evidence."</strong> Coming from a software engineering and security background, I had strong coding skills but lacked the rigorous evaluation methodology that defines production ML. The training gave me:</p>
+    <ul>
+      <li><strong>A structured ML lifecycle:</strong> problem framing → data audit → baseline → experimentation → deployment → monitoring. Before, I would jump to modeling too quickly.</li>
+      <li><strong>Statistical rigor:</strong> understanding confidence intervals, cross-validation strategies, and the importance of proper train/val/test splits.</li>
+      <li><strong>Business translation:</strong> the ability to convert model metrics (F1, recall) into business KPIs ($500 K savings, 64 % detection rate).</li>
+      <li><strong>The MLOps mindset:</strong> a model is not done when it's trained, it's done when it's serving, monitored, and maintainable.</li>
+    </ul>
+  </div>
+
+  <h3>2.5 How My Perception of the ML Data Scientist Role Has Evolved</h3>
+  <div class="reflection-box">
+    <h4>Before the training</h4>
+    <p>I saw ML Data Scientist as primarily a <strong>modeling role</strong>, someone who trains models, tunes hyperparameters, and achieves the highest accuracy. The work ended when the notebook produced good metrics.</p>
+  </div>
+  <div class="reflection-box success">
+    <h4>After the training and projects</h4>
+    <p>I now understand the role as a <strong>full-stack data problem solver</strong>. The model is one component in a larger system that includes:</p>
+    <ul>
+      <li><strong>Data quality governance</strong>: garbage in, garbage out applies ruthlessly (KB quality limited LOCALTRIAGE more than model quality).</li>
+      <li><strong>Stakeholder communication</strong>: agents want <em>explanations</em>, not just predictions. "Why this category?" matters more than raw accuracy.</li>
+      <li><strong>Production engineering</strong>: latency budgets, memory management, containerization, monitoring, and drift detection are as important as model architecture.</li>
+      <li><strong>Ethical responsibility</strong>: especially around data privacy (LOCALTRIAGE exists <em>because</em> cloud AI posed unacceptable privacy risks for sensitive data).</li>
+      <li><strong>Continuous learning loops</strong>: feedback mechanisms that let the system improve from corrections, not just static training data.</li>
+    </ul>
+    <p style="margin-top:.6rem;">The biggest shift: I now think of model deployment as the <strong>beginning</strong> of the ML lifecycle, not the end.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ 3. SOFT SKILLS ═══════════════════ -->
+<section id="softskills">
+  <h2><span class="num">3</span> Soft Skills - Relevant to ML Data Scientist</h2>
+
+  <div class="soft-grid">
+    <div class="soft-card">
+      <h4>Analytical &amp; Problem-Solving Skills</h4>
+      <p>Systematic decomposition of complex systems. LOCALTRIAGE involved breaking customer support triage into 4 independent modules (routing, retrieval, drafting, analytics) that could be developed and evaluated in isolation. On HR Analytics, identifying the right evaluation metric transformation (269 % F1 improvement) required deep analysis of class imbalance patterns.</p>
+    </div>
+    <div class="soft-card">
+      <h4>Intellectual Curiosity &amp; Continuous Learning</h4>
+      <p>41 repositories spanning ML, blockchain, security, IoT, Rust, and Go. Regular conference attendance (ETHcc Paris, ETHDenver, Devcon Bangkok, LeHack, Nuit du Hack). Sponsor of NumFocus, Django, and 7 other open-source projects. Self-built LLM workbench to stay at the cutting edge of local inference.</p>
+    </div>
+    <div class="soft-card">
+      <h4>Communication &amp; Simplification</h4>
+      <p>Every major project ships with comprehensive documentation: BRDs, architecture diagrams, decision matrices, retrospec­tives, and executive presentations. The HR Analytics project culminated in a business-oriented presentation translating F1-scores into $500 K savings and implementation roadmaps for non-technical stakeholders.</p>
+    </div>
+    <div class="soft-card">
+      <h4>Teamwork &amp; Cross-Functional Collaboration</h4>
+      <p>Concord: 4 contributors across Python backend and Vue frontend. Chronogen: 3 contributors with external pull requests managed. Active in the BoredLabsHQ organization. LOCALTRIAGE retrospective explicitly acknowledges support agents (evaluation feedback), IT (GPU provisioning), and product team (requirements).</p>
+    </div>
+    <div class="soft-card">
+      <h4>Adaptability &amp; Agility</h4>
+      <p>Shifted from security/blockchain to ML Data Science while maintaining engineering rigor. On LOCALTRIAGE, pivoted from rank-bm25 to PostgreSQL FTS in one day when the library proved too slow. Comfortable moving between Python, Go, Rust, TypeScript, and embedded C depending on the problem domain.</p>
+    </div>
+    <div class="soft-card">
+      <h4>Project Management &amp; Autonomy</h4>
+      <p>LOCALTRIAGE was delivered solo in 3 weeks with 8/8 deliverables on time, structured with explicit phase gates, time-boxed experimentation, and a risk register. MLOps project included full CI/CD pipeline setup with automated testing and Docker image publishing to GHCR. All projects follow clear commit conventions and branching strategies.</p>
+    </div>
+    <div class="soft-card">
+      <h4>Creativity &amp; Thinking Outside the Box</h4>
+      <p>Planar: invented a SLAM-free indoor scanning approach using tripod-based station registration, avoiding the complexity of real-time localization entirely. LOCALTRIAGE: designed a citation mechanism that post-processes LLM output to verify source grounding, achieving 91 % citation accuracy without fine-tuning. Weebo: optimized KV cache quantization to fit 32 B parameter models in consumer GPU VRAM.</p>
+    </div>
+    <div class="soft-card">
+      <h4>Ethics &amp; Responsibility</h4>
+      <p>LOCALTRIAGE was conceived around <strong>data sovereignty</strong>, the explicit requirement that no customer data leaves the organization's infrastructure. Chose local LLMs over cloud APIs despite the engineering cost. Systematic attention to open-source licensing (GPL, LGPL, MIT) across all published repositories.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 4. MIND MAP ═══════════════════ -->
+<section id="mindmap">
+  <h2><span class="num">4</span> Mind Map - Portfolio Overview</h2>
+  <div class="mindmap" id="mindmap-container">
+    <!-- Rendered via inline SVG for universal compatibility -->
+    <svg viewBox="0 0 1100 780" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+
+      <!-- ── Central node ── -->
+      <rect x="420" y="350" width="260" height="80" rx="16" fill="#58a6ff" opacity=".15" stroke="#58a6ff" stroke-width="2"/>
+      <text x="550" y="382" text-anchor="middle" font-size="15" font-weight="700" fill="#58a6ff">William Le Roux</text>
+      <text x="550" y="404" text-anchor="middle" font-size="11" fill="#8b949e">ML Data Scientist · Software Engineer</text>
+
+      <!-- ── Branch 1: Technical Skills (top-left) ── -->
+      <line x1="420" y1="375" x2="180" y2="120" stroke="#3fb950" stroke-width="2" opacity=".5"/>
+      <rect x="60" y="80" width="240" height="180" rx="12" fill="#1f3a2b" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="180" y="108" text-anchor="middle" font-size="13" font-weight="700" fill="#3fb950">Technical Skills</text>
+      <text x="80" y="132" font-size="10" fill="#8b949e">● Python (95%) · Go · C · Rust</text>
+      <text x="80" y="150" font-size="10" fill="#8b949e">● scikit-learn · PyTorch · SHAP</text>
+      <text x="80" y="168" font-size="10" fill="#8b949e">● LLMs · RAG · Embeddings</text>
+      <text x="80" y="186" font-size="10" fill="#8b949e">● FastAPI · Docker · CI/CD</text>
+      <text x="80" y="204" font-size="10" fill="#8b949e">● PostgreSQL · Qdrant · Neo4j</text>
+      <text x="80" y="222" font-size="10" fill="#8b949e">● MLflow · Prometheus · Evidently</text>
+      <text x="80" y="240" font-size="10" fill="#8b949e">● CUDA · Ollama · vLLM</text>
+
+      <!-- ── Branch 2: Projects (top-right) ── -->
+      <line x1="680" y1="375" x2="880" y2="120" stroke="#d2a8ff" stroke-width="2" opacity=".5"/>
+      <rect x="760" y="50" width="290" height="210" rx="12" fill="#2a1f3a" stroke="#d2a8ff" stroke-width="1.5"/>
+      <text x="905" y="78" text-anchor="middle" font-size="13" font-weight="700" fill="#d2a8ff">Key Projects</text>
+      <text x="775" y="102" font-size="10" fill="#e6edf3">◆ LOCALTRIAGE</text>
+      <text x="790" y="116" font-size="9" fill="#8b949e">LLM triage -- RAG -- 73.3% routing</text>
+      <text x="775" y="136" font-size="10" fill="#e6edf3">◆ MLOps Pipeline</text>
+      <text x="790" y="150" font-size="9" fill="#8b949e">MLflow · Evidently · CI/CD</text>
+      <text x="775" y="170" font-size="10" fill="#e6edf3">◆ HR Analytics Classification</text>
+      <text x="790" y="184" font-size="9" fill="#8b949e">269% F1 improvement · $500K savings</text>
+      <text x="775" y="204" font-size="10" fill="#e6edf3">◆ Semi-Supervised MRI</text>
+      <text x="790" y="218" font-size="9" fill="#8b949e">ResNet-18 · threshold calibration</text>
+      <text x="775" y="238" font-size="10" fill="#e6edf3">◆ Planar · Chronogen · Concord</text>
+      <text x="790" y="252" font-size="9" fill="#8b949e">IoT/LiDAR · Security · NLP</text>
+
+      <!-- ── Branch 3: Soft Skills (bottom-left) ── -->
+      <line x1="420" y1="410" x2="180" y2="560" stroke="#f0883e" stroke-width="2" opacity=".5"/>
+      <rect x="40" y="500" width="280" height="200" rx="12" fill="#3a2a1f" stroke="#f0883e" stroke-width="1.5"/>
+      <text x="180" y="528" text-anchor="middle" font-size="13" font-weight="700" fill="#f0883e">Soft Skills</text>
+      <text x="60" y="552" font-size="10" fill="#8b949e">● Analytical problem-solving</text>
+      <text x="60" y="572" font-size="10" fill="#8b949e">● Intellectual curiosity (41 repos)</text>
+      <text x="60" y="592" font-size="10" fill="#8b949e">● Communication & simplification</text>
+      <text x="60" y="612" font-size="10" fill="#8b949e">● Teamwork & collaboration</text>
+      <text x="60" y="632" font-size="10" fill="#8b949e">● Adaptability & agility</text>
+      <text x="60" y="652" font-size="10" fill="#8b949e">● Project management & autonomy</text>
+      <text x="60" y="672" font-size="10" fill="#8b949e">● Creativity & out-of-the-box</text>
+      <text x="60" y="692" font-size="10" fill="#8b949e">● Ethics & responsibility</text>
+
+      <!-- ── Branch 4: Reflection (bottom-right) ── -->
+      <line x1="680" y1="410" x2="880" y2="560" stroke="#f778ba" stroke-width="2" opacity=".5"/>
+      <rect x="760" y="500" width="290" height="210" rx="12" fill="#3a1f2a" stroke="#f778ba" stroke-width="1.5"/>
+      <text x="905" y="528" text-anchor="middle" font-size="13" font-weight="700" fill="#f778ba">Reflection & Growth</text>
+      <text x="775" y="555" font-size="10" fill="#e6edf3">What changed:</text>
+      <text x="775" y="573" font-size="9.5" fill="#8b949e">→ Baseline-first methodology</text>
+      <text x="775" y="591" font-size="9.5" fill="#8b949e">→ Evaluation before tuning</text>
+      <text x="775" y="609" font-size="9.5" fill="#8b949e">→ Modular architecture by default</text>
+      <text x="775" y="627" font-size="9.5" fill="#8b949e">→ Documentation as first-class work</text>
+      <text x="775" y="650" font-size="10" fill="#e6edf3">Perception shift:</text>
+      <text x="775" y="668" font-size="9.5" fill="#8b949e">→ From "modeling role" to</text>
+      <text x="775" y="686" font-size="9.5" fill="#8b949e">   "full-stack data problem solver"</text>
+      <text x="775" y="704" font-size="9.5" fill="#8b949e">→ Deployment = beginning, not end</text>
+
+      <!-- ── Branch 5: Education (left) ── -->
+      <line x1="420" y1="390" x2="120" y2="370" stroke="#58a6ff" stroke-width="2" opacity=".4"/>
+      <rect x="10" y="310" width="220" height="110" rx="12" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+      <text x="120" y="338" text-anchor="middle" font-size="13" font-weight="700" fill="#58a6ff">Education</text>
+      <text x="25" y="362" font-size="10" fill="#8b949e">● Bachelor's & Master's IT</text>
+      <text x="35" y="378" font-size="9" fill="#8b949e">Epitech</text>
+      <text x="25" y="398" font-size="10" fill="#8b949e">● Master's InfoSec</text>
+      <text x="35" y="414" font-size="9" fill="#8b949e">Université de Technologie de Troyes</text>
+
+      <!-- ── Branch 6: Conferences (right) ── -->
+      <line x1="680" y1="390" x2="980" y2="400" stroke="#79c0ff" stroke-width="2" opacity=".4"/>
+      <rect x="870" y="350" width="220" height="110" rx="12" fill="#161b22" stroke="#79c0ff" stroke-width="1.5"/>
+      <text x="980" y="378" text-anchor="middle" font-size="13" font-weight="700" fill="#79c0ff">Conferences</text>
+      <text x="885" y="402" font-size="10" fill="#8b949e">● ETHDenver · ETHcc Paris</text>
+      <text x="885" y="420" font-size="10" fill="#8b949e">● Devcon Bangkok</text>
+      <text x="885" y="438" font-size="10" fill="#8b949e">● LeHack · Nuit du Hack</text>
+      <text x="885" y="456" font-size="10" fill="#8b949e">● Edge City Chiang Mai</text>
+
+    </svg>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  William Le Roux &middot; Portfolio &middot; February 2026 &middot; Built as part of ML Data Scientist training
+</footer>
+
+</body>
+</html>

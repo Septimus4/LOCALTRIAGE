@@ -20,14 +20,14 @@ Build a self-hosted, privacy-preserving customer support system that:
 
 | Deliverable | Status | Notes |
 |-------------|--------|-------|
-| Data ingestion pipeline | ✅ Complete | CSV, JSON, Markdown support |
-| Baseline audit | ✅ Complete | Comprehensive gap analysis |
-| LLM-powered routing | ✅ Complete | 91.8% accuracy |
-| RAG response drafting | ✅ Complete | 94% citation rate |
-| Analytics dashboard | ✅ Complete | Streamlit-based |
-| Evaluation harness | ✅ Complete | Routing, retrieval, draft quality |
-| Docker deployment | ✅ Complete | Single docker-compose up |
-| Documentation | ✅ Complete | BRD, Context, Decision Matrix |
+| Data ingestion pipeline | Complete | CSV, JSON, Markdown support |
+| Baseline audit | Complete | Comprehensive gap analysis |
+| LLM-powered routing | Complete | 73.3% accuracy |
+| RAG response drafting | Complete | 100% citation rate |
+| Analytics dashboard | Complete | Streamlit-based |
+| Evaluation harness | Complete | Routing, retrieval, draft quality |
+| Docker deployment | Complete | Single docker-compose up |
+| Documentation | Complete | BRD, Context, Decision Matrix |
 
 ---
 
@@ -176,19 +176,19 @@ Build a self-hosted, privacy-preserving customer support system that:
 
 | KPI | Baseline | Actual | Status |
 |-----|----------|--------|--------|
-| Routing accuracy | 30% (majority) | 60% | ✅ 2x improvement |
-| Retrieval Recall@5 | 70.8% (BM25) | 91.7% | ✅ +20.8pp |
-| Draft quality | 1.5/5 (template) | 4.74/5 | ✅ +3.2 |
-| Latency p95 | <100ms | ~20s | Trade-off for quality |
+| Routing accuracy | 30% (majority) | 73.3% | +43.3pp improvement |
+| Retrieval Recall@5 | 70.8% (BM25) | 46.4% | -24.4pp (harder eval set) |
+| Draft quality | 1.5/5 (template) | 4.67/5 | +3.2 |
+| Latency p95 | <100ms | ~14.9s | Trade-off for quality |
 
 ### 6.2 Project KPIs
 
 | KPI | Target | Actual | Status |
 |-----|--------|--------|--------|
-| Timeline | 3 weeks | 3 weeks | ✅ |
-| Core features | 8 | 8 | ✅ |
-| Documentation | Complete | Complete | ✅ |
-| Test coverage | >80% | 84% | ✅ |
+| Timeline | 3 weeks | 3 weeks | Done |
+| Core features | 8 | 8 | Done |
+| Documentation | Complete | Complete | Done |
+| Test coverage | >80% | 84% | Done |
 
 ---
 
@@ -254,21 +254,21 @@ Special thanks to:
 
 ```
 Week 1 (Days 1-7)
-├── Day 1-3: Requirements & Data ✅ On time
-├── Day 4-6: Baseline + Audit ✅ On time
-└── Day 7: Buffer → Used for chunking experiments
+├── Day 1-3: Requirements & Data -- On time
+├── Day 4-6: Baseline + Audit -- On time
+└── Day 7: Buffer -> Used for chunking experiments
 
 Week 2 (Days 8-14)
-├── Day 8-9: LLM Service Setup ✅ On time
-├── Day 10-11: RAG Pipeline ✅ On time
-├── Day 12-13: API Development ✅ On time
-└── Day 14: Buffer → Used for memory tuning
+├── Day 8-9: LLM Service Setup -- On time
+├── Day 10-11: RAG Pipeline -- On time
+├── Day 12-13: API Development -- On time
+└── Day 14: Buffer -> Used for memory tuning
 
 Week 3 (Days 15-21)
-├── Day 15-16: UI Dashboard ✅ On time
-├── Day 17-18: Evaluation + Perf ✅ On time
-├── Day 19-20: Docker + Docs ✅ On time
-└── Day 21: Final review ✅ Complete
+├── Day 15-16: UI Dashboard -- On time
+├── Day 17-18: Evaluation + Perf -- On time
+├── Day 19-20: Docker + Docs -- On time
+└── Day 21: Final review -- Complete
 ```
 
 ### A.2 Decision Log

@@ -93,13 +93,15 @@ FROM python:3.11-slim as embedding-service
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    MODEL_NAME="BAAI/bge-base-en-v1.5"
+    MODEL_NAME="Qwen/Qwen3-Embedding-8B"
 
 WORKDIR /app
 
 # Install dependencies
 RUN pip install --no-cache-dir \
-    sentence-transformers \
+    sentence-transformers>=2.7.0 \
+    transformers>=4.51.0 \
+    accelerate \
     fastapi \
     uvicorn \
     numpy
@@ -115,8 +117,13 @@ import numpy as np
 
 app = FastAPI(title="Embedding Service")
 
-model_name = os.getenv("MODEL_NAME", "BAAI/bge-base-en-v1.5")
-model = SentenceTransformer(model_name)
+model_name = os.getenv("MODEL_NAME", "Qwen/Qwen3-Embedding-8B")
+import torch
+model = SentenceTransformer(
+    model_name,
+    model_kwargs={"torch_dtype": torch.bfloat16},
+    tokenizer_kwargs={"padding_side": "left"},
+)
 
 class EmbeddingRequest(BaseModel):
     input: List[str]

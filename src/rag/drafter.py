@@ -85,8 +85,8 @@ class LLMClient:
     
     def __init__(
         self,
-        base_url: str = "http://localhost:8000/v1",
-        model_name: str = "Qwen/Qwen2.5-14B-Instruct",
+        base_url: str = "http://localhost:11434/v1",
+        model_name: str = "qwen3:32b",
         api_key: str = "not-needed",
         timeout: int = 120,
         max_tokens: int = 1024,

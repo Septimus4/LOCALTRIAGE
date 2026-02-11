@@ -302,8 +302,8 @@ class TestFAISSVectorStore:
         """Test FAISS store initialization"""
         from retrieval.vector_search import FAISSVectorStore
         
-        store = FAISSVectorStore(dimension=768)
-        assert store.dimension == 768
+        store = FAISSVectorStore(dimension=4096)
+        assert store.dimension == 4096
         assert store.index is not None
 
 

@@ -9,10 +9,10 @@ A self-hosted, privacy-preserving customer support triage platform powered by lo
 
 LOCALTRIAGE is an end-to-end customer support system that:
 
-- **🏷️ Automatically triages** incoming tickets by category and priority
-- **📝 Drafts responses** using RAG (Retrieval-Augmented Generation) with citations
-- **📊 Generates insights** to identify emerging product issues
-- **🔒 Runs entirely locally** - no data leaves your infrastructure
+- **Automatically triages** incoming tickets by category and priority
+- **Drafts responses** using RAG (Retrieval-Augmented Generation) with citations
+- **Generates insights** to identify emerging product issues
+- **Runs entirely locally** - no data leaves your infrastructure
 
 ## Features
 
@@ -93,15 +93,15 @@ Open http://localhost:8501 in your browser.
 └───────┼──────────────┼─────────────┼───────────────┼────────┘
         │              │             │               │
 ┌───────▼──────┐ ┌─────▼─────┐ ┌─────▼─────┐ ┌──────▼──────┐
-│  PostgreSQL  │ │  Ollama   │ │   Qdrant  │ │ BGE-Large   │
-│   Database   │ │ qwen3:32b │ │  Vectors  │ │ Embeddings  │
-│  (port 5432) │ │(port 11434)│ │(port 6333)│ │ (1024 dim)  │
+│  PostgreSQL  │ │  Ollama   │ │   Qdrant  │ │  Qwen3-Emb │
+│   Database   │ │ qwen3:32b │ │  Vectors  │ │  8B Embed.  │
+│  (port 5432) │ │(port 11434)│ │(port 6333)│ │ (4096 dim)  │
 └──────────────┘ └───────────┘ └───────────┘ └─────────────┘
 ```
 
 ### Tech Stack
 - **LLM**: Qwen3:32B via Ollama (22GB VRAM)
-- **Embeddings**: BAAI/bge-large-en-v1.5 (1024 dimensions)
+- **Embeddings**: Qwen/Qwen3-Embedding-8B (4096 dimensions, MTEB #1)
 - **Vector Store**: Qdrant
 - **Database**: PostgreSQL 16
 - **API Framework**: FastAPI
@@ -140,7 +140,7 @@ Key environment variables:
 | `DB_HOST` | localhost | PostgreSQL host |
 | `LLM_BASE_URL` | http://localhost:11434/v1 | LLM API endpoint (Ollama) |
 | `LLM_MODEL` | qwen3:32b | Model to use |
-| `EMBEDDING_MODEL` | BAAI/bge-large-en-v1.5 | Embedding model (1024 dim) |
+| `EMBEDDING_MODEL` | Qwen/Qwen3-Embedding-8B | Embedding model (4096 dim) |
 | `VECTOR_STORE_TYPE` | qdrant | Vector store (qdrant/faiss) |
 | `USE_LLM` | true | Enable LLM drafting |
 
@@ -180,33 +180,6 @@ pytest tests/ -v
 E2E_BASE_URL=http://localhost:8080 pytest tests/e2e/ -v
 ```
 
-### Current Metrics (2026-02-03)
-
-| Metric | Baseline | Current | Improvement | Notes |
-|--------|----------|---------|-------------|-------|
-| Routing Accuracy | 30% (majority) | 60.0% | **+30pp** | TF-IDF+LogReg, 30 test samples |
-| Retrieval Recall@5 | 70.8% (BM25) | 91.7% | **+20.8pp** | Vector search with BGE-Large |
-| Draft Quality (1-5) | 1.5 (template) | **4.74** | **+3.2** | LLM+RAG vs generic templates |
-| P95 Latency | <100ms | ~20s | N/A | Trade-off for quality |
-
-**Baselines are now measured, not invented:**
-- **Routing**: Random=20%, Majority class=30%, Our TF-IDF+LogReg=60%
-- **Retrieval**: BM25=70.8%, Vector (BGE-Large)=91.7%
-- **Draft**: Template=1.5/5, LLM+RAG=4.74/5
-
-### Test Suite Status
-
-| Suite | Tests | Status |
-|-------|-------|--------|
-| Unit Tests | 28 | ✅ All pass |
-| API Tests | 17 | ✅ All pass |
-| Data Validation | 10 | ✅ All pass |
-| Integration Tests | 10 | ✅ All pass |
-| E2E Tests | 26 | ✅ All pass (2 skipped*) |
-| **Total** | **91** | **✅ Pass** |
-
-*Feedback tests skipped pending draft persistence implementation.
-
 ## Development
 
 ### Local Setup
@@ -242,16 +215,6 @@ jupyter lab --notebook-dir=notebooks
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests and linting
-5. Submit a pull request
+GNU GENERAL PUBLIC License - see [LICENSE](LICENSE) for details.
 
 ---
-
-Built with ❤️ for privacy-conscious customer support teams
