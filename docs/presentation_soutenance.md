@@ -1,342 +1,439 @@
-# Support de Présentation — Soutenance Portfolio
-## William Le Roux — ML Data Scientist
+# Support de Presentation -- Soutenance Portfolio
+## William Le Roux -- ML Data Scientist
 
-**Durée :** 15 minutes de présentation  
-**Contexte :** L'évaluateur joue le rôle de Charlotte  
-**Projet personnel :** LOCALTRIAGE — Plateforme de triage support client par LLM local  
+**Duree :** 15 minutes de presentation  
+**Contexte :** L'evaluateur joue le role de Charlotte  
+**Projet personnel :** LOCALTRIAGE -- Plateforme de triage support client par LLM local  
 **Lien technique :** [github.com/Septimus4/LOCALTRIAGE](https://github.com/Septimus4/LOCALTRIAGE)
 
 ---
 
-## PLAN DE LA PRÉSENTATION (15 min)
+## PLAN DE LA PRESENTATION (15 min)
 
-| Temps | Section | Durée |
-|-------|---------|-------|
-| 0:00 | 1. Introduction & Méthodologie du portfolio | 2 min |
-| 2:00 | 2. Profil, parcours & compétences | 2 min |
-| 4:00 | 3. Projets réalisés (vue d'ensemble) | 2 min |
-| 6:00 | 4. Projet personnel LOCALTRIAGE — Gestion de projet | 7 min |
-| | 4a. Analyse des besoins | 2 min |
-| | 4b. Élaboration de la solution | 3 min |
-| | 4c. Bilan & résultats | 2 min |
-| 13:00 | 5. Réflexivité — Ce que ce travail m'a apporté | 2 min |
-
----
-
-## SLIDE 1 — Titre
-
-> **William Le Roux**  
-> ML Data Scientist & Software Engineer  
-> Epitech (Bachelor + Master IT) · UTT (Master InfoSec)  
-> France · Français natif · Anglais C1  
-> GitHub : [Septimus4](https://github.com/Septimus4) · LinkedIn : [william-le-roux](https://www.linkedin.com/in/william-le-roux/)
+| Temps  | Partie | Slides | Duree |
+|--------|--------|--------|-------|
+| 0:00   | **Partie 1 -- Contexte & Pilotage** | Slides 2-5 | 6 min |
+|        | Contexte organisationnel & probleme metier | Slide 2 | 1.5 min |
+|        | Collecte des besoins & BRD | Slide 3 | 1.5 min |
+|        | Appui strategique & decision matrix | Slide 4 | 1.5 min |
+|        | Pilotage du projet (delais, couts, livrables) | Slide 5 | 1.5 min |
+| 6:00   | **Partie 2 -- Realisation & Resultats** | Slides 6-9 | 7 min |
+|        | Architecture & stack technique | Slide 6 | 2 min |
+|        | CI, tests & qualite | Slide 7 | 2 min |
+|        | Resultats mesures | Slide 8 | 2 min |
+|        | Retrospective & lecons | Slide 9 | 1 min |
+| 13:00  | **Partie 3 -- Portfolio** | Slides 10-11 | 2 min |
+|        | Le portfolio : construction & contenu | Slide 10 | 1 min |
+|        | Ouverture du portfolio & merci | Slide 11 | 1 min |
 
 ---
 
-## SLIDE 2 — Méthodologie de construction du portfolio
-
-### Comment j'ai construit ce portfolio
-
-1. **Inventaire des projets** — Recensement des 41 repositories GitHub (personnels, formation, OSS)
-2. **Sélection par pertinence** — Filtrage sur les compétences ML/Data Science visées : classification, RAG, MLOps, deep learning, NLP
-3. **Structuration en 4 sections** :
-   - Compétences & projets (preuves factuelles)
-   - Capacité réflexive (ce que j'ai appris et changé)
-   - Soft skills (illustrés par des exemples concrets)
-   - Mind map synthétique (vue globale)
-4. **Choix du format** — Portfolio HTML en ligne, thème sombre GitHub, responsive
-5. **Validation** — Chaque compétence est reliée à un projet et des métriques mesurables
-
-**Principe directeur :** Chaque affirmation est adossée à un livrable vérifiable (repo GitHub, rapport, métriques).
+# ============================================================
+# PARTIE 1 -- CONTEXTE & GESTION DE PROJET
+# ============================================================
 
 ---
 
-## SLIDE 3 — Profil & compétences clés
+## SLIDE 1 -- Couverture
 
-### Parcours
+> **William Le Roux**
+> ML Data Scientist & Software Engineer
+> Epitech (Bachelor + Master IT) -- UTT (Master InfoSec)
+> France -- Francais natif -- Anglais C1
+> GitHub : Septimus4 -- LinkedIn : william-le-roux
 
-| Formation | Établissement |
-|-----------|--------------|
-| Bachelor + Master Informatique | Epitech |
-| Master Sécurité Informatique | Université de Technologie de Troyes |
-
-### Stack technique principal
-
-| Domaine | Technologies |
-|---------|-------------|
-| **Langages** | Python (95%), SQL (80%), Go, TypeScript, C, Rust |
-| **ML/DS** | scikit-learn, PyTorch, SHAP, MLflow, Optuna, RAGAS |
-| **LLM/RAG** | Prompt engineering, embeddings (Qwen3-Emb-8B), RAG, vLLM, Ollama |
-| **Engineering** | FastAPI, Docker/Compose, PostgreSQL, Qdrant, CI/CD (GitHub Actions) |
-| **Monitoring** | Prometheus, Evidently, Streamlit, Gradio |
-
-### Conférences & communauté
-ETHDenver · ETHcc Paris · Devcon Bangkok · LeHack · Nuit du Hack · Edge City Chiang Mai  
-Sponsor de 9 projets open-source (NumFocus, Django...)
+Plan en 3 parties :
+- **Partie 1 :** Contexte & Pilotage
+- **Partie 2 :** Realisation & Resultats
+- **Partie 3 :** Portfolio
 
 ---
 
-## SLIDE 4 — Panorama des projets
+## SLIDE 2 -- Contexte organisationnel & probleme metier
 
-### Projets personnels
+### Contexte du secteur
 
-| Projet | Thématique | Résultat clé |
-|--------|-----------|-------------|
-| **LOCALTRIAGE** | LLM + RAG + classification | 73.3% routing accuracy, 4.67/5 draft quality |
-| **Planar** | IoT / LiDAR scanning | 195 tests, scan registration ICP |
-| **Chronogen** | Sécurité / pen testing | 16 stars, 6 forks, publié sur PyPI |
-| **Concord** | NLP / topic modeling | BERTopic + Neo4j, 4 contributeurs |
-| **Weebo** | Infrastructure LLM locale | RTX 5090, 65-115 tok/s |
+| Chiffre | Description |
+|---------|------------|
+| +50-200% | Croissance annuelle du volume de tickets |
+| 40% | Turnover annuel des agents support |
+| 68% | Entreprises : vie privee = frein n.1 pour l'IA |
+| <1h | Attente client pour 1ere reponse |
 
-### Projets de formation
+### Problemes identifies
 
-| Projet | Compétence | Résultat clé |
-|--------|-----------|-------------|
-| **MLOps Pipeline** | MLOps bout-en-bout | MLflow + Evidently + CI/CD + Docker |
-| **HR Analytics** | Classification supervisée | + 269% F1, 500K$ d'économies estimées |
-| **RAG Evaluation** | RAG + NL2SQL | RAGAS framework, Logfire observability |
-| **Semi-Supervised MRI** | Deep learning | ResNet-18, calibration de seuils |
-| **Crop Yield Prediction** | ML + serving | FastAPI + Streamlit + MLflow |
+- **Triage manuel lent :** 15-30 min/shift sur le routage
+- **Reponses incoherentes :** qualite variable selon les agents
+- **Silos de connaissance :** expertise bloquee dans les tetes
+- **Vie privee :** impossible d'utiliser des API cloud (GPT-4, etc.)
+
+### Analyse des parties prenantes
+
+| Partie prenante | Besoin principal | KPI de succes |
+|----------------|-----------------|---------------|
+| Agent support | Brouillons rapides, contexte pertinent | Taux d'acceptation |
+| Team lead | Routage precis, visibilite SLA | % routage correct |
+| Product manager | Tendances, insights produit | Detection de themes |
+| Securite / IT | Traitement local, tracabilite | Zero fuite de donnees |
+
+### Opportunite business
+
+> Deployer un systeme LLM local pour reduire le temps de reponse de 40-60%, ameliorer le routage a >90%, et garantir la souverainete des donnees.
+
+Tags : Self-hosted, LLM local, Zero data egress, RAG + citations
 
 ---
 
-## SLIDE 5 — LOCALTRIAGE : Contexte & analyse des besoins
+## SLIDE 3 -- Collecte des besoins metiers & formalisation (BRD)
 
-### Problème métier identifié
-
-Le support client fait face à des défis majeurs :
-- **Triage manuel lent** : 15-30 min/shift consacrées au routage des tickets
-- **Réponses incohérentes** : qualité variable selon les agents
-- **Silos de connaissance** : expertise bloquée dans les têtes individuelles
-- **Contrainte de confidentialité** : impossibilité d'utiliser des API cloud (GPT-4, etc.)
-
-### Parties prenantes
-
-| Stakeholder | Besoin principal | Métrique de succès |
-|-------------|-----------------|-------------------|
-| Agent support | Brouillons rapides, contexte pertinent | Taux d'acceptation des brouillons |
-| Team lead | Routage précis, visibilité SLA | % de routage correct |
-| Product manager | Tendances, insights produit | Couverture de détection de thèmes |
-| Sécurité/IT | Traitement local, traçabilité | Zéro fuite de données |
-
-### KPIs cibles (BRD)
+### KPIs cibles definis dans le BRD
 
 | KPI | Baseline | Cible |
 |-----|----------|-------|
-| Temps avant premier brouillon | 8 min | 2 min |
+| Temps avant 1er brouillon | 8 min | 2 min |
 | Routage correct | 30% (classe majoritaire) | 90% |
 | Taux d'acceptation brouillon | N/A | 70% |
 | Taux d'hallucination | N/A | < 2% |
-| Latence p95 | < 100ms (templates) | < 30s |
+| Latence p95 (E2E) | < 100ms (templates) | < 30s |
+| Detection themes emergents | 5 jours | 1 jour |
+| Disponibilite | -- | 99.5% |
 
-**Approche :** Formalisation complète via un **BRD** (25 exigences fonctionnelles, 16 non-fonctionnelles), un **document de contexte** (analyse du marché, des LLM locaux, de l'écosystème RAG) et un **registre de risques** (10 risques identifiés, scorés et mitigés).
+### Exigences formalisees
 
----
+- **25** exigences fonctionnelles
+- **16** exigences non-fonctionnelles
+- **10** risques identifies & scores
 
-## SLIDE 6 — LOCALTRIAGE : Élaboration de la solution
+### Livrables de cadrage produits
 
-### Architecture en 4 couches
+1. **BRD** (Business Requirements Document) -- 25 FR, 16 NFR, KPIs quantifies, stakeholder analysis, acceptance criteria
+2. **Context Analysis** -- Paysage concurrentiel, ecosysteme LLM locaux (2026), patterns RAG, barrieres d'adoption, quantification
+3. **Risk Register** -- 10 risques (probabilite x impact), mitigations planifiees, contingency plans, owners assignes
+4. **Decision Matrix** -- Criteres ponderes (qualite 30%, vitesse 25%, memoire 20%, licence 15%, ecosysteme 10%), score composite
 
-```
-┌─────────────────────────────────────────┐
-│        PRÉSENTATION (Streamlit)         │
-├─────────────────────────────────────────┤
-│        API (FastAPI) — 6 endpoints      │
-├──────────┬──────────┬───────────────────┤
-│ TRIAGE   │RETRIEVAL │   RAG DRAFTER     │
-│ TF-IDF + │BM25+Dense│ LLM + Citations   │
-│ LogReg   │Hybrid RRF│ Prompt structuré  │
-├──────────┴──────────┴───────────────────┤
-│     DATA (PostgreSQL · Qdrant · Models) │
-├─────────────────────────────────────────┤
-│   INFRA (Docker Compose · vLLM/Ollama)  │
-└─────────────────────────────────────────┘
-```
-
-### Décisions techniques clés (Decision Matrix)
-
-| Choix | Sélectionné | Alternatives évaluées | Critère décisif |
-|-------|-------------|----------------------|----------------|
-| LLM | Qwen2.5-14B → Qwen3:32B | Mistral-7B, Llama-3.1-8B | Qualité vs mémoire |
-| Embeddings | Qwen3-Embedding-8B | MiniLM-L6, nomic-embed, BGE | Score MTEB 70.58 (#1) |
-| Vector store | Qdrant | FAISS, Chroma, pgvector | Filtrage métadonnées |
-| Retrieval | Hybride (BM25 + Dense + RRF) | BM25 seul, Dense seul | +20.8pp recall |
-| Serving LLM | vLLM (GPU) / Ollama (dev) | llama.cpp, TGI | PagedAttention |
-
-### Plan de projet — 3 semaines
-
-| Semaine | Livrables | Statut |
-|---------|-----------|--------|
-| **S1** (Fondations) | BRD, Context, Schema, Ingestion, Classifier baseline, BM25 | Done |
-| **S2** (LLM + RAG) | Vector store, Hybrid retrieval, LLM integration, RAG pipeline | Done |
-| **S3** (Eval + Deploy) | Evaluation harness, API, Dashboard, Docker, Documentation | Done |
-
-**8/8 livrables livrés dans les délais.**
+> Chaque decision est tracable : du besoin metier au KPI, du KPI a l'exigence, de l'exigence au choix technique.
 
 ---
 
-## SLIDE 7 — LOCALTRIAGE : Pipeline de traitement d'un ticket
+## SLIDE 4 -- Appui strategique & methodologique pour la prise de decision
 
-```
-Ticket entrant
-    │
-    ├──→ TRIAGE (TF-IDF + LogReg)
-    │       → Catégorie + Priorité + Confiance
-    │
-    ├──→ RETRIEVAL HYBRIDE
-    │       → BM25 (mots-clés exacts) + Dense/Qwen3-Emb-8B (sémantique)
-    │       → Fusion RRF → Top-K chunks KB
-    │
-    └──→ RAG DRAFTER
-            → Prompt structuré + contexte récupéré
-            → Qwen3:32B génère la réponse
-            → Post-traitement : extraction de citations
-            → Brouillon + citations [KB-X] + score de confiance
-```
+### Decision Matrix -- choix argumentes
+
+| Composant | Selection | Alternatives evaluees | Critere decisif |
+|-----------|-----------|----------------------|----------------|
+| LLM | Qwen3:32B | Mistral-7B, Llama-3.1-8B, Qwen2.5-14B | Qualite vs memoire |
+| Embeddings | Qwen3-Emb-8B | MiniLM-L6, nomic-embed, BGE | MTEB #1 (70.58) |
+| Vector DB | Qdrant | FAISS, Chroma, pgvector | Filtrage metadonnees |
+| Retrieval | Hybride + RRF | BM25 seul, Dense seul | +20.8pp recall |
+| LLM Serving | vLLM / Ollama | llama.cpp, TGI | PagedAttention |
+| API | FastAPI | Flask, Django REST | Async + OpenAPI |
+
+### Methode de scoring
+
+Chaque composant evalue sur 5 criteres ponderes :
+- Qualite : 30%
+- Vitesse : 25%
+- Memoire : 20%
+- Licence : 15%
+- Ecosysteme : 10%
+
+Score composite = somme ponderee des notes /100 par critere.
+
+### Gestion proactive des risques
+
+| Risque | Score | Mitigation appliquee |
+|--------|-------|---------------------|
+| Modele trop gros / VRAM | 6 | Quantization Q4_K_M + fallback 7B |
+| Latence excessive | 4 | Budget latence par composant |
+| Retrieval insuffisant | 3 | Hybride BM25 + Dense + RRF |
+| Qualite donnees KB | 4 | Pipeline de validation |
+
+### Tracabilite complete
+
+Besoin metier --> Exigence BRD --> Choix technique (Decision Matrix) --> KPI mesure (Evaluation Harness)
 
 ---
 
-## SLIDE 8 — LOCALTRIAGE : Bilan & résultats mesurés
+## SLIDE 5 -- Pilotage du projet -- delais, couts, livrables, performance
 
-### Approche baseline-first
+### Plan en 3 semaines -- 3 milestones
 
-> "On ne peut pas améliorer ce qu'on ne mesure pas."
+**S1 -- Fondations**
+- BRD, Context, architecture
+- Schema BDD + ingestion
+- Classifier baseline (TF-IDF)
+- Retrieval BM25
+- [Milestone 1]
 
-| Métrique | Baseline mesuré | Système actuel | Amélioration |
-|----------|----------------|----------------|-------------|
-| Routing accuracy | 30% (majorité) | 73.3% | **+43.3pp** |
-| Retrieval Recall@5 | 70.8% (BM25) | 46.4%* | -24.4pp (harder eval set) |
-| Qualité brouillon | 1.5/5 (templates) | 4.67/5 | **+3.2 points** |
-| Citations | 0% | 100% (3.0 avg/draft) | Implémenté |
-| Latence p95 | < 100ms | 14.9s | Trade-off qualité |
+**S2 -- LLM & RAG**
+- Vector store + embeddings
+- Retrieval hybride + RRF
+- Integration LLM Qwen3:32B
+- Pipeline RAG + citations
+- [Milestone 2]
 
-*\* v2 : dataset d'éval élargi (60 samples, plus diversifié et plus difficile)*
+**S3 -- Eval & Deploy**
+- Evaluation harness
+- API FastAPI (6 endpoints)
+- Dashboard Streamlit
+- Docker + documentation
+- [Milestone 3]
 
-### Détail qualité des brouillons
+### Bilan
 
-| Critère | Score /5 |
+| Indicateur | Valeur |
+|-----------|--------|
+| Livrables livres | 8/8 |
+| Delai | 3 semaines -- dans les delais |
+| Developpement | Solo |
+| Cout cloud | 0 EUR (100% local) |
+
+### Livrables produits
+
+- [OK] Pipeline d'ingestion
+- [OK] Audit baseline & mesures
+- [OK] Routage automatise
+- [OK] Drafting RAG + citations
+- [OK] Dashboard analytics
+- [OK] Evaluation harness
+- [OK] Deploiement Docker
+- [OK] Documentation complete
+
+### Chemin critique
+
+Schema --> Ingestion --> Vector Store --> Hybrid Retrieval --> RAG --> API
+
+Parallelisation : baselines developpees en parallele de l'integration LLM.
+
+---
+
+# ============================================================
+# PARTIE 2 -- REALISATION TECHNIQUE & RESULTATS
+# ============================================================
+
+---
+
+## SLIDE 6 -- Architecture de la solution & pipeline
+
+### Architecture en couches
+
+```
++------------------------------------------+
+|      PRESENTATION -- Streamlit Dashboard  |
++------------------------------------------+
+|      API -- FastAPI (6 endpoints)         |
++-------------+------------+---------------+
+| TRIAGE      | RETRIEVAL   | RAG DRAFTER   |
+| TF-IDF +    | BM25 +      | LLM + Prompt  |
+| LogReg      | Dense + RRF | + Citations   |
++-------------+------------+---------------+
+|      DATA -- PostgreSQL / Qdrant / Models |
++------------------------------------------+
+|      INFRA -- Docker Compose / vLLM       |
++------------------------------------------+
+```
+
+### Pipeline de traitement d'un ticket
+
+Ticket entrant --> Triage (cat + prio) --> Retrieval (BM25+Dense) --> RRF (fusion) --> LLM (Qwen3:32B) --> Brouillon + citations
+
+### Stack technique
+
+| Couche | Technologie |
+|--------|-------------|
+| LLM | Qwen3:32B (Q4_K_M) |
+| Embeddings | Qwen3-Emb-8B (4096d) |
+| Vector DB | Qdrant |
+| BDD | PostgreSQL |
+| Retrieval | Hybride BM25+Dense+RRF |
+| Serving | Ollama / vLLM |
+| API | FastAPI (6 endpoints) |
+| UI | Streamlit |
+| Infra | Docker Compose |
+| GPU | RTX 5090 (32 GB VRAM) |
+
+---
+
+## SLIDE 7 -- Strategie de test, CI/CD & assurance qualite
+
+### Pyramide de tests
+
+| Niveau | Tests | Couverture |
+|--------|-------|-----------|
+| Tests unitaires | 65 passes | Triage, retrieval, drafter, ingestion, data validation |
+| Tests end-to-end (E2E) | 26 passes | API endpoints, triage flow, draft flow, health checks |
+| Evaluation harness (ML) | 60 samples eval | Routing accuracy, recall@5, draft quality rubric (5 criteres), latence |
+| Tests Postman (collection) | 3 envs | Collection exportable, env local + staging, scripts pre/post-request |
+
+### Bilan couverture
+
+- Unit tests : 65
+- E2E tests : 26
+- Total tests : 91
+- Echecs : **0**
+
+### Outils & pratiques
+
+| Domaine | Outil / Pratique |
+|---------|-----------------|
+| Framework test | pytest + fixtures |
+| E2E / API | httpx + Postman collection |
+| Eval ML | Harness custom (rubric LLM-as-judge) |
+| Containerisation | Docker Compose (4 services) |
+| Linting | Ruff + type hints |
+| Versioning | Git + GitHub |
+
+### Monitoring
+
+Prometheus, Streamlit dashboard, Health endpoint
+
+---
+
+## SLIDE 8 -- Resultats mesures -- approche baseline-first
+
+> "On ne peut pas ameliorer ce qu'on ne mesure pas." -- Chaque metrique est comparee a une baseline quantifiee.
+
+### KPIs principaux
+
+| KPI | Valeur | Delta |
+|-----|--------|-------|
+| Routing accuracy | 73.3% | +43.3pp vs baseline |
+| Qualite brouillons | 3.63/5 | +2.1 vs templates |
+| Taux d'acceptation | 72% | cible 70% -- atteint |
+| Latence p95 | 10.8s | < 30s budget -- atteint |
+
+### Comparaison baseline vs systeme
+
+| Metrique | Baseline | Actuel | Delta |
+|----------|----------|--------|-------|
+| Routing accuracy | 30% (majorite) | 73.3% | +43.3pp |
+| Recall@5 | 70.8% (BM25) | 46.4% | harder eval set |
+| Qualite drafts | 1.5/5 (template) | 3.63/5 | +2.1 |
+| Citations | 0% | 100% | 2.8 avg/draft |
+| Hallucinations | N/A | 0% | Pass |
+| Detection P1 | 42% recall | 89% | +47pp |
+
+### Detail qualite des brouillons (rubric)
+
+| Critere | Score /5 |
 |---------|----------|
-| Correctness | 4.0 |
-| Completeness | 5.0 |
-| Tone/Clarity | 5.0 |
-| Actionability | 4.3 |
-| Citation Quality | 5.0 |
-| **Moyenne** | **4.67** |
+| Correctness | 3.8 |
+| Completeness | 3.2 |
+| Tone / Clarity | 4.0 |
+| Actionability | 3.2 |
+| Citation Quality | 4.0 |
+| **Moyenne** | **3.63** |
 
-### Taux d'acceptation effective : **72%** (cible : 70%)
-
----
-
-## SLIDE 9 — LOCALTRIAGE : Gestion des risques & pivots
-
-### Risques anticipés et matérialisés
-
-| Risque | Score | Ce qui s'est passé | Mitigation appliquée |
-|--------|-------|---------------------|---------------------|
-| Modèle trop gros pour VRAM | 6 | Résolu avec quantization INT8 | Fallback 7B prévu |
-| Latence excessive | 4 | p95 = 24.3s (< 30s budget) | Budget latence par composant |
-| Qualité retrieval insuffisante | 3 | BM25 seul insuffisant | Hybride BM25+Dense+RRF |
-| Bottleneck annotation | 4 | Jeu d'éval réduit 500→200 | Annotation parallèle en v2 |
-
-### Risques non anticipés
-
-| Risque | Impact | Leçon |
-|--------|--------|-------|
-| Librairie rank-bm25 trop lente | 1 jour perdu | Évaluer les choix de lib avant engagement |
-| Scope creep dashboard | Résisté | Définir "done" explicitement avec phase gates |
+Evaluation par LLM-as-judge (Qwen3:32B, temperature=0, critique-first rubric) sur 5 tickets representatifs couvrant 5 categories.
 
 ---
 
-## SLIDE 10 — LOCALTRIAGE : Ce que j'aurais fait différemment
+## SLIDE 9 -- Retrospective -- pivots, lecons et reflexivite
 
-| Changement | Pourquoi |
-|-----------|----------|
-| Commencer avec PostgreSQL FTS | Éviter le pivot rank-bm25 → PG (1 jour perdu) |
-| Dataset d'évaluation plus large dès le début | Intervalles de confiance plus serrés |
-| Architecture async dès le départ | Retrofitter l'async est douloureux |
-| Caching de requêtes dès le MVP | Réduire les calculs redondants |
-| Phase gates + demos stakeholders hebdo | Feedback plus précoce, scope mieux contrôlé |
+### Risques materialises & pivots
 
----
+1. **rank-bm25 trop lent en prod** (1 jour perdu) -- Pivot vers PostgreSQL FTS. Lecon : evaluer les libs contre les contraintes prod avant engagement.
+2. **Bottleneck d'annotation** (eval set reduit) -- 500 --> 200 samples. Lecon : demarrer l'annotation en parallele des le jour 1.
+3. **Scope creep dashboard** (resiste) -- Lecon : phase gates strictes + definition de "done" explicite.
 
-## SLIDE 11 — Capacité réflexive : ce que ce travail m'a apporté
+### Ce que j'aurais fait differemment
 
-### Changements méthodologiques adoptés
+- Commencer avec PostgreSQL FTS directement
+- Dataset d'evaluation plus large des le depart
+- Architecture async des le jour 1
+- Caching de requetes dans le MVP
+- Demos stakeholders hebdomadaires
 
-| Avant | Après |
+### Evolution methodologique : Avant vs Apres
+
+| Avant | Apres |
 |-------|-------|
 | "Build first, evaluate later" | **"Measure first, build with evidence"** |
-| Sauter directement au modèle | **Baseline → Gap analysis → Solution** |
-| Évaluation informelle ("ça a l'air bien") | **Rubrics formelles (RAGAS, F1, confusion matrix)** |
-| Documentation en afterthought | **BRD, architecture, decision matrix, retrospective inclus dans le projet** |
-| Le modèle est fini quand il est entraîné | **Le déploiement est le DÉBUT du cycle ML** |
+| Sauter au modele directement | **Baseline --> Gap analysis --> Solution** |
+| Evaluation informelle | **Rubrics formelles (RAGAS, F1)** |
+| Documentation en afterthought | **BRD, archi, decision matrix, retro** |
+| Fini = entraine | **Deploiement = DEBUT du cycle** |
 
-### Ce que la formation m'a apporté concrètement
-
-1. **Un cycle ML structuré** : cadrage → audit data → baseline → expérimentation → déploiement → monitoring
-2. **Rigueur statistique** : intervalles de confiance, cross-validation, splits train/val/test
-3. **Traduction métier** : convertir F1/recall en KPIs business (ex : 500K$ économisés, 64% de détection)
-4. **Mindset MLOps** : un modèle n'est pas fini tant qu'il n'est pas servi, monitoré et maintenable
-
-### Évolution de ma perception du rôle
-
-- **Avant :** le Data Scientist est un "modélisateur" — entraîne des modèles, optimise des hyperparamètres, maximise l'accuracy dans un notebook
-- **Après :** le Data Scientist est un **résolveur de problèmes data full-stack** :
-  - Gouvernance de la qualité des données
-  - Communication avec les stakeholders (les agents veulent des *explications*, pas juste des prédictions)
-  - Engineering de production (latence, mémoire, containers, monitoring, drift)
-  - Responsabilité éthique (LOCALTRIAGE existe *parce que* le cloud posait un risque vie privée)
-  - Boucles d'apprentissage continu (feedback → amélioration)
+> Le Data Scientist n'est pas un modelisateur mais un **resolveur de problemes data full-stack** : gouvernance, communication stakeholders, engineering de production, ethique, apprentissage continu.
 
 ---
 
-## SLIDE 12 — Synthèse & ouverture
+# ============================================================
+# PARTIE 3 -- PORTFOLIO
+# ============================================================
 
-### Ce que démontre ce portfolio
+---
 
-| Compétence | Preuve |
+## SLIDE 10 -- Le portfolio -- construction & contenu
+
+### Demarche de construction
+
+1. **Inventaire** -- Recensement de 41 repositories GitHub (personnels, formation, OSS)
+2. **Selection par pertinence** -- Filtrage sur competences ML/DS : classification, RAG, MLOps, deep learning, NLP
+3. **Structuration en 4 sections** -- Competences & projets, capacite reflexive, soft skills, mind map
+4. **Validation croisee** -- Chaque competence est reliee a un projet et a des metriques mesurables
+
+### Structure du portfolio
+
+| Section | Contenu |
+|---------|--------|
+| Competences & Projets | 12 projets detailles avec stack, metriques, liens GitHub |
+| Capacite reflexive | Erreurs, lecons, evolution du regard sur le metier |
+| Soft skills | 8 competences illustrees par des exemples concrets |
+| Mind map | Vue synthetique de l'ensemble du profil et des connexions |
+
+### Competences demontrees
+
+| Competence | Preuve |
 |-----------|--------|
-| ML supervisé & classification | HR Analytics (+269% F1), LOCALTRIAGE (73.3% acc.) |
-| RAG & LLM | LOCALTRIAGE (4.67/5 qualité, 100% citations), RAG Evaluation |
-| MLOps & production | MLOps Pipeline (FastAPI + Evidently + CI/CD + Docker) |
-| Deep learning | Semi-Supervised MRI (ResNet-18, calibration seuils) |
-| NLP & topic modeling | Concord (BERTopic + Neo4j) |
-| Infrastructure LLM | Weebo (RTX 5090, quantization, 65-115 tok/s) |
-| Gestion de projet | LOCALTRIAGE (3 semaines, 8/8 livrables, solo, risk register) |
-| Documentation & réflexivité | BRD, architecture, decision matrix, retrospective, portfolio |
+| ML supervise | HR Analytics (+269% F1), LOCALTRIAGE (73.3%) |
+| RAG & LLM | LOCALTRIAGE (3.63/5, 100% citations) |
+| MLOps | Pipeline (FastAPI + Evidently + CI/CD) |
+| Deep learning | Semi-Supervised MRI (ResNet-18) |
+| Gestion de projet | LOCALTRIAGE (3 sem, 8/8 livrables, solo) |
 
-### Prochaines étapes (LOCALTRIAGE Phase 2)
-
-- Support multi-langue
-- Ingestion temps réel (webhooks)
-- Pipeline de fine-tuning
-- Classification multi-label
-- Dashboard performance agents
+> Principe directeur : chaque affirmation est adossee a un livrable verifiable.
 
 ---
 
-## NOTES POUR L'ORAL
+## SLIDE 11 -- Ouverture du Portfolio & Merci
 
-### Points à insister
+> Le portfolio HTML presente l'ensemble des projets, competences et reflexions. Je vous propose de le parcourir ensemble.
 
-1. **Gestion de projet** : montrer la démarche structurée (BRD → Context → Decision Matrix → Plan → Implémentation → Évaluation → Retrospective)
-2. **Approche baseline-first** : chaque amélioration est mesurée contre une baseline quantifiée
-3. **Décisions argumentées** : chaque choix technique est documenté dans la decision matrix avec critères pondérés
-4. **Réflexivité authentique** : ne pas cacher les échecs (rank-bm25, bottleneck annotation, scope creep)
-5. **Impact de la formation** : transformation concrète de "build first" à "measure first"
+**Liens :**
+- Portfolio HTML en ligne
+- github.com/Septimus4/LOCALTRIAGE
 
-### Questions potentielles et éléments de réponse
+**Merci -- Questions & echanges**
 
-| Question probable | Éléments de réponse |
+---
+
+# ============================================================
+# NOTES POUR L'ORAL
+# ============================================================
+
+---
+
+### Points a insister
+
+1. **Gestion de projet** : montrer la demarche structuree (BRD --> Context --> Decision Matrix --> Plan --> Implementation --> Evaluation --> Retrospective)
+2. **Approche baseline-first** : chaque amelioration est mesuree contre une baseline quantifiee
+3. **Decisions argumentees** : chaque choix technique est documente dans la decision matrix avec criteres ponderes
+4. **Reflexivite authentique** : ne pas cacher les echecs (rank-bm25, bottleneck annotation, scope creep)
+5. **Impact de la formation** : transformation concrete de "build first" a "measure first"
+
+### Questions potentielles et elements de reponse
+
+| Question probable | Elements de reponse |
 |-------------------|---------------------|
-| Pourquoi un LLM local et pas GPT-4 ? | Souveraineté données, coût prédictible, zéro fuite, contrôle total |
-| Comment avez-vous géré la latence de 24s ? | Budget par composant, 97% = LLM generation, acceptable car async agent workflow |
-| Le recall@5 a baissé en v2 ? | Dataset élargi + plus difficile = benchmark plus réaliste, pas une régression |
+| Pourquoi un LLM local et pas GPT-4 ? | Souverainete donnees, cout predictible, zero fuite, controle total |
+| Comment avez-vous gere la latence de 10.8s ? | Budget par composant, 97% = LLM generation, acceptable car async agent workflow |
+| Le recall@5 a baisse en v2 ? | Dataset elargi + plus difficile = benchmark plus realiste, pas une regression |
 | Pourquoi TF-IDF+LogReg pour le triage ? | Baseline explicable, rapide (<200ms), pas besoin de GPU, fallback garanti |
-| Comment garantir la qualité des citations ? | Post-traitement structuré + prompt explicite + validation source ID |
-| Qu'est-ce qui a été le plus difficile ? | Annotation bottleneck + tuning chunk size (2 jours d'expérimentation) |
+| Comment garantir la qualite des citations ? | Post-traitement structure + prompt explicite + validation source ID |
+| Qu'est-ce qui a ete le plus difficile ? | Annotation bottleneck + tuning chunk size (2 jours d'experimentation) |
 | Si vous aviez plus de temps ? | Fine-tuning, reranking cross-encoder, multi-label, async, Kubernetes |
 
 ---
 
-*Document préparé le 19 février 2026 — William Le Roux*
+*Document prepare le 19 fevrier 2026 -- William Le Roux*

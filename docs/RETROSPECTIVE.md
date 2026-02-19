@@ -178,8 +178,8 @@ Build a self-hosted, privacy-preserving customer support system that:
 |-----|----------|--------|--------|
 | Routing accuracy | 30% (majority) | 73.3% | +43.3pp improvement |
 | Retrieval Recall@5 | 70.8% (BM25) | 46.4% | -24.4pp (harder eval set) |
-| Draft quality | 1.5/5 (template) | 4.67/5 | +3.2 |
-| Latency p95 | <100ms | ~14.9s | Trade-off for quality |
+| Draft quality | 1.5/5 (template) | 3.63/5 | +2.1 |
+| Latency p95 | <100ms | ~10.8s | Trade-off for quality |
 
 ### 6.2 Project KPIs
 

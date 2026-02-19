@@ -16,9 +16,9 @@ This report presents performance evaluation results with **properly measured bas
 |--------|---------------------|----------------|-------------|
 | Routing Accuracy | 30% (majority class) | 73.3% | **+43.3pp** |
 | Retrieval Recall@5 | 70.8% (BM25) | 46.4% | **-24.4pp** |
-| Draft Quality | 1.5/5 (templates) | 4.67/5 | **+3.2** |
+| Draft Quality | 1.5/5 (templates) | 3.63/5 | **+2.1** |
 | Citation Rate | 0% (templates) | 100% | Implemented |
-| P95 Latency | <100ms (templates) | ~14.9s | Trade-off |
+| P95 Latency | <100ms (templates) | ~10.8s | Trade-off |
 
 > **Note (v2.0):** Retrieval Recall@5 decreased from 91.7% to 46.4% following dataset expansion.
 > The evaluation set now includes 60 harder, more diverse samples referencing 40 KB articles (up from 30 samples / 25 articles).
@@ -130,14 +130,15 @@ Recall@5 (%) │
 
 | Criterion | Baseline | Target | Current | Status |
 |-----------|----------|--------|---------|--------|
-| Correctness | 2.8 | 4.0 | 4.0 | Exceeds |
-| Completeness | 2.1 | 4.0 | 5.0 | Exceeds |
-| Tone/Clarity | 3.5 | 4.0 | 5.0 | Exceeds |
-| Actionability | 1.8 | 4.0 | 4.3 | Exceeds |
-| Citation Quality | 1.0 | 4.0 | 5.0 | Exceeds |
-| **Overall** | **2.1** | **4.0** | **4.67** | **Exceeds** |
+| Correctness | 2.8 | 4.0 | 3.8 | Meets |
+| Completeness | 2.1 | 4.0 | 3.2 | Approaching |
+| Tone/Clarity | 3.5 | 4.0 | 4.0 | Meets |
+| Actionability | 1.8 | 4.0 | 3.2 | Approaching |
+| Citation Quality | 1.0 | 4.0 | 4.0 | Meets |
+| **Overall** | **2.1** | **4.0** | **3.63** | **Approaching** |
 
-> Scores from evaluation on 2026-02-19 using Qwen3:32B via Ollama with Qwen3-Embedding-8B embeddings (4096-dim).
+> Scores from LLM-as-judge evaluation (Qwen3:32B, temperature=0, critique-first rubric) on 5 representative tickets.
+> Judge uses structured 5-criterion rubric with explicit scoring anchors (1-5) and anti-inflation constraints.
 
 ### 4.2 Draft Acceptance Metrics
 
@@ -154,7 +155,7 @@ Recall@5 (%) │
 | Metric | Value |
 |--------|-------|
 | Drafts with citations | 94% |
-| Avg citations per draft | 2.4 |
+| Avg citations per draft | 2.8 |
 | Citation accuracy | 91% |
 | False citations | 3% |
 
@@ -162,7 +163,7 @@ Recall@5 (%) │
 
 | Metric | Value | Target | Status |
 |--------|-------|--------|--------|
-| Hallucination rate | 4.2% | <5% | Pass |
+| Hallucination rate | 0% | <5% | Pass |
 | Policy violations | 0.3% | <0.5% | Pass |
 | "Insufficient context" rate | 8% | 5-15% | Optimal |
 
@@ -179,7 +180,7 @@ Recall@5 (%) │
 | p50 | 180ms | 15.2s | 20s |
 | p75 | 250ms | 19.8s | 25s |
 | p90 | 320ms | 23.1s | 28s |
-| p95 | 400ms | 14.9s | 30s Pass |
+| p95 | 400ms | 10.8s | 30s Pass |
 | p99 | 520ms | 28.7s | 35s |
 
 #### Latency Breakdown (p50)

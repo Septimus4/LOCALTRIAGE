@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-02-19T17:38:45.525042",
+  "timestamp": "2026-02-19T20:49:44.731732",
   "routing": {
     "accuracy": 0.7333333333333333,
     "total_samples": 60,
     "correct": 44,
-    "p95_latency_ms": 0.24938583374023438,
+    "p95_latency_ms": 0.25153160095214844,
     "per_category": {
       "Technical": {
         "correct": 17,
@@ -31,7 +31,7 @@
   "retrieval": {
     "recall_at_5": 0.4644688644688645,
     "num_queries": 13,
-    "p95_latency_ms": 500.4615783691406,
+    "p95_latency_ms": 474.05433654785156,
     "individual_scores": [
       0.3333333333333333,
       0.3333333333333333,
@@ -49,21 +49,116 @@
     ]
   },
   "draft_quality": {
-    "avg_quality": 4.666666666666667,
-    "avg_citations": 3,
-    "p95_latency_ms": 21936.10644340515,
+    "avg_quality": 3.63,
+    "avg_citations": 2.8,
+    "p95_latency_ms": 12587.297439575195,
     "num_samples": 5,
+    "evaluation_method": "LLM-as-judge (Qwen3:32B, temperature=0)",
+    "rubric_criteria": [
+      "correctness",
+      "completeness",
+      "tone",
+      "actionability",
+      "citation_quality"
+    ],
+    "weights": {
+      "correctness": 0.25,
+      "completeness": 0.2,
+      "tone": 0.15,
+      "actionability": 0.2,
+      "citation_quality": 0.2
+    },
+    "criterion_averages": {
+      "correctness": 3.8,
+      "completeness": 3.2,
+      "tone": 4,
+      "actionability": 3.2,
+      "citation_quality": 4
+    },
+    "hallucination_rate": 0.0,
     "individual_scores": [
-      4.0,
-      5.0,
-      5.0,
-      4.333333333333334,
-      5.0
+      3.6,
+      3.8000000000000003,
+      3.4000000000000004,
+      3.1500000000000004,
+      4.2
+    ],
+    "detailed_scores": [
+      {
+        "subject": "Cannot login to my account",
+        "scores": {
+          "correctness": 4,
+          "completeness": 3,
+          "tone": 4,
+          "actionability": 3,
+          "citation_quality": 4
+        },
+        "weighted": 3.6,
+        "justification": "Response is factually accurate with all claims from [KB-2], but misses account status checks and detailed whitelisting steps. Tone is professional with empathy, but actionability suffers from incomplete fallback instructions.",
+        "citations": 1,
+        "latency_ms": 12587.0
+      },
+      {
+        "subject": "Charged twice for subscription",
+        "scores": {
+          "correctness": 4,
+          "completeness": 3,
+          "tone": 4,
+          "actionability": 3,
+          "citation_quality": 5
+        },
+        "weighted": 3.8,
+        "justification": "The response is factually accurate with proper citations but misses edge cases and follow-up guidance. It addresses the main issue but lacks completeness in covering all possible customer scenarios.",
+        "citations": 4,
+        "latency_ms": 11463.0
+      },
+      {
+        "subject": "App crashes on export",
+        "scores": {
+          "correctness": 4,
+          "completeness": 3,
+          "tone": 4,
+          "actionability": 3,
+          "citation_quality": 3
+        },
+        "weighted": 3.4,
+        "justification": "The response is technically accurate but has inconsistent citations (same KB for multiple distinct steps). It addresses the main issue but misses secondary concerns like connecting the recent update to the problem. The tone is professional and empathetic, but actionability is limited by missing fallback options.",
+        "citations": 3,
+        "latency_ms": 10299.0
+      },
+      {
+        "subject": "Request: Dark mode",
+        "scores": {
+          "correctness": 3,
+          "completeness": 3,
+          "tone": 4,
+          "actionability": 3,
+          "citation_quality": 3
+        },
+        "weighted": 3.15,
+        "justification": "The response is polite and addresses the main request but lacks specific details for the workaround and forum. Citations are present but not fully precise, and the roadmap timeline may be over-specified.",
+        "citations": 2,
+        "latency_ms": 7882.0
+      },
+      {
+        "subject": "Account security concern",
+        "scores": {
+          "correctness": 4,
+          "completeness": 4,
+          "tone": 4,
+          "actionability": 4,
+          "citation_quality": 5
+        },
+        "weighted": 4.2,
+        "justification": "The response is factually accurate with consistent citations but lacks fallback options for account recovery and proactive monitoring. It addresses core security steps but misses secondary concerns like ongoing monitoring.",
+        "citations": 4,
+        "latency_ms": 9835.0
+      }
     ]
   },
   "latency": {
-    "triage_p95_ms": 640.0690078735352,
-    "draft_p95_ms": 14294.569730758667,
-    "total_p95_s": 14.934638738632202
+    "triage_p95_ms": 33.89167785644531,
+    "draft_p95_ms": 10785.247087478638,
+    "total_p95_s": 10.819138765335083
   }
 }

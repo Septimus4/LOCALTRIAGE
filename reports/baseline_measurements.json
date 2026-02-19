@@ -36,18 +36,27 @@
   },
   "draft_quality": {
     "template_baseline": 1.5,
-    "llm_rag_current": 4.67,
-    "improvement": 3.17,
+    "llm_rag_current": 3.63,
+    "improvement": 2.13,
     "scale": "1-5",
-    "avg_citations_per_draft": 3.0,
-    "criteria": ["relevance", "completeness", "actionability", "personalization", "citations"]
+    "evaluation_method": "LLM-as-judge (Qwen3:32B, temperature=0, critique-first rubric)",
+    "avg_citations_per_draft": 2.8,
+    "hallucination_rate": 0.0,
+    "criterion_averages": {
+      "correctness": 3.8,
+      "completeness": 3.2,
+      "tone": 4.0,
+      "actionability": 3.2,
+      "citation_quality": 4.0
+    },
+    "criteria": ["correctness", "completeness", "tone", "actionability", "citation_quality"]
   },
   "latency": {
     "template_p95_ms": 100,
-    "llm_rag_p95_ms": 14935,
+    "llm_rag_p95_ms": 10820,
     "triage_p95_ms": 640,
     "draft_p95_ms": 21936,
-    "notes": "LLM adds significant latency but quality improvement justifies trade-off for async workflows. E2E P95 ~14.9s."
+    "notes": "LLM adds significant latency but quality improvement justifies trade-off for async workflows. E2E P95 ~10.8s."
   },
   "hardware": {
     "gpu": "NVIDIA RTX 5090",

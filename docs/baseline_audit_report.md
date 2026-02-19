@@ -17,8 +17,8 @@ This report documents the audit of the baseline customer support triage system. 
 |------|---------------------|----------------|-------------|
 | Routing Accuracy | 30% (majority class) | 73.3% | **+43.3pp** |
 | Retrieval Recall@5 | 70.8% (BM25) | 46.4% | **-24.4pp** (harder eval set) |
-| Response Usefulness | 1.5/5 (templates) | 4.67/5 | **+3.2** |
-| P95 Latency | <100ms (templates) | ~14.9s | Trade-off |
+| Response Usefulness | 1.5/5 (templates) | 3.63/5 | **+2.1** |
+| P95 Latency | <100ms (templates) | ~10.8s | Trade-off |
 | Citations | 0% | 100% | Implemented |
 
 ### Baseline Definitions
@@ -31,7 +31,7 @@ This report documents the audit of the baseline customer support triage system. 
 | BM25 | Keyword-based retrieval | 70.8% Recall@5 |
 | Vector (Qwen3-Emb-8B) | Semantic search | 46.4% Recall@5 |
 | Template Response | Generic canned responses | 1.5/5 quality |
-| LLM + RAG | Qwen3:32B with context | 4.67/5 quality |
+| LLM + RAG | Qwen3:32B with context | 3.63/5 quality |
 
 ---
 

@@ -71,6 +71,23 @@
       color: #475569;
     }
 
+    /* ── Part label ── */
+    .part-label {
+      position: absolute;
+      top: 16px;
+      right: 40px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 4px;
+      z-index: 10;
+    }
+    .part-1 { background: rgba(56,189,248,0.15); color: var(--accent); }
+    .part-2 { background: rgba(192,132,252,0.15); color: var(--purple); }
+    .part-3 { background: rgba(74,222,128,0.15); color: var(--green); }
+
     /* ── Typography ── */
     h1 {
       font-size: 44px;
@@ -80,27 +97,27 @@
     }
     h1 .highlight { color: var(--accent); }
     h2 {
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 700;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       color: var(--accent);
       letter-spacing: -0.3px;
     }
     h3 {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       color: var(--purple);
     }
     h4 {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: var(--green);
     }
     p, li {
-      font-size: 17px;
-      line-height: 1.55;
+      font-size: 16px;
+      line-height: 1.5;
       color: var(--text);
     }
     .subtitle {
@@ -108,16 +125,13 @@
       color: var(--muted);
       margin-top: 8px;
     }
-    .small { font-size: 14px; color: var(--muted); }
+    .small { font-size: 13px; color: var(--muted); }
     strong { color: var(--text); }
 
     /* ── Layout helpers ── */
-    .flex { display: flex; gap: 32px; }
+    .flex { display: flex; gap: 28px; }
     .flex-1 { flex: 1; }
-    .flex-center { display: flex; align-items: center; justify-content: center; }
     .grow { flex: 1; }
-    .cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-    .cols-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
 
     /* ── Badge / tag ── */
     .badge {
@@ -140,11 +154,9 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 18px 20px;
+      padding: 16px 18px;
     }
-    .card-accent {
-      border-left: 4px solid var(--accent);
-    }
+    .card-accent { border-left: 4px solid var(--accent); }
     .card-green { border-left: 4px solid var(--green); }
     .card-purple { border-left: 4px solid var(--purple); }
     .card-orange { border-left: 4px solid var(--orange); }
@@ -154,62 +166,49 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 15px;
+      font-size: 14px;
     }
     th {
       text-align: left;
-      padding: 8px 12px;
+      padding: 7px 10px;
       background: var(--surface);
       color: var(--accent);
       font-weight: 700;
       border-bottom: 2px solid var(--accent);
-      font-size: 13px;
+      font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
     td {
-      padding: 7px 12px;
+      padding: 6px 10px;
       border-bottom: 1px solid var(--border);
       color: var(--text);
     }
     tr:last-child td { border-bottom: none; }
     .val-up { color: var(--green); font-weight: 700; }
-    .val-down { color: var(--red); font-weight: 700; }
     .val-ok { color: var(--green); }
-    .val-warn { color: var(--orange); }
-
-    /* ── Progress bars ── */
-    .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-    .bar-label { width: 160px; text-align: right; font-size: 14px; color: var(--muted); }
-    .bar-track { flex: 1; height: 12px; background: #1e293b; border-radius: 6px; overflow: hidden; }
-    .bar-fill { height: 100%; border-radius: 6px; }
-    .bar-pct { width: 45px; font-size: 13px; color: var(--muted); }
-    .bg-accent { background: linear-gradient(90deg, var(--accent), var(--purple)); }
-    .bg-green { background: linear-gradient(90deg, var(--green), #22d3ee); }
-    .bg-purple { background: linear-gradient(90deg, var(--purple), var(--pink)); }
-    .bg-orange { background: linear-gradient(90deg, var(--orange), var(--pink)); }
 
     /* ── KPI boxes ── */
-    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
     .kpi {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 16px;
+      padding: 14px;
       text-align: center;
     }
     .kpi .value {
-      font-size: 36px;
+      font-size: 34px;
       font-weight: 800;
       line-height: 1.1;
     }
     .kpi .label {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--muted);
       margin-top: 4px;
     }
     .kpi .delta {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       margin-top: 4px;
     }
@@ -219,10 +218,10 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 20px 24px;
+      padding: 18px 22px;
       font-family: 'Courier New', monospace;
-      font-size: 14px;
-      line-height: 1.5;
+      font-size: 13px;
+      line-height: 1.45;
       white-space: pre;
       color: var(--muted);
       overflow: hidden;
@@ -232,73 +231,46 @@
     .diagram .p { color: var(--purple); }
     .diagram .o { color: var(--orange); }
 
-    /* ── Timeline ── */
-    .timeline { position: relative; padding-left: 24px; }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 6px;
-      top: 4px;
-      bottom: 4px;
-      width: 3px;
-      background: var(--border);
-      border-radius: 2px;
+    /* ── Flow ── */
+    .flow { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .flow-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+      min-width: 90px;
     }
-    .tl-item { position: relative; margin-bottom: 14px; padding-left: 20px; }
-    .tl-item::before {
-      content: '';
-      position: absolute;
-      left: -22px;
-      top: 7px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--accent);
-      border: 2px solid var(--bg);
-    }
-    .tl-item.done::before { background: var(--green); }
-    .tl-item .tl-title { font-weight: 700; font-size: 15px; }
-    .tl-item .tl-desc { font-size: 13px; color: var(--muted); margin-top: 2px; }
+    .flow-arrow { color: var(--accent); font-size: 20px; font-weight: 700; }
 
     /* ── Lists ── */
     ul.clean { list-style: none; padding: 0; }
     ul.clean li {
-      padding: 5px 0 5px 24px;
+      padding: 4px 0 4px 22px;
       position: relative;
-      font-size: 16px;
+      font-size: 15px;
     }
     ul.clean li::before {
-      content: '→';
+      content: '>';
       position: absolute;
       left: 0;
       color: var(--accent);
       font-weight: 700;
+      font-family: 'Courier New', monospace;
     }
 
     /* ── Quote ── */
     .quote {
       border-left: 4px solid var(--accent);
-      padding: 12px 20px;
+      padding: 10px 18px;
       background: rgba(56,189,248,0.06);
       border-radius: 0 8px 8px 0;
       font-style: italic;
-      font-size: 18px;
+      font-size: 16px;
       color: var(--muted);
     }
-
-    /* ── Arrow flow ── */
-    .flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .flow-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 10px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      text-align: center;
-      min-width: 100px;
-    }
-    .flow-arrow { color: var(--accent); font-size: 22px; font-weight: 700; }
 
     /* ── Cover specific ── */
     .cover-center {
@@ -309,11 +281,6 @@
       justify-content: center;
       text-align: center;
     }
-    .cover-links {
-      display: flex;
-      gap: 24px;
-      margin-top: 24px;
-    }
     .cover-link {
       padding: 8px 24px;
       border: 1px solid var(--border);
@@ -323,6 +290,17 @@
       font-weight: 600;
     }
 
+    /* ── Bar rows ── */
+    .bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .bar-label { width: 130px; text-align: right; font-size: 13px; color: var(--muted); }
+    .bar-track { flex: 1; height: 10px; background: #1e293b; border-radius: 6px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 6px; }
+    .bar-pct { width: 40px; font-size: 12px; color: var(--muted); }
+    .bg-accent { background: linear-gradient(90deg, var(--accent), var(--purple)); }
+    .bg-green { background: linear-gradient(90deg, var(--green), #22d3ee); }
+    .bg-purple { background: linear-gradient(90deg, var(--purple), var(--pink)); }
+    .bg-orange { background: linear-gradient(90deg, var(--orange), var(--pink)); }
+
     @media print {
       body { background: var(--bg); }
       .slide { margin: 0; box-shadow: none; }
@@ -331,9 +309,9 @@
 </head>
 <body>
 
-<!-- ═════════════════════════════════════════════════════════════
+<!-- =====================================================================
      SLIDE 1 — COUVERTURE
-     ═════════════════════════════════════════════════════════════ -->
+     ===================================================================== -->
 <div class="slide">
   <div class="cover-center">
     <div style="margin-bottom: 16px;">
@@ -341,726 +319,742 @@
       <span class="badge badge-purple">ML Data Scientist</span>
     </div>
     <h1 style="font-size: 52px;">William <span class="highlight">Le Roux</span></h1>
-    <p class="subtitle">Machine Learning Data Scientist & Software Engineer</p>
+    <p class="subtitle">Machine Learning Data Scientist &amp; Software Engineer</p>
     <p style="color: var(--muted); margin-top: 12px; font-size: 16px;">
-      Epitech (Bachelor + Master IT) · UTT (Master InfoSec)<br>
-      France · Français natif · Anglais C1
+      Epitech (Bachelor + Master IT) &middot; UTT (Master InfoSec)<br>
+      France &middot; Fran&ccedil;ais natif &middot; Anglais C1
     </p>
-    <div class="cover-links">
-      <span class="cover-link">GitHub — Septimus4</span>
-      <span class="cover-link">LinkedIn — william-le-roux</span>
+    <div style="display:flex; gap: 24px; margin-top: 24px;">
+      <span class="cover-link">GitHub &mdash; Septimus4</span>
+      <span class="cover-link">LinkedIn &mdash; william-le-roux</span>
     </div>
-    <p style="margin-top: 40px; font-size: 14px; color: #475569;">
-      Projet personnel : <strong style="color: var(--accent);">LOCALTRIAGE</strong> — Plateforme de triage support client par LLM local
-    </p>
-  </div>
-  <div class="slide-footer">Soutenance Portfolio — Février 2026</div>
-  <div class="slide-num">1 / 12</div>
-</div>
-
-<!-- ═════════════════════════════════════════════════════════════
-     SLIDE 2 — MÉTHODOLOGIE DU PORTFOLIO
-     ═════════════════════════════════════════════════════════════ -->
-<div class="slide">
-  <h2>Méthodologie de construction du portfolio</h2>
-  <div class="flex grow">
-    <div class="flex-1">
-      <h3>Démarche en 5 étapes</h3>
-      <div class="timeline" style="margin-top: 16px;">
-        <div class="tl-item done">
-          <div class="tl-title">1. Inventaire</div>
-          <div class="tl-desc">Recensement de 41 repositories GitHub (personnels, formation, OSS)</div>
-        </div>
-        <div class="tl-item done">
-          <div class="tl-title">2. Sélection par pertinence</div>
-          <div class="tl-desc">Filtrage sur les compétences ML/DS : classification, RAG, MLOps, deep learning, NLP</div>
-        </div>
-        <div class="tl-item done">
-          <div class="tl-title">3. Structuration en 4 sections</div>
-          <div class="tl-desc">Compétences · Réflexivité · Soft skills · Mind map</div>
-        </div>
-        <div class="tl-item done">
-          <div class="tl-title">4. Format HTML responsive</div>
-          <div class="tl-desc">Thème GitHub sombre, portfolio en ligne consultable</div>
-        </div>
-        <div class="tl-item done">
-          <div class="tl-title">5. Validation croisée</div>
-          <div class="tl-desc">Chaque compétence ↔ un projet ↔ des métriques mesurables</div>
-        </div>
+    <div style="margin-top: 48px; display: flex; gap: 28px;">
+      <div style="text-align:center;">
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--accent); font-weight:700;">Partie 1</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:2px;">Contexte &amp; Pilotage</div>
       </div>
-    </div>
-    <div class="flex-1">
-      <h3>Principe directeur</h3>
-      <div class="quote" style="margin-bottom: 20px;">
-        Chaque affirmation est adossée à un livrable vérifiable : repo GitHub, rapport, métriques.
+      <div style="color:var(--border);">|</div>
+      <div style="text-align:center;">
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--purple); font-weight:700;">Partie 2</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:2px;">R&eacute;alisation &amp; R&eacute;sultats</div>
       </div>
-      <h3 style="margin-top: 24px;">Structure du portfolio</h3>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
-        <div class="card card-accent">
-          <h4 style="color: var(--accent); margin-bottom: 4px;">§1 Compétences & Projets</h4>
-          <p class="small">12 projets détaillés avec stack, métriques, liens GitHub</p>
-        </div>
-        <div class="card card-purple">
-          <h4 style="color: var(--purple); margin-bottom: 4px;">§2 Capacité réflexive</h4>
-          <p class="small">Ce qui a changé, erreurs, leçons, évolution du regard</p>
-        </div>
-        <div class="card card-orange">
-          <h4 style="color: var(--orange); margin-bottom: 4px;">§3 Soft skills</h4>
-          <p class="small">8 compétences illustrées par des exemples concrets</p>
-        </div>
-        <div class="card card-green">
-          <h4 style="color: var(--green); margin-bottom: 4px;">§4 Mind map</h4>
-          <p class="small">Vue synthétique de l'ensemble du profil</p>
-        </div>
+      <div style="color:var(--border);">|</div>
+      <div style="text-align:center;">
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--green); font-weight:700;">Partie 3</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:2px;">Portfolio</div>
       </div>
     </div>
   </div>
-  <div class="slide-footer">Soutenance Portfolio — Février 2026</div>
-  <div class="slide-num">2 / 12</div>
+  <div class="slide-footer">Soutenance Portfolio &mdash; F&eacute;vrier 2026</div>
+  <div class="slide-num">1 / 11</div>
 </div>
 
-<!-- ═════════════════════════════════════════════════════════════
-     SLIDE 3 — PROFIL & COMPÉTENCES
-     ═════════════════════════════════════════════════════════════ -->
+
+<!-- =====================================================================
+     PARTIE 1 — CONTEXTE & GESTION DE PROJET
+     ===================================================================== -->
+
+
+<!-- =====================================================================
+     SLIDE 2 — CONTEXTE ORGANISATIONNEL & PROBLEME METIER
+     ===================================================================== -->
 <div class="slide">
-  <h2>Profil & compétences techniques</h2>
-  <div class="flex grow">
-    <div class="flex-1">
-      <h3>Machine Learning & Data Science</h3>
-      <div style="margin-top: 8px;">
-        <div class="bar-row"><span class="bar-label">scikit-learn</span><div class="bar-track"><div class="bar-fill bg-purple" style="width:90%"></div></div><span class="bar-pct">90%</span></div>
-        <div class="bar-row"><span class="bar-label">NLP / Classification</span><div class="bar-track"><div class="bar-fill bg-purple" style="width:85%"></div></div><span class="bar-pct">85%</span></div>
-        <div class="bar-row"><span class="bar-label">LLMs & Prompt Eng.</span><div class="bar-track"><div class="bar-fill bg-purple" style="width:85%"></div></div><span class="bar-pct">85%</span></div>
-        <div class="bar-row"><span class="bar-label">RAG Systems</span><div class="bar-track"><div class="bar-fill bg-purple" style="width:85%"></div></div><span class="bar-pct">85%</span></div>
-        <div class="bar-row"><span class="bar-label">MLflow / Tracking</span><div class="bar-track"><div class="bar-fill bg-purple" style="width:80%"></div></div><span class="bar-pct">80%</span></div>
-        <div class="bar-row"><span class="bar-label">PyTorch / DL</span><div class="bar-track"><div class="bar-fill bg-purple" style="width:70%"></div></div><span class="bar-pct">70%</span></div>
-      </div>
-
-      <h3 style="margin-top: 16px;">Langages de programmation</h3>
-      <div style="margin-top: 8px;">
-        <div class="bar-row"><span class="bar-label">Python</span><div class="bar-track"><div class="bar-fill bg-accent" style="width:95%"></div></div><span class="bar-pct">95%</span></div>
-        <div class="bar-row"><span class="bar-label">SQL</span><div class="bar-track"><div class="bar-fill bg-accent" style="width:80%"></div></div><span class="bar-pct">80%</span></div>
-        <div class="bar-row"><span class="bar-label">Go</span><div class="bar-track"><div class="bar-fill bg-accent" style="width:65%"></div></div><span class="bar-pct">65%</span></div>
-        <div class="bar-row"><span class="bar-label">TypeScript</span><div class="bar-track"><div class="bar-fill bg-accent" style="width:55%"></div></div><span class="bar-pct">55%</span></div>
-      </div>
-    </div>
-    <div class="flex-1">
-      <h3>Engineering & Infrastructure</h3>
-      <div style="margin-top: 8px;">
-        <div class="bar-row"><span class="bar-label">FastAPI / REST</span><div class="bar-track"><div class="bar-fill bg-orange" style="width:90%"></div></div><span class="bar-pct">90%</span></div>
-        <div class="bar-row"><span class="bar-label">Docker / Compose</span><div class="bar-track"><div class="bar-fill bg-orange" style="width:85%"></div></div><span class="bar-pct">85%</span></div>
-        <div class="bar-row"><span class="bar-label">CI/CD (GH Actions)</span><div class="bar-track"><div class="bar-fill bg-orange" style="width:85%"></div></div><span class="bar-pct">85%</span></div>
-        <div class="bar-row"><span class="bar-label">PostgreSQL / Qdrant</span><div class="bar-track"><div class="bar-fill bg-orange" style="width:80%"></div></div><span class="bar-pct">80%</span></div>
-        <div class="bar-row"><span class="bar-label">Streamlit / Gradio</span><div class="bar-track"><div class="bar-fill bg-orange" style="width:80%"></div></div><span class="bar-pct">80%</span></div>
-        <div class="bar-row"><span class="bar-label">Ollama / vLLM / CUDA</span><div class="bar-track"><div class="bar-fill bg-orange" style="width:75%"></div></div><span class="bar-pct">75%</span></div>
-      </div>
-
-      <h3 style="margin-top: 20px;">Formation & communauté</h3>
-      <div class="card" style="margin-top: 8px; font-size: 14px; line-height: 1.7;">
-        <strong style="color: var(--accent);">Epitech</strong> — Bachelor + Master Informatique<br>
-        <strong style="color: var(--accent);">UTT</strong> — Master Sécurité Informatique<br><br>
-        <span style="color: var(--muted);">Conférences :</span> ETHDenver · ETHcc · Devcon · LeHack<br>
-        <span style="color: var(--muted);">OSS :</span> Sponsor NumFocus, Django + 7 projets
-      </div>
-    </div>
-  </div>
-  <div class="slide-footer">Soutenance Portfolio — Février 2026</div>
-  <div class="slide-num">3 / 12</div>
-</div>
-
-<!-- ═════════════════════════════════════════════════════════════
-     SLIDE 4 — PANORAMA DES PROJETS
-     ═════════════════════════════════════════════════════════════ -->
-<div class="slide">
-  <h2>Panorama des projets réalisés</h2>
+  <div class="part-label part-1">Partie 1 &mdash; Contexte</div>
+  <h2>Contexte organisationnel &amp; probl&egrave;me m&eacute;tier</h2>
   <div class="flex grow" style="gap: 24px;">
     <div class="flex-1">
-      <h3>Projets personnels</h3>
+      <h3>Contexte du secteur</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px;">
+        <div class="card card-accent" style="padding:12px 14px;">
+          <div style="font-size:28px; font-weight:800; color:var(--accent);">+50-200%</div>
+          <div class="small">Croissance annuelle du volume de tickets</div>
+        </div>
+        <div class="card card-pink" style="padding:12px 14px;">
+          <div style="font-size:28px; font-weight:800; color:var(--pink);">40%</div>
+          <div class="small">Turnover annuel des agents support</div>
+        </div>
+        <div class="card card-orange" style="padding:12px 14px;">
+          <div style="font-size:28px; font-weight:800; color:var(--orange);">68%</div>
+          <div class="small">Entreprises : vie priv&eacute;e = frein n&deg;1 pour l'IA</div>
+        </div>
+        <div class="card card-purple" style="padding:12px 14px;">
+          <div style="font-size:28px; font-weight:800; color:var(--purple);">&lt;1h</div>
+          <div class="small">Attente client pour 1&egrave;re r&eacute;ponse</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:16px;">Probl&egrave;mes identifi&eacute;s</h3>
+      <ul class="clean" style="margin-top:6px; font-size:14px;">
+        <li><strong>Triage manuel lent :</strong> 15-30 min/shift sur le routage</li>
+        <li><strong>R&eacute;ponses incoh&eacute;rentes :</strong> qualit&eacute; variable selon les agents</li>
+        <li><strong>Silos de connaissance :</strong> expertise bloqu&eacute;e dans les t&ecirc;tes</li>
+        <li><strong>Vie priv&eacute;e :</strong> impossible d'utiliser des API cloud (GPT-4, etc.)</li>
+      </ul>
+    </div>
+    <div class="flex-1">
+      <h3>Analyse des parties prenantes</h3>
+      <table style="margin-top:8px; font-size:13px;">
+        <tr><th>Partie prenante</th><th>Besoin principal</th><th>KPI de succ&egrave;s</th></tr>
+        <tr><td>Agent support</td><td>Brouillons rapides, contexte pertinent</td><td>Taux d'acceptation</td></tr>
+        <tr><td>Team lead</td><td>Routage pr&eacute;cis, visibilit&eacute; SLA</td><td>% routage correct</td></tr>
+        <tr><td>Product manager</td><td>Tendances, insights produit</td><td>D&eacute;tection de th&egrave;mes</td></tr>
+        <tr><td>S&eacute;curit&eacute; / IT</td><td>Traitement local, tra&ccedil;abilit&eacute;</td><td>Z&eacute;ro fuite de donn&eacute;es</td></tr>
+      </table>
+
+      <h3 style="margin-top:16px;">Opportunit&eacute; business</h3>
+      <div class="quote" style="margin-top:8px; font-size:14px;">
+        D&eacute;ployer un syst&egrave;me LLM local pour r&eacute;duire le temps de r&eacute;ponse de 40-60%, am&eacute;liorer le routage &agrave; &gt;90%, et garantir la souverainet&eacute; des donn&eacute;es.
+      </div>
+
+      <div style="margin-top:14px; display:flex; gap:8px;">
+        <span class="badge badge-blue">Self-hosted</span>
+        <span class="badge badge-purple">LLM local</span>
+        <span class="badge badge-green">Z&eacute;ro data egress</span>
+        <span class="badge badge-orange">RAG + citations</span>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">Soutenance Portfolio &mdash; F&eacute;vrier 2026</div>
+  <div class="slide-num">2 / 11</div>
+</div>
+
+<!-- =====================================================================
+     SLIDE 3 — COLLECTE DES BESOINS & BRD
+     ===================================================================== -->
+<div class="slide">
+  <div class="part-label part-1">Partie 1 &mdash; Besoins</div>
+  <h2>Collecte des besoins m&eacute;tiers &amp; formalisation (BRD)</h2>
+  <div class="flex grow" style="gap: 24px;">
+    <div class="flex-1">
+      <h3>KPIs cibles d&eacute;finis dans le BRD</h3>
+      <table style="margin-top:8px;">
+        <tr><th>KPI</th><th>Baseline</th><th>Cible</th></tr>
+        <tr><td>Temps avant 1er brouillon</td><td>8 min</td><td style="color:var(--green);font-weight:700;">2 min</td></tr>
+        <tr><td>Routage correct</td><td>30% (classe majoritaire)</td><td style="color:var(--green);font-weight:700;">90%</td></tr>
+        <tr><td>Taux d'acceptation brouillon</td><td>N/A</td><td style="color:var(--green);font-weight:700;">70%</td></tr>
+        <tr><td>Taux d'hallucination</td><td>N/A</td><td style="color:var(--green);font-weight:700;">&lt; 2%</td></tr>
+        <tr><td>Latence p95 (E2E)</td><td>&lt; 100ms (templates)</td><td style="color:var(--green);font-weight:700;">&lt; 30s</td></tr>
+        <tr><td>D&eacute;tection th&egrave;mes &eacute;mergents</td><td>5 jours</td><td style="color:var(--green);font-weight:700;">1 jour</td></tr>
+        <tr><td>Disponibilit&eacute;</td><td>&mdash;</td><td style="color:var(--green);font-weight:700;">99.5%</td></tr>
+      </table>
+
+      <h3 style="margin-top:16px;">Exigences formalis&eacute;es</h3>
+      <div style="display:flex; gap:10px; margin-top:8px;">
+        <div class="card card-accent" style="flex:1; text-align:center; padding:12px;">
+          <div style="font-size:28px; font-weight:800; color:var(--accent);">25</div>
+          <div class="small">Exigences fonctionnelles</div>
+        </div>
+        <div class="card card-purple" style="flex:1; text-align:center; padding:12px;">
+          <div style="font-size:28px; font-weight:800; color:var(--purple);">16</div>
+          <div class="small">Exigences non-fonctionnelles</div>
+        </div>
+        <div class="card card-orange" style="flex:1; text-align:center; padding:12px;">
+          <div style="font-size:28px; font-weight:800; color:var(--orange);">10</div>
+          <div class="small">Risques identifi&eacute;s &amp; scor&eacute;s</div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-1">
+      <h3>Livrables de cadrage produits</h3>
       <div style="display:flex; flex-direction:column; gap:10px; margin-top:8px;">
         <div class="card card-accent" style="padding:12px 16px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <div>
-              <span class="badge badge-blue">LLM</span> <span class="badge badge-purple">RAG</span>
-              <div style="font-weight:700; margin-top:4px;">LOCALTRIAGE</div>
-              <div class="small">Triage support client · LLM local · RAG avec citations</div>
-            </div>
-            <div style="text-align:right;">
-              <div style="font-size:22px;font-weight:800;color:var(--green);">73.3%</div>
-              <div class="small">routing accuracy</div>
-            </div>
-          </div>
+          <h4 style="color:var(--accent); margin-bottom:4px;">BRD (Business Requirements Document)</h4>
+          <p class="small">25 exigences fonctionnelles, 16 non-fonctionnelles, KPIs quantifi&eacute;s, stakeholder analysis, acceptance criteria</p>
         </div>
-        <div class="card" style="padding:12px 16px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <div>
-              <span class="badge badge-green">IoT</span>
-              <div style="font-weight:700;margin-top:4px;">Planar</div>
-              <div class="small">LiDAR indoor scanning · Raspberry Pi · 195 tests</div>
-            </div>
-          </div>
+        <div class="card card-purple" style="padding:12px 16px;">
+          <h4 style="color:var(--purple); margin-bottom:4px;">Context Analysis</h4>
+          <p class="small">Paysage concurrentiel, &eacute;cosyst&egrave;me LLM locaux (2026), patterns RAG, barri&egrave;res d'adoption, options de quantification</p>
         </div>
-        <div class="card" style="padding:12px 16px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <div>
-              <span class="badge badge-orange">Sécurité</span> <span class="badge badge-green">OSS</span>
-              <div style="font-weight:700;margin-top:4px;">Chronogen</div>
-              <div class="small">Wordlist generator · PyPI · 16 stars · 6 forks</div>
-            </div>
-          </div>
+        <div class="card card-orange" style="padding:12px 16px;">
+          <h4 style="color:var(--orange); margin-bottom:4px;">Risk Register</h4>
+          <p class="small">10 risques (probabilit&eacute; &times; impact), mitigations planifi&eacute;es, contingency plans, owners assign&eacute;s</p>
         </div>
-        <div class="card" style="padding:12px 16px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <div>
-              <span class="badge badge-purple">NLP</span>
-              <div style="font-weight:700;margin-top:4px;">Concord &middot; Weebo</div>
-              <div class="small">BERTopic + Neo4j · LLM workbench RTX 5090</div>
-            </div>
-          </div>
+        <div class="card card-green" style="padding:12px 16px;">
+          <h4 style="color:var(--green); margin-bottom:4px;">Decision Matrix</h4>
+          <p class="small">Crit&egrave;res pond&eacute;r&eacute;s (qualit&eacute; 30%, vitesse 25%, m&eacute;moire 20%, licence 15%, &eacute;cosyst&egrave;me 10%), score composite par alternative</p>
         </div>
       </div>
-    </div>
-    <div class="flex-1">
-      <h3>Projets de formation</h3>
-      <div style="display:flex; flex-direction:column; gap:10px; margin-top:8px;">
-        <div class="card card-purple" style="padding:12px 16px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <div>
-              <span class="badge badge-purple">MLOps</span>
-              <div style="font-weight:700;margin-top:4px;">Home Credit MLOps Pipeline</div>
-              <div class="small">MLflow · Evidently · FastAPI · Docker · CI/CD</div>
-            </div>
-          </div>
-        </div>
-        <div class="card card-purple" style="padding:12px 16px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <div>
-              <span class="badge badge-pink">Classification</span>
-              <div style="font-weight:700;margin-top:4px;">HR Analytics</div>
-              <div class="small">Turnover prediction · Feature engineering · SHAP</div>
-            </div>
-            <div style="text-align:right;">
-              <div style="font-size:22px;font-weight:800;color:var(--green);">+269%</div>
-              <div class="small">F1-score</div>
-            </div>
-          </div>
-        </div>
-        <div class="card card-purple" style="padding:12px 16px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <div>
-              <span class="badge badge-blue">RAG</span>
-              <div style="font-weight:700;margin-top:4px;">SportSee RAG Evaluation</div>
-              <div class="small">RAGAS · NL→SQL · Logfire observability</div>
-            </div>
-          </div>
-        </div>
-        <div class="card card-purple" style="padding:12px 16px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <div>
-              <span class="badge badge-orange">Deep Learning</span>
-              <div style="font-weight:700;margin-top:4px;">Semi-Supervised MRI</div>
-              <div class="small">ResNet-18 · Threshold calibration · Brain tumor</div>
-            </div>
-          </div>
-        </div>
+      <div class="quote" style="margin-top:14px; font-size:13px;">
+        Chaque d&eacute;cision est tra&ccedil;able : du besoin m&eacute;tier au KPI, du KPI &agrave; l'exigence, de l'exigence au choix technique.
       </div>
     </div>
   </div>
-  <div class="slide-footer">Soutenance Portfolio — Février 2026</div>
-  <div class="slide-num">4 / 12</div>
+  <div class="slide-footer">Soutenance Portfolio &mdash; F&eacute;vrier 2026</div>
+  <div class="slide-num">3 / 11</div>
 </div>
 
-<!-- ═════════════════════════════════════════════════════════════
-     SLIDE 5 — LOCALTRIAGE : CONTEXTE & BESOINS
-     ═════════════════════════════════════════════════════════════ -->
+<!-- =====================================================================
+     SLIDE 4 — APPUI STRATEGIQUE & DECISION MATRIX
+     ===================================================================== -->
 <div class="slide">
-  <h2>LOCALTRIAGE — Contexte & analyse des besoins</h2>
-  <div class="flex grow" style="gap: 28px;">
+  <div class="part-label part-1">Partie 1 &mdash; Strat&eacute;gie</div>
+  <h2>Appui strat&eacute;gique &amp; m&eacute;thodologique pour la prise de d&eacute;cision</h2>
+  <div class="flex grow" style="gap: 24px;">
     <div class="flex-1">
-      <h3>Problème métier</h3>
-      <ul class="clean" style="margin-top:8px;">
-        <li><strong>Triage manuel lent :</strong> 15-30 min/shift sur le routage</li>
-        <li><strong>Réponses incohérentes :</strong> qualité variable entre agents</li>
-        <li><strong>Silos de connaissance :</strong> expertise dans les têtes</li>
-        <li><strong>Contrainte vie privée :</strong> pas de cloud AI (GPT-4 interdit)</li>
-      </ul>
-
-      <h3 style="margin-top: 20px;">Parties prenantes</h3>
+      <h3>Decision Matrix &mdash; choix argument&eacute;s</h3>
       <table style="margin-top:8px; font-size:13px;">
-        <tr><th>Qui</th><th>Besoin</th><th>KPI</th></tr>
-        <tr><td>Agent support</td><td>Brouillons rapides</td><td>Taux acceptation</td></tr>
-        <tr><td>Team lead</td><td>Routage précis</td><td>% routage correct</td></tr>
-        <tr><td>Product manager</td><td>Insights produit</td><td>Détection thèmes</td></tr>
-        <tr><td>Sécurité / IT</td><td>Traitement local</td><td>Zéro fuite</td></tr>
-      </table>
-    </div>
-    <div class="flex-1">
-      <h3>KPIs cibles définis dans le BRD</h3>
-      <table style="margin-top:8px; font-size: 14px;">
-        <tr><th>KPI</th><th>Baseline</th><th>Cible</th></tr>
-        <tr><td>Temps → 1er brouillon</td><td>8 min</td><td style="color:var(--green);font-weight:700;">2 min</td></tr>
-        <tr><td>Routage correct</td><td>30%</td><td style="color:var(--green);font-weight:700;">90%</td></tr>
-        <tr><td>Acceptation brouillon</td><td>N/A</td><td style="color:var(--green);font-weight:700;">70%</td></tr>
-        <tr><td>Hallucinations</td><td>N/A</td><td style="color:var(--green);font-weight:700;">< 2%</td></tr>
-        <tr><td>Latence p95</td><td>< 100ms</td><td style="color:var(--green);font-weight:700;">< 30s</td></tr>
+        <tr><th>Composant</th><th>S&eacute;lection</th><th>Alternatives &eacute;valu&eacute;es</th><th>Crit&egrave;re d&eacute;cisif</th></tr>
+        <tr><td>LLM</td><td style="color:var(--accent); font-weight:700;">Qwen3:32B</td><td>Mistral-7B, Llama-3.1-8B, Qwen2.5-14B</td><td>Qualit&eacute; vs m&eacute;moire</td></tr>
+        <tr><td>Embeddings</td><td style="color:var(--accent); font-weight:700;">Qwen3-Emb-8B</td><td>MiniLM-L6, nomic-embed, BGE</td><td>MTEB #1 (70.58)</td></tr>
+        <tr><td>Vector DB</td><td style="color:var(--accent); font-weight:700;">Qdrant</td><td>FAISS, Chroma, pgvector</td><td>Filtrage m&eacute;tadonn&eacute;es</td></tr>
+        <tr><td>Retrieval</td><td style="color:var(--accent); font-weight:700;">Hybride + RRF</td><td>BM25 seul, Dense seul</td><td>+20.8pp recall</td></tr>
+        <tr><td>LLM Serving</td><td style="color:var(--accent); font-weight:700;">vLLM / Ollama</td><td>llama.cpp, TGI</td><td>PagedAttention</td></tr>
+        <tr><td>API</td><td style="color:var(--accent); font-weight:700;">FastAPI</td><td>Flask, Django REST</td><td>Async + OpenAPI</td></tr>
       </table>
 
-      <h3 style="margin-top: 20px;">Documents produits</h3>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px;">
-        <div class="card card-accent" style="padding:10px 14px;">
-          <div style="font-weight:700; font-size:14px; color:var(--accent);">BRD</div>
-          <div class="small">25 exigences fonctionnelles<br>16 non-fonctionnelles</div>
+      <h3 style="margin-top:16px;">Gestion proactive des risques</h3>
+      <table style="margin-top:8px; font-size:13px;">
+        <tr><th>Risque</th><th>Score</th><th>Mitigation appliqu&eacute;e</th></tr>
+        <tr><td>Mod&egrave;le trop gros / VRAM</td><td><span class="badge badge-orange" style="font-size:11px;">6</span></td><td style="color:var(--green);">Quantization Q4_K_M + fallback 7B</td></tr>
+        <tr><td>Latence excessive</td><td><span class="badge badge-orange" style="font-size:11px;">4</span></td><td style="color:var(--green);">Budget latence par composant</td></tr>
+        <tr><td>Retrieval insuffisant</td><td><span class="badge badge-orange" style="font-size:11px;">3</span></td><td style="color:var(--green);">Hybride BM25 + Dense + RRF</td></tr>
+        <tr><td>Qualit&eacute; donn&eacute;es KB</td><td><span class="badge badge-orange" style="font-size:11px;">4</span></td><td style="color:var(--green);">Pipeline de validation</td></tr>
+      </table>
+    </div>
+    <div style="flex: 0.6;">
+      <h3>M&eacute;thode de scoring</h3>
+      <div class="card" style="margin-top:8px; padding:14px;">
+        <p style="font-size:13px; color:var(--muted); line-height:1.65;">
+          Chaque composant &eacute;valu&eacute; sur <strong style="color:var(--text);">5 crit&egrave;res pond&eacute;r&eacute;s</strong> :
+        </p>
+        <div style="margin-top:10px;">
+          <div class="bar-row"><span class="bar-label" style="width:100px;">Qualit&eacute;</span><div class="bar-track"><div class="bar-fill bg-accent" style="width:30%"></div></div><span class="bar-pct">30%</span></div>
+          <div class="bar-row"><span class="bar-label" style="width:100px;">Vitesse</span><div class="bar-track"><div class="bar-fill bg-purple" style="width:25%"></div></div><span class="bar-pct">25%</span></div>
+          <div class="bar-row"><span class="bar-label" style="width:100px;">M&eacute;moire</span><div class="bar-track"><div class="bar-fill bg-orange" style="width:20%"></div></div><span class="bar-pct">20%</span></div>
+          <div class="bar-row"><span class="bar-label" style="width:100px;">Licence</span><div class="bar-track"><div class="bar-fill bg-green" style="width:15%"></div></div><span class="bar-pct">15%</span></div>
+          <div class="bar-row"><span class="bar-label" style="width:100px;">&Eacute;cosyst&egrave;me</span><div class="bar-track"><div class="bar-fill" style="width:10%; background:var(--pink);"></div></div><span class="bar-pct">10%</span></div>
         </div>
-        <div class="card card-purple" style="padding:10px 14px;">
-          <div style="font-weight:700; font-size:14px; color:var(--purple);">Context Analysis</div>
-          <div class="small">LLM locaux, RAG patterns,<br>landscape concurrentiel</div>
-        </div>
-        <div class="card card-orange" style="padding:10px 14px;">
-          <div style="font-weight:700; font-size:14px; color:var(--orange);">Risk Register</div>
-          <div class="small">10 risques scorés<br>mitigations planifiées</div>
-        </div>
-        <div class="card card-green" style="padding:10px 14px;">
-          <div style="font-weight:700; font-size:14px; color:var(--green);">Decision Matrix</div>
-          <div class="small">Critères pondérés<br>chaque choix argumenté</div>
-        </div>
+        <p class="small" style="margin-top:10px;">Score composite = somme pond&eacute;r&eacute;e des notes /100 par crit&egrave;re.</p>
+      </div>
+
+      <h3 style="margin-top:16px;">Tra&ccedil;abilit&eacute; compl&egrave;te</h3>
+      <div class="card card-green" style="margin-top:8px; padding:14px;">
+        <p style="font-size:13px; color:var(--muted); line-height:1.6;">
+          <strong style="color:var(--text);">Besoin m&eacute;tier</strong><br>
+          &nbsp;&nbsp;&darr; formalis&eacute; en<br>
+          <strong style="color:var(--text);">Exigence BRD</strong><br>
+          &nbsp;&nbsp;&darr; oriente le<br>
+          <strong style="color:var(--text);">Choix technique</strong> (Decision Matrix)<br>
+          &nbsp;&nbsp;&darr; valid&eacute; par<br>
+          <strong style="color:var(--text);">KPI mesur&eacute;</strong> (Evaluation Harness)
+        </p>
       </div>
     </div>
   </div>
-  <div class="slide-footer">Soutenance Portfolio — Février 2026</div>
-  <div class="slide-num">5 / 12</div>
+  <div class="slide-footer">Soutenance Portfolio &mdash; F&eacute;vrier 2026</div>
+  <div class="slide-num">4 / 11</div>
 </div>
 
-<!-- ═════════════════════════════════════════════════════════════
-     SLIDE 6 — LOCALTRIAGE : ARCHITECTURE
-     ═════════════════════════════════════════════════════════════ -->
+<!-- =====================================================================
+     SLIDE 5 — PILOTAGE DU PROJET : DELAIS, COUTS, LIVRABLES
+     ===================================================================== -->
 <div class="slide">
-  <h2>LOCALTRIAGE — Architecture de la solution</h2>
+  <div class="part-label part-1">Partie 1 &mdash; Pilotage</div>
+  <h2>Pilotage du projet &mdash; d&eacute;lais, co&ucirc;ts, livrables, performance</h2>
+  <div class="flex grow" style="gap: 24px;">
+    <div style="flex: 1.2;">
+      <h3>Plan en 3 semaines &mdash; 3 milestones</h3>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top:8px;">
+        <div class="card" style="border-top: 4px solid var(--accent); padding:12px 14px;">
+          <h4 style="color: var(--accent); font-size: 14px; margin-bottom:8px;">S1 &mdash; Fondations</h4>
+          <ul class="clean" style="font-size: 12px;">
+            <li>BRD, Context, architecture</li>
+            <li>Sch&eacute;ma BDD + ingestion</li>
+            <li>Classifier baseline (TF-IDF)</li>
+            <li>Retrieval BM25</li>
+          </ul>
+          <div style="margin-top: 8px;"><span class="badge badge-green">Milestone 1</span></div>
+        </div>
+        <div class="card" style="border-top: 4px solid var(--purple); padding:12px 14px;">
+          <h4 style="color: var(--purple); font-size: 14px; margin-bottom:8px;">S2 &mdash; LLM &amp; RAG</h4>
+          <ul class="clean" style="font-size: 12px;">
+            <li>Vector store + embeddings</li>
+            <li>Retrieval hybride + RRF</li>
+            <li>Int&eacute;gration LLM Qwen3:32B</li>
+            <li>Pipeline RAG + citations</li>
+          </ul>
+          <div style="margin-top: 8px;"><span class="badge badge-green">Milestone 2</span></div>
+        </div>
+        <div class="card" style="border-top: 4px solid var(--green); padding:12px 14px;">
+          <h4 style="color: var(--green); font-size: 14px; margin-bottom:8px;">S3 &mdash; Eval &amp; Deploy</h4>
+          <ul class="clean" style="font-size: 12px;">
+            <li>Evaluation harness</li>
+            <li>API FastAPI (6 endpoints)</li>
+            <li>Dashboard Streamlit</li>
+            <li>Docker + documentation</li>
+          </ul>
+          <div style="margin-top: 8px;"><span class="badge badge-green">Milestone 3</span></div>
+        </div>
+      </div>
+
+      <div style="margin-top: 16px; display: flex; gap: 12px;">
+        <div class="card" style="flex:1; text-align:center; padding:12px;">
+          <div style="font-size:28px; font-weight:800; color:var(--green);">8/8</div>
+          <div class="small">livrables livr&eacute;s</div>
+        </div>
+        <div class="card" style="flex:1; text-align:center; padding:12px;">
+          <div style="font-size:28px; font-weight:800; color:var(--green);">3 sem.</div>
+          <div class="small">dans les d&eacute;lais</div>
+        </div>
+        <div class="card" style="flex:1; text-align:center; padding:12px;">
+          <div style="font-size:28px; font-weight:800; color:var(--accent);">Solo</div>
+          <div class="small">d&eacute;veloppement</div>
+        </div>
+        <div class="card" style="flex:1; text-align:center; padding:12px;">
+          <div style="font-size:28px; font-weight:800; color:var(--purple);">0 &euro;</div>
+          <div class="small">co&ucirc;t cloud (100% local)</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex: 0.55;">
+      <h3>Livrables produits</h3>
+      <div style="margin-top: 8px; font-size: 13px; line-height: 1.9;">
+        <span class="val-ok">[OK]</span> Pipeline d'ingestion<br>
+        <span class="val-ok">[OK]</span> Audit baseline &amp; mesures<br>
+        <span class="val-ok">[OK]</span> Routage automatis&eacute;<br>
+        <span class="val-ok">[OK]</span> Drafting RAG + citations<br>
+        <span class="val-ok">[OK]</span> Dashboard analytics<br>
+        <span class="val-ok">[OK]</span> Evaluation harness<br>
+        <span class="val-ok">[OK]</span> D&eacute;ploiement Docker<br>
+        <span class="val-ok">[OK]</span> Documentation compl&egrave;te
+      </div>
+
+      <h3 style="margin-top:14px;">Chemin critique</h3>
+      <p class="small" style="margin-top: 6px; line-height: 1.65;">
+        Schema &rarr; Ingestion &rarr; Vector Store &rarr; Hybrid Retrieval &rarr; RAG &rarr; API
+      </p>
+      <p class="small" style="margin-top:6px;">
+        <strong style="color:var(--text);">Parall&eacute;lisation :</strong> baselines d&eacute;velopp&eacute;es en parall&egrave;le de l'int&eacute;gration LLM.
+      </p>
+    </div>
+  </div>
+  <div class="slide-footer">Soutenance Portfolio &mdash; F&eacute;vrier 2026</div>
+  <div class="slide-num">5 / 11</div>
+</div>
+
+
+<!-- =====================================================================
+     PARTIE 2 — REALISATION TECHNIQUE & RESULTATS
+     ===================================================================== -->
+
+
+<!-- =====================================================================
+     SLIDE 6 — ARCHITECTURE & CHOIX TECHNIQUES
+     ===================================================================== -->
+<div class="slide">
+  <div class="part-label part-2">Partie 2 &mdash; Architecture</div>
+  <h2>Architecture de la solution &amp; pipeline</h2>
   <div class="flex grow" style="gap: 24px;">
     <div style="flex: 1.3;">
-      <div class="diagram" style="font-size: 13.5px; line-height: 1.45;">
-<span class="hl">┌─────────────────────────────────────────┐</span>
-<span class="hl">│      PRÉSENTATION</span> — Streamlit Dashboard <span class="hl">│</span>
-<span class="hl">├─────────────────────────────────────────┤</span>
-<span class="hl">│      API</span> — FastAPI (6 endpoints)         <span class="hl">│</span>
-<span class="hl">├────────────┬────────────┬───────────────┤</span>
-<span class="hl">│</span> <span class="g">TRIAGE</span>     <span class="hl">│</span> <span class="p">RETRIEVAL</span>  <span class="hl">│</span> <span class="o">RAG DRAFTER</span>   <span class="hl">│</span>
-<span class="hl">│</span> <span class="g">TF-IDF +</span>   <span class="hl">│</span> <span class="p">BM25 +</span>     <span class="hl">│</span> <span class="o">LLM + Prompt</span>  <span class="hl">│</span>
-<span class="hl">│</span> <span class="g">LogReg</span>     <span class="hl">│</span> <span class="p">Dense + RRF</span> <span class="hl">│</span> <span class="o">+ Citations</span>   <span class="hl">│</span>
-<span class="hl">├────────────┴────────────┴───────────────┤</span>
-<span class="hl">│      DATA</span> — PostgreSQL · Qdrant · Models <span class="hl">│</span>
-<span class="hl">├─────────────────────────────────────────┤</span>
-<span class="hl">│      INFRA</span> — Docker Compose · vLLM       <span class="hl">│</span>
-<span class="hl">└─────────────────────────────────────────┘</span></div>
+      <div class="diagram" style="font-size: 13px; line-height: 1.4;">
+<span class="hl">+------------------------------------------+</span>
+<span class="hl">|      PRESENTATION</span> -- Streamlit Dashboard  <span class="hl">|</span>
+<span class="hl">+------------------------------------------+</span>
+<span class="hl">|      API</span> -- FastAPI (6 endpoints)          <span class="hl">|</span>
+<span class="hl">+-------------+------------+---------------+</span>
+<span class="hl">|</span> <span class="g">TRIAGE</span>      <span class="hl">|</span> <span class="p">RETRIEVAL</span>   <span class="hl">|</span> <span class="o">RAG DRAFTER</span>   <span class="hl">|</span>
+<span class="hl">|</span> <span class="g">TF-IDF +</span>    <span class="hl">|</span> <span class="p">BM25 +</span>      <span class="hl">|</span> <span class="o">LLM + Prompt</span>  <span class="hl">|</span>
+<span class="hl">|</span> <span class="g">LogReg</span>      <span class="hl">|</span> <span class="p">Dense + RRF</span>  <span class="hl">|</span> <span class="o">+ Citations</span>   <span class="hl">|</span>
+<span class="hl">+-------------+------------+---------------+</span>
+<span class="hl">|      DATA</span> -- PostgreSQL / Qdrant / Models  <span class="hl">|</span>
+<span class="hl">+------------------------------------------+</span>
+<span class="hl">|      INFRA</span> -- Docker Compose / vLLM        <span class="hl">|</span>
+<span class="hl">+------------------------------------------+</span></div>
 
-      <h3 style="margin-top: 16px;">Pipeline de traitement</h3>
-      <div class="flow" style="margin-top: 10px;">
-        <div class="flow-box" style="border-color: var(--muted);">Ticket<br>entrant</div>
-        <span class="flow-arrow">→</span>
+      <h3 style="margin-top: 14px;">Pipeline de traitement d'un ticket</h3>
+      <div class="flow" style="margin-top: 8px;">
+        <div class="flow-box" style="border-color: var(--muted);">Ticket<br><span class="small">entrant</span></div>
+        <span class="flow-arrow">&rarr;</span>
         <div class="flow-box" style="border-color: var(--green);">Triage<br><span class="small">cat + prio</span></div>
-        <span class="flow-arrow">→</span>
+        <span class="flow-arrow">&rarr;</span>
         <div class="flow-box" style="border-color: var(--purple);">Retrieval<br><span class="small">BM25+Dense</span></div>
-        <span class="flow-arrow">→</span>
+        <span class="flow-arrow">&rarr;</span>
         <div class="flow-box" style="border-color: var(--orange);">RRF<br><span class="small">fusion</span></div>
-        <span class="flow-arrow">→</span>
+        <span class="flow-arrow">&rarr;</span>
         <div class="flow-box" style="border-color: var(--pink);">LLM<br><span class="small">Qwen3:32B</span></div>
-        <span class="flow-arrow">→</span>
+        <span class="flow-arrow">&rarr;</span>
         <div class="flow-box" style="border-color: var(--green);">Brouillon<br><span class="small">+ citations</span></div>
       </div>
     </div>
 
-    <div style="flex: 0.7;">
-      <h3>Décisions techniques</h3>
+    <div style="flex: 0.65;">
+      <h3>Stack technique</h3>
       <table style="margin-top:8px; font-size:13px;">
-        <tr><th>Choix</th><th>Décision</th></tr>
-        <tr><td>LLM</td><td style="color:var(--accent);">Qwen3:32B</td></tr>
-        <tr><td>Embeddings</td><td style="color:var(--accent);">Qwen3-Emb-8B</td></tr>
+        <tr><th>Couche</th><th>Technologie</th></tr>
+        <tr><td>LLM</td><td style="color:var(--accent);">Qwen3:32B (Q4_K_M)</td></tr>
+        <tr><td>Embeddings</td><td style="color:var(--accent);">Qwen3-Emb-8B (4096d)</td></tr>
         <tr><td>Vector DB</td><td style="color:var(--accent);">Qdrant</td></tr>
         <tr><td>BDD</td><td style="color:var(--accent);">PostgreSQL</td></tr>
-        <tr><td>Retrieval</td><td style="color:var(--accent);">Hybride + RRF</td></tr>
+        <tr><td>Retrieval</td><td style="color:var(--accent);">Hybride BM25+Dense+RRF</td></tr>
         <tr><td>Serving</td><td style="color:var(--accent);">Ollama / vLLM</td></tr>
-        <tr><td>API</td><td style="color:var(--accent);">FastAPI</td></tr>
+        <tr><td>API</td><td style="color:var(--accent);">FastAPI (6 endpoints)</td></tr>
         <tr><td>UI</td><td style="color:var(--accent);">Streamlit</td></tr>
+        <tr><td>Infra</td><td style="color:var(--accent);">Docker Compose</td></tr>
+        <tr><td>GPU</td><td style="color:var(--accent);">RTX 5090 (32 GB VRAM)</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="slide-footer">Soutenance Portfolio &mdash; F&eacute;vrier 2026</div>
+  <div class="slide-num">6 / 11</div>
+</div>
+
+<!-- =====================================================================
+     SLIDE 7 — CI, TESTS & QUALITE
+     ===================================================================== -->
+<div class="slide">
+  <div class="part-label part-2">Partie 2 &mdash; CI &amp; Tests</div>
+  <h2>Strat&eacute;gie de test, CI/CD &amp; assurance qualit&eacute;</h2>
+  <div class="flex grow" style="gap: 24px;">
+    <div class="flex-1">
+      <h3>Pyramide de tests</h3>
+      <div style="display:flex; flex-direction:column; gap:10px; margin-top:10px;">
+        <div class="card card-green" style="padding:12px 16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <h4 style="color:var(--green); margin-bottom:2px;">Tests unitaires</h4>
+              <p class="small">Triage, retrieval, drafter, ingestion, data validation</p>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:24px; font-weight:800; color:var(--green);">65</div>
+              <div class="small">pass&eacute;s</div>
+            </div>
+          </div>
+        </div>
+        <div class="card card-purple" style="padding:12px 16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <h4 style="color:var(--purple); margin-bottom:2px;">Tests end-to-end (E2E)</h4>
+              <p class="small">API endpoints, triage flow, draft flow, health checks</p>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:24px; font-weight:800; color:var(--purple);">26</div>
+              <div class="small">pass&eacute;s</div>
+            </div>
+          </div>
+        </div>
+        <div class="card card-orange" style="padding:12px 16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <h4 style="color:var(--orange); margin-bottom:2px;">Evaluation harness (ML)</h4>
+              <p class="small">Routing accuracy, recall@5, draft quality rubric (5 crit&egrave;res), latence</p>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:24px; font-weight:800; color:var(--orange);">60</div>
+              <div class="small">samples &eacute;val</div>
+            </div>
+          </div>
+        </div>
+        <div class="card card-accent" style="padding:12px 16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <h4 style="color:var(--accent); margin-bottom:2px;">Tests Postman (collection)</h4>
+              <p class="small">Collection exportable, env local + staging, scripts pre/post-request</p>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:24px; font-weight:800; color:var(--accent);">3</div>
+              <div class="small">envs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-1">
+      <h3>Bilan de la couverture</h3>
+      <div style="margin-top:10px;">
+        <div class="bar-row"><span class="bar-label">Unit tests</span><div class="bar-track"><div class="bar-fill bg-green" style="width:100%"></div></div><span class="bar-pct">65</span></div>
+        <div class="bar-row"><span class="bar-label">E2E tests</span><div class="bar-track"><div class="bar-fill bg-purple" style="width:40%"></div></div><span class="bar-pct">26</span></div>
+        <div class="bar-row"><span class="bar-label">Total tests</span><div class="bar-track"><div class="bar-fill bg-accent" style="width:100%"></div></div><span class="bar-pct">91</span></div>
+        <div class="bar-row"><span class="bar-label">&Eacute;checs</span><div class="bar-track"><div class="bar-fill" style="width:0%; background:var(--red);"></div></div><span class="bar-pct" style="color:var(--green); font-weight:700;">0</span></div>
+      </div>
+
+      <h3 style="margin-top:18px;">Outils &amp; pratiques</h3>
+      <table style="margin-top:8px; font-size:13px;">
+        <tr><th>Domaine</th><th>Outil / Pratique</th></tr>
+        <tr><td>Framework test</td><td>pytest + fixtures</td></tr>
+        <tr><td>E2E / API</td><td>httpx + Postman collection</td></tr>
+        <tr><td>Eval ML</td><td>Harness custom (rubric LLM-as-judge)</td></tr>
+        <tr><td>Containerisation</td><td>Docker Compose (4 services)</td></tr>
+        <tr><td>Linting</td><td>Ruff + type hints</td></tr>
+        <tr><td>Versioning</td><td>Git + GitHub</td></tr>
       </table>
 
-      <h3 style="margin-top: 16px;">Chaque choix documenté</h3>
-      <p class="small" style="margin-top: 6px;">
-        Decision Matrix avec critères pondérés (qualité, vitesse, mémoire, licence, écosystème) et note composite pour chaque alternative.
-      </p>
+      <h3 style="margin-top:18px;">Monitoring</h3>
+      <div style="display:flex; gap:8px; margin-top:6px;">
+        <span class="badge badge-blue">Prometheus</span>
+        <span class="badge badge-purple">Streamlit dashboard</span>
+        <span class="badge badge-green">Health endpoint</span>
+      </div>
     </div>
   </div>
-  <div class="slide-footer">Soutenance Portfolio — Février 2026</div>
-  <div class="slide-num">6 / 12</div>
+  <div class="slide-footer">Soutenance Portfolio &mdash; F&eacute;vrier 2026</div>
+  <div class="slide-num">7 / 11</div>
 </div>
 
-<!-- ═════════════════════════════════════════════════════════════
-     SLIDE 7 — LOCALTRIAGE : PLAN DE PROJET
-     ═════════════════════════════════════════════════════════════ -->
+<!-- =====================================================================
+     SLIDE 8 — RESULTATS MESURES
+     ===================================================================== -->
 <div class="slide">
-  <h2>LOCALTRIAGE — Plan de projet (3 semaines)</h2>
-  <div class="flex grow" style="gap: 24px;">
-    <div style="flex: 1.2;">
-      <!-- Visual timeline -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
-        <!-- Week 1 -->
-        <div class="card" style="border-top: 4px solid var(--accent);">
-          <h4 style="color: var(--accent); font-size: 15px;">Semaine 1 — Fondations</h4>
-          <ul class="clean" style="font-size: 13px; margin-top: 8px;">
-            <li>BRD, Context, architecture</li>
-            <li>Schéma BDD, ingestion</li>
-            <li>Classifier baseline (TF-IDF)</li>
-            <li>Retrieval BM25</li>
-          </ul>
-          <div style="margin-top: 10px;">
-            <span class="badge badge-green">Milestone 1</span>
-          </div>
-          <p class="small" style="margin-top: 6px;">Système baseline opérationnel</p>
-        </div>
-        <!-- Week 2 -->
-        <div class="card" style="border-top: 4px solid var(--purple);">
-          <h4 style="color: var(--purple); font-size: 15px;">Semaine 2 — LLM & RAG</h4>
-          <ul class="clean" style="font-size: 13px; margin-top: 8px;">
-            <li>Vector store + embeddings</li>
-            <li>Retrieval hybride + RRF</li>
-            <li>Intégration LLM</li>
-            <li>Pipeline RAG + citations</li>
-          </ul>
-          <div style="margin-top: 10px;">
-            <span class="badge badge-green">Milestone 2</span>
-          </div>
-          <p class="small" style="margin-top: 6px;">Pipeline RAG opérationnel</p>
-        </div>
-        <!-- Week 3 -->
-        <div class="card" style="border-top: 4px solid var(--green);">
-          <h4 style="color: var(--green); font-size: 15px;">Semaine 3 — Eval & Deploy</h4>
-          <ul class="clean" style="font-size: 13px; margin-top: 8px;">
-            <li>Evaluation harness</li>
-            <li>API FastAPI</li>
-            <li>Dashboard Streamlit</li>
-            <li>Docker + documentation</li>
-          </ul>
-          <div style="margin-top: 10px;">
-            <span class="badge badge-green">Milestone 3</span>
-          </div>
-          <p class="small" style="margin-top: 6px;">Système production-ready</p>
-        </div>
-      </div>
+  <div class="part-label part-2">Partie 2 &mdash; R&eacute;sultats</div>
+  <h2>R&eacute;sultats mesur&eacute;s &mdash; approche baseline-first</h2>
 
-      <div style="margin-top: 20px; display: flex; gap: 16px; align-items: center;">
-        <div class="card" style="flex:1; text-align:center; padding:14px;">
-          <div style="font-size:32px; font-weight:800; color:var(--green);">8/8</div>
-          <div class="small">livrables livrés</div>
-        </div>
-        <div class="card" style="flex:1; text-align:center; padding:14px;">
-          <div style="font-size:32px; font-weight:800; color:var(--green);">3 sem.</div>
-          <div class="small">dans les délais</div>
-        </div>
-        <div class="card" style="flex:1; text-align:center; padding:14px;">
-          <div style="font-size:32px; font-weight:800; color:var(--green);">84%</div>
-          <div class="small">test coverage</div>
-        </div>
-        <div class="card" style="flex:1; text-align:center; padding:14px;">
-          <div style="font-size:32px; font-weight:800; color:var(--accent);">Solo</div>
-          <div class="small">développement</div>
-        </div>
-      </div>
-    </div>
-
-    <div style="flex: 0.6;">
-      <h3>Livrables produits</h3>
-      <div style="margin-top: 8px; font-size: 14px; line-height: 2;">
-        <span class="val-ok">[DONE]</span> Pipeline d'ingestion<br>
-        <span class="val-ok">[DONE]</span> Audit baseline<br>
-        <span class="val-ok">[DONE]</span> Routage LLM<br>
-        <span class="val-ok">[DONE]</span> Drafting RAG<br>
-        <span class="val-ok">[DONE]</span> Dashboard analytics<br>
-        <span class="val-ok">[DONE]</span> Evaluation harness<br>
-        <span class="val-ok">[DONE]</span> Déploiement Docker<br>
-        <span class="val-ok">[DONE]</span> Documentation complète
-      </div>
-
-      <h3 style="margin-top: 16px;">Chemin critique</h3>
-      <p class="small" style="margin-top: 6px; line-height: 1.65;">
-        Schema → Ingestion → Vector Store → Hybrid Retrieval → RAG → API<br><br>
-        <strong>Parallélisation :</strong> baselines développées en parallèle de l'intégration LLM.
-      </p>
-    </div>
-  </div>
-  <div class="slide-footer">Soutenance Portfolio — Février 2026</div>
-  <div class="slide-num">7 / 12</div>
-</div>
-
-<!-- ═════════════════════════════════════════════════════════════
-     SLIDE 8 — RÉSULTATS MESURÉS
-     ═════════════════════════════════════════════════════════════ -->
-<div class="slide">
-  <h2>LOCALTRIAGE — Résultats mesurés</h2>
-
-  <div class="quote" style="margin-bottom: 20px; font-size: 17px;">
-    « On ne peut pas améliorer ce qu'on ne mesure pas. » — Approche baseline-first systématique.
+  <div class="quote" style="margin-bottom: 16px; font-size: 15px;">
+    &laquo; On ne peut pas am&eacute;liorer ce qu'on ne mesure pas. &raquo; &mdash; Chaque m&eacute;trique est compar&eacute;e &agrave; une baseline quantifi&eacute;e.
   </div>
 
-  <div class="kpi-grid" style="margin-bottom: 20px;">
+  <div class="kpi-grid" style="margin-bottom: 18px;">
     <div class="kpi">
       <div class="value" style="color: var(--green);">73.3%</div>
       <div class="label">Routing accuracy</div>
       <div class="delta val-up">+43.3pp vs baseline</div>
     </div>
     <div class="kpi">
-      <div class="value" style="color: var(--purple);">4.67<span style="font-size:20px;">/5</span></div>
-      <div class="label">Qualité brouillons</div>
-      <div class="delta val-up">+3.2 vs templates</div>
+      <div class="value" style="color: var(--purple);">3.63<span style="font-size:18px;">/5</span></div>
+      <div class="label">Qualit&eacute; brouillons</div>
+      <div class="delta val-up">+2.1 vs templates</div>
     </div>
     <div class="kpi">
       <div class="value" style="color: var(--accent);">72%</div>
       <div class="label">Taux d'acceptation</div>
-      <div class="delta val-up">cible 70% -- pass</div>
+      <div class="delta val-up">cible 70% &mdash; atteint</div>
     </div>
     <div class="kpi">
-      <div class="value" style="color: var(--orange);">14.9s</div>
+      <div class="value" style="color: var(--orange);">10.8s</div>
       <div class="label">Latence p95</div>
-      <div class="delta val-up">< 30s budget -- pass</div>
+      <div class="delta val-up">&lt; 30s budget &mdash; atteint</div>
     </div>
   </div>
 
   <div class="flex grow" style="gap: 24px;">
     <div class="flex-1">
-      <h3>Comparaison baseline → système</h3>
-      <table style="font-size: 14px;">
-        <tr><th>Métrique</th><th>Baseline</th><th>Actuel</th><th>Δ</th></tr>
-        <tr><td>Routing accuracy</td><td>30% (majorité)</td><td>73.3%</td><td class="val-up">+43.3pp</td></tr>
+      <h3>Comparaison baseline vs syst&egrave;me</h3>
+      <table style="font-size: 13px;">
+        <tr><th>M&eacute;trique</th><th>Baseline</th><th>Actuel</th><th>&Delta;</th></tr>
+        <tr><td>Routing accuracy</td><td>30% (majorit&eacute;)</td><td>73.3%</td><td class="val-up">+43.3pp</td></tr>
         <tr><td>Recall@5</td><td>70.8% (BM25)</td><td>46.4%</td><td class="val-ok">harder eval set</td></tr>
-        <tr><td>Qualité drafts</td><td>1.5/5 (template)</td><td>4.67/5</td><td class="val-up">+3.2</td></tr>
-        <tr><td>Citations</td><td>0%</td><td>100%</td><td class="val-up">3.0 avg/draft</td></tr>
-        <tr><td>Hallucinations</td><td>N/A</td><td>4.2%</td><td class="val-ok">< 5%</td></tr>
-        <tr><td>Détection P1</td><td>42% recall</td><td>89%</td><td class="val-up">+47pp</td></tr>
+        <tr><td>Qualit&eacute; drafts</td><td>1.5/5 (template)</td><td>3.63/5</td><td class="val-up">+2.1</td></tr>
+        <tr><td>Citations</td><td>0%</td><td>100%</td><td class="val-up">2.8 avg/draft</td></tr>
+        <tr><td>Hallucinations</td><td>N/A</td><td>0%</td><td class="val-ok">Pass</td></tr>
+        <tr><td>D&eacute;tection P1</td><td>42% recall</td><td>89%</td><td class="val-up">+47pp</td></tr>
       </table>
     </div>
     <div class="flex-1">
-      <h3>Détail qualité des brouillons</h3>
-      <table style="font-size: 14px;">
-        <tr><th>Critère</th><th>Score /5</th></tr>
-        <tr><td>Correctness</td><td><strong style="color:var(--green);">4.0</strong></td></tr>
-        <tr><td>Completeness</td><td><strong style="color:var(--green);">5.0</strong></td></tr>
-        <tr><td>Tone / Clarity</td><td><strong style="color:var(--green);">5.0</strong></td></tr>
-        <tr><td>Actionability</td><td><strong style="color:var(--green);">4.3</strong></td></tr>
-        <tr><td>Citation Quality</td><td><strong style="color:var(--green);">5.0</strong></td></tr>
-        <tr style="border-top:2px solid var(--accent);"><td><strong>Moyenne</strong></td><td><strong style="color:var(--accent);font-size:18px;">4.67</strong></td></tr>
+      <h3>D&eacute;tail qualit&eacute; des brouillons (rubric)</h3>
+      <table style="font-size: 13px;">
+        <tr><th>Crit&egrave;re</th><th>Score /5</th></tr>
+        <tr><td>Correctness</td><td><strong style="color:var(--green);">3.8</strong></td></tr>
+        <tr><td>Completeness</td><td><strong style="color:var(--orange);">3.2</strong></td></tr>
+        <tr><td>Tone / Clarity</td><td><strong style="color:var(--green);">4.0</strong></td></tr>
+        <tr><td>Actionability</td><td><strong style="color:var(--orange);">3.2</strong></td></tr>
+        <tr><td>Citation Quality</td><td><strong style="color:var(--green);">4.0</strong></td></tr>
+        <tr style="border-top:2px solid var(--accent);">
+          <td><strong>Moyenne</strong></td>
+          <td><strong style="color:var(--accent);font-size:16px;">3.63</strong></td>
+        </tr>
       </table>
+      <p class="small" style="margin-top:8px; line-height:1.5;">
+        &Eacute;valuation par LLM-as-judge (Qwen3:32B, temp=0, critique-first rubric) sur 5 tickets repr&eacute;sentatifs.
+      </p>
     </div>
   </div>
-  <div class="slide-footer">Soutenance Portfolio — Février 2026</div>
-  <div class="slide-num">8 / 12</div>
+  <div class="slide-footer">Soutenance Portfolio &mdash; F&eacute;vrier 2026</div>
+  <div class="slide-num">8 / 11</div>
 </div>
 
-<!-- ═════════════════════════════════════════════════════════════
-     SLIDE 9 — GESTION DES RISQUES & PIVOTS
-     ═════════════════════════════════════════════════════════════ -->
+<!-- =====================================================================
+     SLIDE 9 — RETROSPECTIVE & LECONS
+     ===================================================================== -->
 <div class="slide">
-  <h2>LOCALTRIAGE — Gestion des risques & pivots</h2>
-  <div class="flex grow" style="gap: 28px;">
+  <div class="part-label part-2">Partie 2 &mdash; R&eacute;tro</div>
+  <h2>R&eacute;trospective &mdash; pivots, le&ccedil;ons et r&eacute;flexivit&eacute;</h2>
+  <div class="flex grow" style="gap: 24px;">
     <div class="flex-1">
-      <h3>Risques matérialisés</h3>
-      <div style="display:flex; flex-direction:column; gap:12px; margin-top:10px;">
-        <div class="card card-orange" style="padding:14px 18px;">
-          <div style="display:flex;justify-content:space-between;">
-            <h4 style="color:var(--orange);margin:0;">Librairie rank-bm25 trop lente</h4>
-            <span class="badge badge-orange">1 jour perdu</span>
+      <h3>Risques mat&eacute;rialis&eacute;s &amp; pivots</h3>
+      <div style="display:flex; flex-direction:column; gap:10px; margin-top:8px;">
+        <div class="card card-orange" style="padding:12px 16px;">
+          <div style="display:flex; justify-content:space-between;">
+            <h4 style="color:var(--orange); margin:0;">rank-bm25 trop lent en prod</h4>
+            <span class="badge badge-orange" style="font-size:11px;">1 jour perdu</span>
           </div>
-          <p class="small" style="margin-top:6px;">Pivot vers PostgreSQL Full-Text Search en 1 journée.<br><strong style="color:var(--text);">Leçon :</strong> évaluer les choix de librairies contre les contraintes prod avant de s'engager.</p>
+          <p class="small" style="margin-top:4px;">Pivot vers PostgreSQL FTS. Le&ccedil;on : &eacute;valuer les libs contre les contraintes prod avant engagement.</p>
         </div>
-        <div class="card card-orange" style="padding:14px 18px;">
-          <div style="display:flex;justify-content:space-between;">
-            <h4 style="color:var(--orange);margin:0;">Bottleneck d'annotation</h4>
-            <span class="badge badge-orange">Jeu d'éval réduit</span>
+        <div class="card card-orange" style="padding:12px 16px;">
+          <div style="display:flex; justify-content:space-between;">
+            <h4 style="color:var(--orange); margin:0;">Bottleneck d'annotation</h4>
+            <span class="badge badge-orange" style="font-size:11px;">&Eacute;val set r&eacute;duit</span>
           </div>
-          <p class="small" style="margin-top:6px;">Jeu d'évaluation réduit de 500 à 200 samples → intervalles de confiance plus larges.<br><strong style="color:var(--text);">Leçon :</strong> démarrer l'annotation en parallèle dès le jour 1.</p>
+          <p class="small" style="margin-top:4px;">500 &rarr; 200 samples. Le&ccedil;on : d&eacute;marrer l'annotation en parall&egrave;le d&egrave;s le jour 1.</p>
         </div>
-        <div class="card card-orange" style="padding:14px 18px;">
-          <div style="display:flex;justify-content:space-between;">
-            <h4 style="color:var(--orange);margin:0;">Scope creep dashboard</h4>
-            <span class="badge badge-orange">Résisté</span>
+        <div class="card card-orange" style="padding:12px 16px;">
+          <div style="display:flex; justify-content:space-between;">
+            <h4 style="color:var(--orange); margin:0;">Scope creep dashboard</h4>
+            <span class="badge badge-green" style="font-size:11px;">R&eacute;sist&eacute;</span>
           </div>
-          <p class="small" style="margin-top:6px;">Demandes d'ajouts incessantes ("métriques de performance agent ?").<br><strong style="color:var(--text);">Leçon :</strong> phase gates strictes + définition de « done » explicite.</p>
+          <p class="small" style="margin-top:4px;">Le&ccedil;on : phase gates strictes + d&eacute;finition de &laquo; done &raquo; explicite.</p>
         </div>
       </div>
-    </div>
-    <div class="flex-1">
-      <h3>Risques anticipés & mitigés</h3>
-      <table style="font-size: 13.5px; margin-top: 10px;">
-        <tr><th>Risque</th><th>Score</th><th>Mitigation</th></tr>
-        <tr><td>Modèle trop gros pour VRAM</td><td>6</td><td style="color:var(--green);">Quantization INT8 + fallback 7B</td></tr>
-        <tr><td>Latence excessive</td><td>4</td><td style="color:var(--green);">Budget/composant → p95 = 24.3s</td></tr>
-        <tr><td>Retrieval insuffisant</td><td>3</td><td style="color:var(--green);">Hybride BM25 + Dense + RRF</td></tr>
-        <tr><td>Qualité données KB</td><td>4</td><td style="color:var(--green);">Pipeline validation</td></tr>
-      </table>
 
-      <h3 style="margin-top: 24px;">Ce que j'aurais fait différemment</h3>
-      <ul class="clean" style="font-size: 14px; margin-top: 10px;">
+      <h3 style="margin-top:14px;">Ce que j'aurais fait diff&eacute;remment</h3>
+      <ul class="clean" style="font-size: 13px; margin-top: 6px;">
         <li>Commencer avec PostgreSQL FTS directement</li>
-        <li>Dataset d'évaluation plus large dès le départ</li>
-        <li>Architecture async dès le jour 1</li>
-        <li>Caching de requêtes dans le MVP</li>
+        <li>Dataset d'&eacute;valuation plus large d&egrave;s le d&eacute;part</li>
+        <li>Architecture async d&egrave;s le jour 1</li>
+        <li>Caching de requ&ecirc;tes dans le MVP</li>
         <li>Demos stakeholders hebdomadaires</li>
       </ul>
     </div>
+    <div class="flex-1">
+      <h3>&Eacute;volution m&eacute;thodologique</h3>
+      <div style="display:grid; grid-template-columns: 1fr auto 1fr; gap:8px; margin-top:10px; align-items:start;">
+        <!-- Avant -->
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div class="small" style="text-align:center; font-weight:700; color:var(--pink); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Avant</div>
+          <div class="card card-pink" style="padding:8px 12px; font-size:13px;">&laquo; Build first, evaluate later &raquo;</div>
+          <div class="card card-pink" style="padding:8px 12px; font-size:13px;">Sauter au mod&egrave;le directement</div>
+          <div class="card card-pink" style="padding:8px 12px; font-size:13px;">&Eacute;valuation informelle</div>
+          <div class="card card-pink" style="padding:8px 12px; font-size:13px;">Documentation en afterthought</div>
+          <div class="card card-pink" style="padding:8px 12px; font-size:13px;">Fini = entra&icirc;n&eacute;</div>
+        </div>
+        <!-- Arrow -->
+        <div style="display:flex; align-items:center; font-size:32px; color:var(--accent); font-weight:800; padding-top:40px;">&rarr;</div>
+        <!-- Apres -->
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div class="small" style="text-align:center; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Apr&egrave;s</div>
+          <div class="card card-green" style="padding:8px 12px; font-size:13px;"><strong>Measure first, build with evidence</strong></div>
+          <div class="card card-green" style="padding:8px 12px; font-size:13px;">Baseline &rarr; gap analysis &rarr; solution</div>
+          <div class="card card-green" style="padding:8px 12px; font-size:13px;">Rubrics formelles (RAGAS, F1)</div>
+          <div class="card card-green" style="padding:8px 12px; font-size:13px;">BRD, archi, decision matrix, r&eacute;tro</div>
+          <div class="card card-green" style="padding:8px 12px; font-size:13px;">D&eacute;ploiement = D&Eacute;BUT du cycle</div>
+        </div>
+      </div>
+
+      <div class="quote" style="margin-top:14px; font-size:13px;">
+        Le Data Scientist n'est pas un mod&eacute;lisateur mais un <strong>r&eacute;solveur de probl&egrave;mes data full-stack</strong> : gouvernance, communication stakeholders, engineering de production, &eacute;thique, apprentissage continu.
+      </div>
+    </div>
   </div>
-  <div class="slide-footer">Soutenance Portfolio — Février 2026</div>
-  <div class="slide-num">9 / 12</div>
+  <div class="slide-footer">Soutenance Portfolio &mdash; F&eacute;vrier 2026</div>
+  <div class="slide-num">9 / 11</div>
 </div>
 
-<!-- ═════════════════════════════════════════════════════════════
-     SLIDE 10 — RÉFLEXIVITÉ : AVANT / APRÈS
-     ═════════════════════════════════════════════════════════════ -->
+
+<!-- =====================================================================
+     PARTIE 3 — PORTFOLIO
+     ===================================================================== -->
+
+
+<!-- =====================================================================
+     SLIDE 10 — PORTFOLIO : INTRODUCTION
+     ===================================================================== -->
 <div class="slide">
-  <h2>Réflexivité — Ce que ce travail m'a apporté</h2>
+  <div class="part-label part-3">Partie 3 &mdash; Portfolio</div>
+  <h2>Le portfolio &mdash; construction &amp; contenu</h2>
   <div class="flex grow" style="gap: 28px;">
     <div class="flex-1">
-      <h3>Avant la formation</h3>
+      <h3>D&eacute;marche de construction</h3>
       <div style="display:flex; flex-direction:column; gap:10px; margin-top:10px;">
-        <div class="card card-pink" style="padding: 12px 16px;">
-          <p style="font-size:15px;"><span style="color:var(--pink);font-weight:700;">→</span> « Build first, evaluate later »</p>
+        <div class="card card-accent" style="padding:12px 16px;">
+          <div style="display:flex; gap:12px; align-items:start;">
+            <div style="font-size:22px; font-weight:800; color:var(--accent); min-width:30px;">1</div>
+            <div>
+              <h4 style="color:var(--accent); margin-bottom:2px;">Inventaire</h4>
+              <p class="small">Recensement de 41 repositories GitHub (personnels, formation, OSS)</p>
+            </div>
+          </div>
         </div>
-        <div class="card card-pink" style="padding: 12px 16px;">
-          <p style="font-size:15px;"><span style="color:var(--pink);font-weight:700;">→</span> Sauter directement au modèle</p>
+        <div class="card card-purple" style="padding:12px 16px;">
+          <div style="display:flex; gap:12px; align-items:start;">
+            <div style="font-size:22px; font-weight:800; color:var(--purple); min-width:30px;">2</div>
+            <div>
+              <h4 style="color:var(--purple); margin-bottom:2px;">S&eacute;lection par pertinence</h4>
+              <p class="small">Filtrage sur comp&eacute;tences ML/DS : classification, RAG, MLOps, deep learning, NLP</p>
+            </div>
+          </div>
         </div>
-        <div class="card card-pink" style="padding: 12px 16px;">
-          <p style="font-size:15px;"><span style="color:var(--pink);font-weight:700;">→</span> Évaluation informelle : « ça a l'air bien »</p>
+        <div class="card card-orange" style="padding:12px 16px;">
+          <div style="display:flex; gap:12px; align-items:start;">
+            <div style="font-size:22px; font-weight:800; color:var(--orange); min-width:30px;">3</div>
+            <div>
+              <h4 style="color:var(--orange); margin-bottom:2px;">Structuration en 4 sections</h4>
+              <p class="small">Comp&eacute;tences &amp; projets, capacit&eacute; r&eacute;flexive, soft skills, mind map</p>
+            </div>
+          </div>
         </div>
-        <div class="card card-pink" style="padding: 12px 16px;">
-          <p style="font-size:15px;"><span style="color:var(--pink);font-weight:700;">→</span> Documentation en afterthought</p>
-        </div>
-        <div class="card card-pink" style="padding: 12px 16px;">
-          <p style="font-size:15px;"><span style="color:var(--pink);font-weight:700;">→</span> Le modèle est fini quand il est entraîné</p>
+        <div class="card card-green" style="padding:12px 16px;">
+          <div style="display:flex; gap:12px; align-items:start;">
+            <div style="font-size:22px; font-weight:800; color:var(--green); min-width:30px;">4</div>
+            <div>
+              <h4 style="color:var(--green); margin-bottom:2px;">Validation crois&eacute;e</h4>
+              <p class="small">Chaque comp&eacute;tence est reli&eacute;e &agrave; un projet et &agrave; des m&eacute;triques mesurables</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div style="display:flex; align-items:center; font-size: 48px; color: var(--accent); font-weight: 800;">→</div>
     <div class="flex-1">
-      <h3>Après la formation & les projets</h3>
-      <div style="display:flex; flex-direction:column; gap:10px; margin-top:10px;">
-        <div class="card card-green" style="padding: 12px 16px;">
-          <p style="font-size:15px;"><span style="color:var(--green);font-weight:700;">--</span> <strong>&laquo; Measure first, build with evidence &raquo;</strong></p>
+      <h3>Structure du portfolio</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;">
+        <div class="card card-accent" style="padding:14px;">
+          <h4 style="color:var(--accent); margin-bottom:6px;">&sect;1 Comp&eacute;tences &amp; Projets</h4>
+          <p class="small">12 projets d&eacute;taill&eacute;s avec stack, m&eacute;triques, liens GitHub</p>
         </div>
-        <div class="card card-green" style="padding: 12px 16px;">
-          <p style="font-size:15px;"><span style="color:var(--green);font-weight:700;">--</span> Baseline &rarr; gap analysis &rarr; solution</p>
+        <div class="card card-purple" style="padding:14px;">
+          <h4 style="color:var(--purple); margin-bottom:6px;">&sect;2 Capacit&eacute; r&eacute;flexive</h4>
+          <p class="small">Erreurs, le&ccedil;ons, &eacute;volution du regard sur le m&eacute;tier</p>
         </div>
-        <div class="card card-green" style="padding: 12px 16px;">
-          <p style="font-size:15px;"><span style="color:var(--green);font-weight:700;">--</span> Rubrics formelles (RAGAS, F1, confusion matrix)</p>
+        <div class="card card-orange" style="padding:14px;">
+          <h4 style="color:var(--orange); margin-bottom:6px;">&sect;3 Soft skills</h4>
+          <p class="small">8 comp&eacute;tences illustr&eacute;es par des exemples concrets</p>
         </div>
-        <div class="card card-green" style="padding: 12px 16px;">
-          <p style="font-size:15px;"><span style="color:var(--green);font-weight:700;">--</span> BRD, architecture, decision matrix, retrospective</p>
-        </div>
-        <div class="card card-green" style="padding: 12px 16px;">
-          <p style="font-size:15px;"><span style="color:var(--green);font-weight:700;">--</span> Le déploiement est le <strong>DÉBUT</strong> du cycle ML</p>
+        <div class="card card-green" style="padding:14px;">
+          <h4 style="color:var(--green); margin-bottom:6px;">&sect;4 Mind map</h4>
+          <p class="small">Vue synth&eacute;tique de l'ensemble du profil et des connexions</p>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="slide-footer">Soutenance Portfolio — Février 2026</div>
-  <div class="slide-num">10 / 12</div>
-</div>
 
-<!-- ═════════════════════════════════════════════════════════════
-     SLIDE 11 — CE QUE LA FORMATION M'A APPORTÉ
-     ═════════════════════════════════════════════════════════════ -->
-<div class="slide">
-  <h2>La formation en pratique — Apports concrets</h2>
-  <div class="flex grow" style="gap: 24px;">
-    <div class="flex-1">
-      <h3>4 transformations clés</h3>
-      <div style="display:flex; flex-direction:column; gap:14px; margin-top:12px;">
-        <div class="card card-accent" style="padding:16px 20px;">
-          <h4 style="color:var(--accent);margin-bottom:6px;">1. Cycle ML structuré</h4>
-          <p style="font-size:14px; color:var(--muted);">Cadrage → Audit données → Baseline → Expérimentation → Déploiement → Monitoring</p>
-        </div>
-        <div class="card card-purple" style="padding:16px 20px;">
-          <h4 style="color:var(--purple);margin-bottom:6px;">2. Rigueur statistique</h4>
-          <p style="font-size:14px; color:var(--muted);">Intervalles de confiance, cross-validation, splits train/val/test, métriques adaptées au problème</p>
-        </div>
-        <div class="card card-orange" style="padding:16px 20px;">
-          <h4 style="color:var(--orange);margin-bottom:6px;">3. Traduction métier</h4>
-          <p style="font-size:14px; color:var(--muted);">Convertir F1/recall en KPIs business : 500K$ économisés, 64% de détection, 72% d'acceptation</p>
-        </div>
-        <div class="card card-green" style="padding:16px 20px;">
-          <h4 style="color:var(--green);margin-bottom:6px;">4. Mindset MLOps</h4>
-          <p style="font-size:14px; color:var(--muted);">Un modèle n'est pas fini tant qu'il n'est pas servi, monitoré et maintenable en production</p>
-        </div>
-      </div>
-    </div>
-    <div class="flex-1">
-      <h3>Évolution de ma perception du rôle</h3>
-      <div class="card card-pink" style="margin-top: 12px; padding: 20px;">
-        <h4 style="color: var(--pink); font-size: 16px;">Avant</h4>
-        <p style="font-size: 15px; color: var(--muted); margin-top: 6px;">
-          Le Data Scientist est un <strong style="color:var(--text);">modélisateur</strong> :<br>
-          entraîne des modèles, optimise des hyperparamètres, maximise l'accuracy dans un notebook.
-        </p>
-      </div>
-      <div class="card card-green" style="margin-top: 12px; padding: 20px;">
-        <h4 style="color: var(--green); font-size: 16px;">Après</h4>
-        <p style="font-size: 15px; color: var(--muted); margin-top: 6px;">
-          Le Data Scientist est un <strong style="color:var(--text);">résolveur de problèmes data full-stack</strong> :
-        </p>
-        <ul class="clean" style="font-size: 14px; margin-top: 8px;">
-          <li>Gouvernance qualité des données</li>
-          <li>Communication stakeholders</li>
-          <li>Engineering de production</li>
-          <li>Responsabilité éthique (vie privée)</li>
-          <li>Boucles d'apprentissage continu</li>
-        </ul>
-      </div>
-      <div class="quote" style="margin-top: 14px; font-size: 15px;">
-        Le déploiement est le <strong>début</strong> du cycle ML, pas la fin.
-      </div>
-    </div>
-  </div>
-  <div class="slide-footer">Soutenance Portfolio — Février 2026</div>
-  <div class="slide-num">11 / 12</div>
-</div>
-
-<!-- ═════════════════════════════════════════════════════════════
-     SLIDE 12 — SYNTHÈSE & MERCI
-     ═════════════════════════════════════════════════════════════ -->
-<div class="slide">
-  <h2>Synthèse — Compétences démontrées</h2>
-  <div class="flex" style="gap: 24px; margin-bottom: 20px;">
-    <div class="flex-1">
-      <table style="font-size: 14px;">
-        <tr><th>Compétence</th><th>Preuve</th></tr>
-        <tr><td>ML supervisé & classification</td><td>HR Analytics (+269% F1), <span style="color:var(--accent);">LOCALTRIAGE</span> (73.3%)</td></tr>
-        <tr><td>RAG & LLM</td><td><span style="color:var(--accent);">LOCALTRIAGE</span> (4.74/5, 94% citations), RAG-Eval</td></tr>
-        <tr><td>MLOps & production</td><td>MLOps Pipeline (FastAPI + Evidently + CI/CD)</td></tr>
+      <h3 style="margin-top:18px;">Comp&eacute;tences d&eacute;montr&eacute;es</h3>
+      <table style="font-size:12px; margin-top:8px;">
+        <tr><th>Comp&eacute;tence</th><th>Preuve</th></tr>
+        <tr><td>ML supervis&eacute;</td><td>HR Analytics (+269% F1), LOCALTRIAGE (73.3%)</td></tr>
+        <tr><td>RAG &amp; LLM</td><td>LOCALTRIAGE (3.63/5, 100% citations)</td></tr>
+        <tr><td>MLOps</td><td>Pipeline (FastAPI + Evidently + CI/CD)</td></tr>
         <tr><td>Deep learning</td><td>Semi-Supervised MRI (ResNet-18)</td></tr>
-        <tr><td>NLP & topic modeling</td><td>Concord (BERTopic + Neo4j)</td></tr>
-        <tr><td>Infra LLM</td><td>Weebo (RTX 5090, quantization)</td></tr>
-        <tr><td>Gestion de projet</td><td><span style="color:var(--accent);">LOCALTRIAGE</span> (3 sem, 8/8, solo, risk register)</td></tr>
-        <tr><td>Documentation</td><td>BRD, architecture, decision matrix, retrospective</td></tr>
+        <tr><td>Gestion de projet</td><td>LOCALTRIAGE (3 sem, 8/8 livrables, solo)</td></tr>
       </table>
-    </div>
-    <div style="flex: 0.6;">
-      <h3>Prochaines étapes</h3>
-      <p class="small" style="margin-top: 4px;">(LOCALTRIAGE Phase 2)</p>
-      <ul class="clean" style="font-size: 14px; margin-top: 10px;">
-        <li>Support multi-langue</li>
-        <li>Ingestion temps réel</li>
-        <li>Pipeline de fine-tuning</li>
-        <li>Classification multi-label</li>
-        <li>Dashboard performance agents</li>
-      </ul>
-    </div>
-  </div>
 
-  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;">
-    <div style="text-align:center; margin-top: 10px;">
-      <h1 style="font-size: 36px; color: var(--accent);">Merci</h1>
-      <p style="color: var(--muted); font-size: 18px; margin-top: 8px;">Questions & échanges</p>
-      <div style="display:flex; gap: 20px; margin-top: 16px; justify-content:center;">
-        <span class="cover-link">github.com/Septimus4/LOCALTRIAGE</span>
-        <span class="cover-link">Portfolio HTML en ligne</span>
+      <div class="quote" style="margin-top:14px; font-size:13px;">
+        Principe directeur : chaque affirmation est adoss&eacute;e &agrave; un livrable v&eacute;rifiable.
       </div>
     </div>
   </div>
-  <div class="slide-footer">Soutenance Portfolio — Février 2026</div>
-  <div class="slide-num">12 / 12</div>
+  <div class="slide-footer">Soutenance Portfolio &mdash; F&eacute;vrier 2026</div>
+  <div class="slide-num">10 / 11</div>
+</div>
+
+<!-- =====================================================================
+     SLIDE 11 — OUVERTURE PORTFOLIO & MERCI
+     ===================================================================== -->
+<div class="slide">
+  <div class="part-label part-3">Partie 3 &mdash; Portfolio</div>
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+    <p style="font-size:18px; color:var(--muted); margin-bottom:12px; text-transform:uppercase; letter-spacing:2px; font-weight:600;">D&eacute;monstration</p>
+    <h1 style="font-size: 48px;">Ouverture du <span class="highlight">Portfolio</span></h1>
+    <p style="color: var(--muted); font-size: 18px; margin-top: 16px; max-width:600px; line-height:1.6;">
+      Le portfolio HTML pr&eacute;sente l'ensemble des projets, comp&eacute;tences et r&eacute;flexions. Je vous propose de le parcourir ensemble.
+    </p>
+
+    <div style="display:flex; gap: 20px; margin-top: 40px;">
+      <span class="cover-link" style="font-size:17px; padding: 12px 32px;">Portfolio HTML en ligne</span>
+      <span class="cover-link" style="font-size:17px; padding: 12px 32px;">github.com/Septimus4/LOCALTRIAGE</span>
+    </div>
+
+    <div style="margin-top:60px;">
+      <h1 style="font-size: 36px; color: var(--accent);">Merci</h1>
+      <p style="color: var(--muted); font-size: 18px; margin-top: 8px;">Questions &amp; &eacute;changes</p>
+    </div>
+  </div>
+  <div class="slide-footer">Soutenance Portfolio &mdash; F&eacute;vrier 2026</div>
+  <div class="slide-num">11 / 11</div>
 </div>
 
 </body>
