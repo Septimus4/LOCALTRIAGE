@@ -119,13 +119,13 @@ Modern RAG systems combine multiple retrieval strategies:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                     Current Ticket Flow                          │
-│                                                                  │
+│                     Current Ticket Flow                         │
+│                                                                 │
 │  Customer     Ticket      Manual       Agent        Resolution  │
-│  Contact  →  Created  →  Triage   →  Assignment →  & Response  │
+│  Contact  →  Created  →  Triage   →  Assignment →  & Response   │
 │              (Auto)      (5-15m)     (Variable)    (10-60m)     │
-│                            │                                     │
-│                            ▼                                     │
+│                            │                                    │
+│                            ▼                                    │
 │                    ┌───────────────┐                            │
 │                    │ Pain Points:  │                            │
 │                    │ • Inconsistent│                            │
@@ -140,20 +140,20 @@ Modern RAG systems combine multiple retrieval strategies:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                      Target Ticket Flow                          │
-│                                                                  │
-│  Customer     Ticket      Auto        Draft        Agent       │
-│  Contact  →  Created  →  Triage  →  Generated →  Review &     │
-│              (Auto)      (<5s)      (<30s)       Send          │
+│                      Target Ticket Flow                         │
+│                                                                 │
+│  Customer     Ticket      Auto        Draft        Agent        │
+│  Contact  →  Created  →  Triage  →  Generated →  Review &       │
+│              (Auto)      (<5s)      (<30s)       Send           │
 │                │           │           │                        │
 │                ▼           ▼           ▼                        │
-│           ┌─────────────────────────────────┐                  │
+│           ┌─────────────────────────────────┐                   │
 │           │ Benefits:                        │                  │
 │           │ • Consistent routing             │                  │
 │           │ • Grounded responses             │                  │
 │           │ • Knowledge preserved            │                  │
 │           │ • Insights generated             │                  │
-│           └─────────────────────────────────┘                  │
+│           └─────────────────────────────────┘                   │
 └─────────────────────────────────────────────────────────────────┘
 ```
 

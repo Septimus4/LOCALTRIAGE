@@ -84,8 +84,8 @@ Open http://localhost:8501 in your browser.
 └─────────────────────────┬───────────────────────────────────┘
                           │
 ┌─────────────────────────▼───────────────────────────────────┐
-│                      FastAPI Backend                         │
-│                    (http://localhost:8080)                   │
+│                      FastAPI Backend                        │
+│                    (http://localhost:8080)                  │
 │  ┌──────────┐  ┌───────────┐  ┌──────────┐  ┌────────────┐  │
 │  │  Triage  │  │  Drafting │  │ Retrieval│  │  Analytics │  │
 │  │  Router  │  │    RAG    │  │  Hybrid  │  │   Engine   │  │
@@ -93,9 +93,9 @@ Open http://localhost:8501 in your browser.
 └───────┼──────────────┼─────────────┼───────────────┼────────┘
         │              │             │               │
 ┌───────▼──────┐ ┌─────▼─────┐ ┌─────▼─────┐ ┌──────▼──────┐
-│  PostgreSQL  │ │  Ollama   │ │   Qdrant  │ │  Qwen3-Emb │
+│  PostgreSQL  │ │  Ollama   │ │   Qdrant  │ │  Qwen3-Emb  │
 │   Database   │ │ qwen3:32b │ │  Vectors  │ │  8B Embed.  │
-│  (port 5432) │ │(port 11434)│ │(port 6333)│ │ (4096 dim)  │
+│  (port 5432) │ │(port 11434)│ │(port 6333)│ │ (4096 dim) │
 └──────────────┘ └───────────┘ └───────────┘ └─────────────┘
 ```
 

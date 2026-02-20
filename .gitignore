@@ -207,6 +207,12 @@ marimo/_lsp/
 __marimo__/
 
 # Project-specific
+# Personal notes
+note.txt
+
+# Generated/binary artifacts
+docs/slides_soutenance.pdf
+
 # HuggingFace model cache (large files)
 models/hf_cache/
 *.safetensors
