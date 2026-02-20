@@ -1,7 +1,7 @@
 # LOCALTRIAGE API Service Dockerfile
 # Multi-stage build for optimized production image
 
-FROM python:3.11-slim as builder
+FROM python:3.11-slim AS builder
 
 # Set build-time environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -17,20 +17,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Install uv for fast dependency resolution
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
 # Create virtual environment
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-# Install Python dependencies
-COPY requirements.txt .
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
+# Install Python dependencies via pyproject.toml
+COPY pyproject.toml README.md ./
+RUN mkdir -p src && touch src/__init__.py
+RUN uv pip install --python /opt/venv/bin/python .
 
 
 # =============================================================================
 # Production Image
 # =============================================================================
-FROM python:3.11-slim as production
+FROM python:3.11-slim AS production
 
 # Runtime environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
